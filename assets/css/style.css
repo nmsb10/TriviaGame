@@ -9,6 +9,7 @@ html, body{
 body{
 	/*http://www.w3schools.com/colors/colors_picker.asp*/
 	/*http://www.w3schools.com/cssref/css_units.asp*/
+	/*http://www.w3schools.com/css/css_align.asp*/
 	background: url("../images/one.JPG");
 	background-repeat: no-repeat;
 	/*background color for areas not covered by background image*/
@@ -164,35 +165,94 @@ header *{
 	margin-top: 25px;
 }
 
+.main-content-section{
+	display: inline-block;
+	/*need vertical-align top or else sections will align by bottom
+	of content of the sections*/
+	vertical-align:top;
+}
+
 #main-content-summary{
 	width: 20%;
 	/*want the total max width to be 200px. left plus right padding plus borders is 14px*/
 	/*therefore the max content width is 200px - 14px*/
 	max-width: 186px;
 	min-height: 150px;
-	background: rgba(78, 42, 132,0.45);
-	padding: 20px 5px;
+	background: rgba(0, 0, 0, 0.45);
+	padding: 15px 10px;
 	/* border: width style color; */
 	border:2px solid rgba(78, 42, 132,1);
 	border-radius:7px;
-	display:inline-block;
+}
+
+h1{
+	font-family: 'Georgia', Times, "Times New Roman", serif;
+	font-size: 20px;
+	font-weight: 600;
+	color: rgba(255,255,255,1);
+	text-align: center;
+}
+
+h2, h3{
+	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+	font-size: 17px;
+	color: rgba(255,255,255,1);
+	text-align: center;
+}
+
+#content-name{
+	padding: 0px 0px 10px 0px;
+	line-height: 125%;
+}
+
+#content-summary-text{
+	text-align: justify;
+	padding: 10px 0px 0px 0px;
+	line-height: 125%;
 }
 
 #main-content{
-	width:70%;
-	margin-left:5%;
-	max-width: 186px;
-	min-height: 150px;
-	background: rgba(78, 42, 132,0.45);
+	width: 70%;
+	min-height: 250px;
+	margin-left: 5%;
+	background: rgba(0, 0, 0, 0.45);
+	/*why does more than 5px side padding make this section not cooperate?*/
 	padding: 20px 5px;
-	/* border: width style color; */
-	border:2px solid rgba(78, 42, 132,1);
+	border: 2px solid rgba(78, 42, 132,1);
 	border-radius:7px;
-	display:inline-block;
+	text-align:center;
+	padding: 20px auto;
 }
 
+#start-button{
+	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+	font-size:17px;
+	color: rgba(255,255,255,1);
+	background: rgba(0, 0, 0, 0.45);
+	border:2px solid rgba(78, 42, 132,0.75);
+	border-radius:10px;
+}
 
+#start-button:hover{
+	color: rgba(0,0,0,1);
+	background: rgba(255, 255, 255, 0.45);
+	border:2px solid rgba(78, 42, 132,0.75);
+}
 
+.text{
+	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+	font-size:20px;
+	color: rgba(255,255,255,1);
+	text-align:center;
+	margin-bottom:15px;
+}
+
+.possible-answer:hover{
+	border-radius:7px;
+	background-color: rgba(230,230,230,0.3);
+	/*color:purple;*/
+	color: rgba(128, 0, 128, 1);
+}
 
 
 
@@ -254,13 +314,6 @@ footer{
 
 
 
-h1, h2, h3{
-	font-family: 'Georgia', Times, "Times New Roman", serif;
-	font-size: 25px;
-	font-weight: 600;
-	color: rgba(255,255,255,1);
-	text-align: center;
-}
 
 p{
 	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
@@ -281,78 +334,6 @@ ul, li{
 
 
 
-
-
-#content-name{
-	padding: 0px 0px 10px 0px;
-}
-
-#content-edition{
-	padding: 10px 0px 0px 0px;
-	font-size:22px;
-}
-
-.main-content{
-	width: 100%;
-	max-width: 700px;
-/*	float:left;*/
-	display: inline-block;
-	margin: 0px 0px 30px 20px;
-/*	margin: 0px auto;*/
-}
-
-#leftside-winning-stats{
-	width: 100%;
-	/*with adding of 20 and border of 2, total width is 344px*/
-	max-width: 300px;
-	background: rgba(51, 51, 51, 0.45);
-	padding: 20px;
-	border:2px solid rgba(51, 51, 51, 1);
-	border-radius:7px;
-	float: left;
-	overflow: auto;
-}
-
-#winning-words{
-	margin-top:8px;
-}
-
-#game-message{
-	min-height: 50px;
-	color: rgba(78, 42, 132,0.8);
-	background-color:#ffffff;
-	padding: 12px;
-	margin: 10px 0px;
-	border:1px solid #cccccc;
-	border-radius: 7px;
-}
-
-.rightside-game-status{
-	/*can be total width 396px*/
-	width: 100%;
-	/*with adding of 20 and border of 2, total width is 344px*/
-	max-width: 290px;
-	background: rgba(78, 42, 132,0.45);
-	padding: 20px;
-	border:2px solid rgba(78, 42, 132,1);
-	border-radius:7px;
-	margin-left: 20px;
-	overflow: auto;
-	float: left;
-}
-
-#start-button{
-	display: block;
-	margin: auto;
-	font-size:21px;
-	border:2px solid rgba(78, 42, 132,0.75);
-	border-radius:5px;
-	margin-bottom: 17px;
-}
-
-#letter-spaces{
-	letter-spacing: 7px;
-}
 
 
 

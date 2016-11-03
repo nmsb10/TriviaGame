@@ -14,7 +14,7 @@
 	<!-- because header is position fixed (which has no height), must give the header's horizontal-section div a specific height equal to the header box's height so the next horizontal section begins at the bottom of the header box. -->
 	<div class="horizontal-section" style="height: 74.18px;">
 		<header>
-			<!-- consult css file .hdlinks for why inline style font-size:0 inserted here -->
+			<!-- consult css file .header-section for why inline style font-size:0 inserted here -->
 			<div class="good-fit" style="font-size: 0;">
 				<!-- cannot make these header-sections span. A span is inherently display: inline, but cannot take a width or height -->
 				<div class="header-section header-section-left">
@@ -33,10 +33,38 @@
 		</header>
 	</div>
 	<div class="horizontal-section" id="middle-section">
-		<div class="good-fit">
-			<section id="main-content-summary">
+		<div class="good-fit" style="font-size:0;">
+			<section class="main-content-section" id="main-content-summary">
+				<h1 id="content-name">
+				  <!-- Renters -->
+				  Whatever
+				</h1>
+				<hr style="width:80%;">
+				<h2 id="content-summary-text">
+				  <!-- Do you know what a licensed real estate broker can do for you? Confirm your knowledge with this questionnaire. -->
+				  Blah blah cupcakes. Taste the cupcakes. Change the world.
+				</h2>
 			</section>
-			<section id="main-content">
+			<section class="main-content-section" id="main-content">
+				<button id="start-button">
+				  click to start
+				</button>
+				<div class="text" id="timer">
+				</div>
+				<div class="text" id="question">
+				</div>
+				<div class="text" id = "answers">
+				</div>
+				<div class="text" id="answer1">
+				</div>
+				<div class="text" id="answer2">
+				</div>
+				<div class="text" id="answer3">
+				</div>
+				<div class="text" id="answer4">
+				</div>
+				<div class="text" id="answer5">
+				</div>
 			</section>
 		</div>
 	</div>
