@@ -215,6 +215,7 @@ h2, h3{
 	width: 70%;
 	min-height: 250px;
 	margin-left: 5%;
+	margin-bottom: 25px;
 	background: rgba(0, 0, 0, 0.45);
 	/*why does more than 5px side padding make this section not cooperate?*/
 	padding: 20px 5px;
