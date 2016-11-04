@@ -1,7 +1,7 @@
 //remember: first global variables, then objects, then calls
 var game =
 {
-	qa:
+	qaOriginal:
 	[
 		{
 			question: "question one here",
@@ -34,8 +34,9 @@ var game =
 			explanation: "Answer makes sense because explanation."
 		}
 	],
+	qa: [],
 	correctAnswerResponse: ["Good job.", "Correct.","That's right."],
-	incorrectAnswerResponse: ["The correct answer is:","The answer is:"],
+	incorrectAnswerResponse: ["The correct answer is:","The right answer is:"],
 	userCorrectAnswers: 0,
 	userIncorrectAnswers: 0,
 	userUnansweredAnswers: 0,
@@ -44,6 +45,38 @@ var game =
 	correctAnswerPlace:0,
 	userSelection:"",
 	percentageCorrect:0,
+	questionTimer:0,
+	timerAnswer:5,
+	counter:0,
+	answeredQuestion:false,
+	//http://www.w3schools.com/jsref/met_win_setinterval.asp
+	timeTheUserOnQuestion: function(){
+		game.counter = setInterval(game.decrement, 1000);
+	},
+	setQuestionTimer:function(){
+		game.questionTimer = 21;
+	},
+	decrement: function(){
+		game.questionTimer --;
+		$("#timer").html("time remaining: " + game.questionTimer + " seconds");
+		game.checkResponse();
+		if(game.questionTimer === 1){
+			$("#timer").html("time remaining: " + game.questionTimer + " second!");
+		}
+		if(game.questionTimer === 0){
+			game.stop();
+			game.userUnansweredAnswers ++;
+			$("#answers").html("<div class='text'>" + game.incorrectAnswerResponse[Math.floor(Math.random()*game.incorrectAnswerResponse.length)] + "</div>");
+			$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].answer + "</div>");
+			$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].explanation + "</div>");
+		}
+		if(game.answeredQuestion===true){
+			game.stop();
+		}
+	},
+	stop: function(){
+		clearInterval(game.counter);
+	},
 	questionsRemaining: function(){
 		//first check if game.qa array is empty. if empty, show final page
 		//with user results and start over button
@@ -54,6 +87,7 @@ var game =
 	},
 	generateQuestion: function(){
 		// game.questionsRemaining();
+		// game.timeTheUserOnQuestion();
 		//randomly choose a question from remaining elements in the game.qa array
 		game.currentSelection = Math.floor(Math.random()*game.qa.length);
 		game.currentQuestion = game.qa[game.currentSelection].question;
@@ -97,16 +131,21 @@ var game =
 		// $("#answer5").html(currentAnswers[4]);
 	},
 	checkResponse:function(){
-		//if user selection is correct,
 		$(".possible-answer").on("click",function(){
+			game.answeredQuestion = true;
 			console.log("id of this possible answer is " + $(this).attr("id"));
 			console.log("correct answer place is " + game.correctAnswerPlace);
+			//if user selection is correct:
+			console.log(game.userCorrectAnswers);
 			if($(this).attr("id") === game.correctAnswerPlace.toString()){
+				game.userCorrectAnswers ++;
+				console.log(game.userCorrectAnswers);
 				$("#answers").html("<div class='text'>" + game.qa[game.currentSelection].answer + "</div>");
 				$("#answers").append("<div class='text'>" + game.correctAnswerResponse[Math.floor(Math.random()*game.correctAnswerResponse.length)] + "</div>");
 				$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].explanation + "</div>");
 			} else{
-				$("#answers").html(game.incorrectAnswerResponse[Math.floor(Math.random()*game.incorrectAnswerResponse.length)]);
+				game.userIncorrectAnswers ++;
+				$("#answers").html("<div class='text'>" + game.incorrectAnswerResponse[Math.floor(Math.random()*game.incorrectAnswerResponse.length)] + "</div>");
 				$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].answer + "</div>");
 				$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].explanation + "</div>");
 			}
@@ -124,9 +163,12 @@ var game =
 $(document).ready(function(){
 	$("#start-button").on("click",function(){
 		$("#start-button").hide();
+		game.qa = game.qaOriginal;
 		// game.questionsRemaining();
+		game.setQuestionTimer();
 		game.generateQuestion();
-		game.checkResponse();
+		game.timeTheUserOnQuestion();
+		// game.checkResponse();
 	});
 });
 
@@ -153,3 +195,5 @@ $(document).ready(function(){
 //after all questions completed, final page says, "here's how you did:"
 //display userCorrectAnswers, userIncorrectAnswers, userUnanswered, percentageCorrect=correct/totalnumberofquestions
 //display "start over" button
+//start over button restarts at ga.qaOriginal (as game.qa has been depleted to nothing)
+//reset usercorrect and incorrect response counts, etc.
