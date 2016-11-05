@@ -323,7 +323,7 @@ var game =
 				game.stop();
 				game.userCorrectAnswers ++;
 				console.log(game.userCorrectAnswers + " userCorrectAnswers");
-				$("#answers").html("<div class='text'>" + game.correctAnswerResponse[Math.floor(Math.random()*game.incorrectAnswerResponse.length)] + "</div>");
+				$("#answers").html("<div class='text'>" + game.correctAnswerResponse[Math.floor(Math.random()*game.correctAnswerResponse.length)] + "</div>");
 				$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].answer + "</div>");
 				$("#answers").append("<div class='text' style='text-align: justify;'>" + game.qa[game.currentSelection].explanation + "</div>");
 				console.log(game.qa.length);
