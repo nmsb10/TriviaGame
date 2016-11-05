@@ -59,7 +59,7 @@ var game =
 			question: "What does a renter working with Jonathon do if their rental situation or needs change?",
 			answersIncorrect: ["Keep Jonathon working on the old search criteria.","Start working with another broker for the \"new search\".", "Just stop corresponding with Jonathon.", "Begin calling on rental listings directly with the landlords or the landlord brokers."],
 			answer: "Inform Jonathon immediately.",
-			explanation: "If Jonathon's clients decides they want to modify any of their search criteria (increase or decrease #bedrooms, neighborhood, amenities, property type, specific building(s), location, budget, etc) or have new / updated preferences, Jonathon can accommodate anything and send you updated listings right away. Jonathon's clients receive top-notch brokerage service and representation."
+			explanation: "If Jonathon's clients decide they want to modify any of their search criteria (increase or decrease #bedrooms, neighborhood, amenities, property type, specific building(s), location, budget, etc) or have new / updated preferences, Jonathon can accommodate anything and send you updated listings right away. Jonathon's clients receive top-notch brokerage service and representation."
 		},
 		{
 			question: "What is a \"pocket listing\" or an \"exempt listing\"?",
@@ -108,7 +108,7 @@ var game =
 			question: "What does a renter working with Jonathon do if their rental situation or needs change?",
 			answersIncorrect: ["Keep Jonathon working on the old search criteria.","Start working with another broker for the \"new search\".", "Just stop corresponding with Jonathon.", "Begin calling on rental listings directly with the landlords or the landlord brokers."],
 			answer: "Inform Jonathon immediately.",
-			explanation: "If Jonathon's clients decides they want to modify any of their search criteria (increase or decrease #bedrooms, neighborhood, amenities, property type, specific building(s), location, budget, etc) or have new / updated preferences, Jonathon can accommodate anything and send you updated listings right away. Jonathon's clients receive top-notch brokerage service and representation."
+			explanation: "If Jonathon's clients decide they want to modify any of their search criteria (increase or decrease #bedrooms, neighborhood, amenities, property type, specific building(s), location, budget, etc) or have new / updated preferences, Jonathon can accommodate anything and send you updated listings right away. Jonathon's clients receive top-notch brokerage service and representation."
 		},
 		{
 			question: "What is a \"pocket listing\" or an \"exempt listing\"?",
