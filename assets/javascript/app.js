@@ -169,11 +169,11 @@ var game =
 		}
 	},
 	setQuestionTimer:function(){
-		game.questionTimer = 6;
+		game.questionTimer = 31;
 		console.log("question timer set!");
 	},
 	setAnswerTimer: function(){
-		game.answerTimer = 3;
+		game.answerTimer = 21;
 		console.log("answer timer set!");
 	},
 	decrement: function(){
