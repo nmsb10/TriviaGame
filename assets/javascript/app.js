@@ -71,7 +71,7 @@ var game =
 			question: "If I rent directly from the landlord (or even the landlord's broker), shouldn't I be able to get a better deal because I just eliminated at least one of the \"brokerage middlemen\"?",
 			answersIncorrect: ["true"],
 			answer: "false",
-			explanation: "Economically, rentals rented at Market Rates take into account this broker compensation. Landlord's don't relinquish potential rental income for any reason. Why would a renter work with the landlord or the landlord's broker, when those parties only care about the landlord's interests? Jonathon fully protects and advocates for his clients' interests."
+			explanation: "Economically, rentals rented at Market Rates take into account this broker compensation. Landlords usually act benevolently only if it benefits them (and reducing the rent usually does not benefit the landlord). Why would a renter work with the landlord or the landlord's broker, when those parties only care about the landlord's interests? Jonathon fully protects and advocates for his clients' interests."
 		},
 		{
 			question: "These factors enhance my desirability from the landlord's perspective EXCEPT:",
@@ -120,7 +120,7 @@ var game =
 			question: "If I rent directly from the landlord (or even the landlord's broker), shouldn't I be able to get a better deal because I just eliminated at least one of the \"brokerage middlemen\"?",
 			answersIncorrect: ["true"],
 			answer: "false",
-			explanation: "Economically, rentals rented at Market Rates take into account this broker compensation. Landlord's don't relinquish potential rental income for any reason. Why would a renter work with the landlord or the landlord's broker, when those parties only care about the landlord's interests? Jonathon fully protects and advocates for his clients' interests."
+			explanation: "Economically, rentals rented at Market Rates take into account this broker compensation. Landlords usually act benevolently only if it benefits them (and reducing the rent usually does not benefit the landlord). Why would a renter work with the landlord or the landlord's broker, when those parties only care about the landlord's interests? Jonathon fully protects and advocates for his clients' interests."
 		},
 		{
 			question: "These factors enhance my desirability from the landlord's perspective EXCEPT:",
