@@ -1,37 +1,12 @@
-//remember: first global variables, then objects, then calls
-//WHY does game.qaOriginal get empty after all questions are asked???
-var qaOOO = [
-		{
-			question: "question one here",
-			answersIncorrect: ["wrong 1","wrong 2","wrong 3"],
-			answer: "answer to question one here.",
-			explanation: "This answer makes sense because explanation."
-		},
-		{
-			question: "question two here",
-			answersIncorrect: ["wrong 1","wrong 2","wrong 3","wrong 4"],
-			answer: "answer to question two here.",
-			explanation: "Answer is correct because explanation."
-		},
-		{
-			question: "question three here",
-			answersIncorrect: ["false"],
-			answer: "true",
-			explanation: "This is true because explanation."
-		},
-		{
-			question: "question four here",
-			answersIncorrect: ["wrong 1","wrong 2","wrong 3"],
-			answer: "answer to question four here.",
-			explanation: "This answer is correct because explanation."
-		},
-		{
-			question: "question five here",
-			answersIncorrect: ["wrong 1","wrong 2"],
-			answer: "answer to question five here.",
-			explanation: "Answer makes sense because explanation."
-		}
-	];
+$(document).ready(function(){
+	$("#start-button").on("click",function(){
+		$("#start-button").hide();
+		//console.log(game.qa);
+		// game.qa = qaOriginal;
+		$("#timer").html("[timer]");
+		game.generateQuestion();
+	});
+});
 
 var game =
 {
@@ -151,75 +126,8 @@ var game =
 	// counter:0,
 	answeredQuestion:false,
 	//http://www.w3schools.com/jsref/met_win_setinterval.asp
-	timeTheUserOnQuestion: function(){
-		counter = setInterval(game.decrement, 1000);
-		console.log("timeTheUserOnQuestion initiated!");
-	},
-	timedAnswerReveal: function(){
-		counter = setInterval(game.answerReveal, 1000);
-		console.log("timedAnswerReveal initiated!");
-	},
-	answerReveal: function(){
-		console.log("game.answerReveal initiated");
-		game.answerTimer --;
-		if(game.answerTimer === 0){
-			game.stop();
-			console.log("stop function used! in game.answerReveal");
-			game.generateQuestion();
-		}
-	},
-	setQuestionTimer:function(){
-		game.questionTimer = 31;
-		console.log("question timer set!");
-	},
-	setAnswerTimer: function(){
-		game.answerTimer = 21;
-		console.log("answer timer set!");
-	},
-	decrement: function(){
-		console.log("game.decrement initiated");
-		game.questionTimer --;
-		$("#timer").html("time remaining: " + game.questionTimer + " seconds");
-		//putting game.checkResponse here screwed up the program when user clicked on potential answer??
-		//game.checkResponse();
-		if(game.answeredQuestion===true){
-			game.stop();
-		}else if(game.questionTimer === 1){
-			$("#timer").html("time remaining: " + game.questionTimer + " second!");
-		}else if(game.questionTimer === 0){
-			game.stop();
-			console.log(game.qa[game.currentSelection]);
-			console.log(game.currentSelection + " = contents of game.currentSelection");
-			console.log("contents of game.qa currentSelection below:");
-			console.log(game.qa[game.currentSelection]);
-			game.userUnansweredAnswers ++;
-			$("#answers").html("<div class='text'>" + game.incorrectAnswerResponse[Math.floor(Math.random()*game.incorrectAnswerResponse.length)] + "</div>");
-			$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].answer + "</div>");
-			$("#answers").append("<div class='text' style='text-align: justify;'>" + game.qa[game.currentSelection].explanation + "</div>");
-			game.qa.splice(game.currentSelection,1);
-			game.setAnswerTimer();
-			game.timedAnswerReveal();
-		}
-	},
-	stop: function(){
-		console.log("stop function used!");
-		clearInterval(counter);
-		console.log(counter);
-	},
-	questionsRemaining: function(){
-		//first check if game.qa array is empty. if empty, show final page
-		//with user results and start over button
-		//if questions are remaining, game.generateQuestion()
-		if(game.qa.length===0){
-			return false;
-		}
-		else{
-			return true;
-		}
-	},
 	generateQuestion: function(){
-		console.log(game.questionsRemaining() + ": questions are remaining");
-		//game.questionsRemaining();
+		//console.log(game.questionsRemaining() + ": questions are remaining");
 		game.answeredQuestion = false;
 		if(game.questionsRemaining()){
 			game.setQuestionTimer();
@@ -227,12 +135,12 @@ var game =
 			//randomly choose a question from remaining elements in the game.qa array
 			game.currentSelection = Math.floor(Math.random()*game.qa.length);
 			game.currentQuestion = game.qa[game.currentSelection].question;
-			console.log(game.currentSelection);
+			//console.log(game.currentSelection);
 			//choose the random array element location of (game.qa[game.currentSelection].answersIncorrect.length+1) answers for the correct answer
 			game.correctAnswerPlace = Math.floor(Math.random()*(game.qa[game.currentSelection].answersIncorrect.length + 1));
-			console.log("correct answer place is " + game.correctAnswerPlace);
+			//console.log("correct answer place is " + game.correctAnswerPlace);
 			var totalAnswerCount = game.qa[game.currentSelection].answersIncorrect.length + 1;
-			console.log("total answers for this question are: " + totalAnswerCount);
+			//console.log("total answers for this question are: " + totalAnswerCount);
 			//create a currentAnswers array to hold all incorrect and the one correct answer, for the current question.
 			var currentAnswers = [];
 			//populate currentAnswers array with answers randomly presented
@@ -244,14 +152,14 @@ var game =
 				}
 				else{
 					chooseRandomWrongAnswer = Math.floor(Math.random()*game.qa[game.currentSelection].answersIncorrect.length);
-					console.log(chooseRandomWrongAnswer);
+					//console.log(chooseRandomWrongAnswer);
 					currentAnswers.push(game.qa[game.currentSelection].answersIncorrect[chooseRandomWrongAnswer]);
 					//console.log(game.qa[game.currentSelection].answersIncorrect);
 					game.qa[game.currentSelection].answersIncorrect.splice(chooseRandomWrongAnswer,1);
 					//console.log(game.qa[game.currentSelection].answersIncorrect + " answersIncorrect remaining");
 				}
 			}
-			console.log("current answer array is " + currentAnswers);
+			//console.log("current answer array is " + currentAnswers);
 			$("#question").html(game.currentQuestion);
 			var choices = "";
 			for(var i = 0; i<currentAnswers.length; i++){
@@ -292,20 +200,49 @@ var game =
 			game.startOver();
 		}
 	},
-	startOver:function(){
-		$(".start-over").on("click",function(){
-			console.log(qaOOO);
-			game.qa = game.qaOriginal;
-			console.log(game.qa);
-			$("#timer").html("timer");
-			$("#question").html("");
-			$("#answers").html("");
-			game.userCorrectAnswers = 0;
-			game.userIncorrectAnswers = 0;
-			game.userUnansweredAnswers = 0;
-			game.setQuestionTimer();
-			game.generateQuestion();
-		});
+	questionsRemaining: function(){
+		//first check if game.qa array is empty. if empty, show final page
+		//with user results and start over button
+		//if questions are remaining, game.generateQuestion()
+		if(game.qa.length===0){
+			return false;
+		}
+		else{
+			return true;
+		}
+	},
+	setQuestionTimer:function(){
+		game.questionTimer = 31;
+		console.log("question timer set!");
+	},	
+	timeTheUserOnQuestion: function(){
+		counter = setInterval(game.decrement, 1000);
+		console.log("timeTheUserOnQuestion initiated!");
+	},
+	decrement: function(){
+		console.log("game.decrement initiated");
+		game.questionTimer --;
+		$("#timer").html("time remaining: " + game.questionTimer + " seconds");
+		//putting game.checkResponse here screwed up the program when user clicked on potential answer??
+		//game.checkResponse();
+		if(game.answeredQuestion===true){
+			game.stop();
+		}else if(game.questionTimer === 1){
+			$("#timer").html("time remaining: " + game.questionTimer + " second!");
+		}else if(game.questionTimer === 0){
+			game.stop();
+			console.log(game.qa[game.currentSelection]);
+			console.log(game.currentSelection + " = contents of game.currentSelection");
+			console.log("contents of game.qa currentSelection below:");
+			console.log(game.qa[game.currentSelection]);
+			game.userUnansweredAnswers ++;
+			$("#answers").html("<div class='text'>" + game.incorrectAnswerResponse[Math.floor(Math.random()*game.incorrectAnswerResponse.length)] + "</div>");
+			$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].answer + "</div>");
+			$("#answers").append("<div class='text' style='text-align: justify;'>" + game.qa[game.currentSelection].explanation + "</div>");
+			game.qa.splice(game.currentSelection,1);
+			game.setAnswerTimer();
+			game.timedAnswerReveal();
+		}
 	},
 	checkResponse:function(){
 		$(".possible-answer").on("click",function(){
@@ -355,18 +292,82 @@ var game =
 			// game.setAnswerTimer();
 			// game.timedAnswerReveal();
 		});
+	},
+	setAnswerTimer: function(){
+		game.answerTimer = 21;
+		console.log("answer timer set!");
+	},	
+	timedAnswerReveal: function(){
+		counter = setInterval(game.answerReveal, 1000);
+		console.log("timedAnswerReveal initiated!");
+	},
+	answerReveal: function(){
+		console.log("game.answerReveal initiated");
+		game.answerTimer --;
+		if(game.answerTimer === 0){
+			game.stop();
+			console.log("stop function used! in game.answerReveal");
+			game.generateQuestion();
+		}
+	},
+	stop: function(){
+		console.log("stop function used!");
+		clearInterval(counter);
+		console.log(counter);
+	},
+	startOver:function(){
+		$(".start-over").on("click",function(){
+			console.log(qaOOO);
+			game.qa = game.qaOriginal;
+			console.log(game.qa);
+			$("#timer").html("timer");
+			$("#question").html("");
+			$("#answers").html("");
+			game.userCorrectAnswers = 0;
+			game.userIncorrectAnswers = 0;
+			game.userUnansweredAnswers = 0;
+			game.setQuestionTimer();
+			game.generateQuestion();
+		});
 	}
 };
 
-$(document).ready(function(){
-	$("#start-button").on("click",function(){
-		$("#start-button").hide();
-		console.log(game.qa);
-		// game.qa = qaOriginal;
-		$("#timer").html("[timer]");
-		game.generateQuestion();
-	});
-});
+//remember: first global variables, then objects, then calls
+//WHY does game.qaOriginal get empty after all questions are asked???
+var qaOOO = [
+		{
+			question: "question one here",
+			answersIncorrect: ["wrong 1","wrong 2","wrong 3"],
+			answer: "answer to question one here.",
+			explanation: "This answer makes sense because explanation."
+		},
+		{
+			question: "question two here",
+			answersIncorrect: ["wrong 1","wrong 2","wrong 3","wrong 4"],
+			answer: "answer to question two here.",
+			explanation: "Answer is correct because explanation."
+		},
+		{
+			question: "question three here",
+			answersIncorrect: ["false"],
+			answer: "true",
+			explanation: "This is true because explanation."
+		},
+		{
+			question: "question four here",
+			answersIncorrect: ["wrong 1","wrong 2","wrong 3"],
+			answer: "answer to question four here.",
+			explanation: "This answer is correct because explanation."
+		},
+		{
+			question: "question five here",
+			answersIncorrect: ["wrong 1","wrong 2"],
+			answer: "answer to question five here.",
+			explanation: "Answer makes sense because explanation."
+		}
+	];
+
+
 
 // overall work structure:
 // 1. get html working
