@@ -163,17 +163,15 @@ var game =
 		if(game.answerTimer === 0){
 			game.stop();
 			console.log("stop function used! in game.answerReveal");
-			if(game.questionsRemaining()){
-				game.generateQuestion();
-			}
+			game.generateQuestion();
 		}
 	},
 	setQuestionTimer:function(){
-		game.questionTimer = 15;
+		game.questionTimer = 6;
 		console.log("question timer set!");
 	},
 	setAnswerTimer: function(){
-		game.answerTimer = 20;
+		game.answerTimer = 3;
 		console.log("answer timer set!");
 	},
 	decrement: function(){
@@ -181,25 +179,23 @@ var game =
 		game.questionTimer --;
 		$("#timer").html("time remaining: " + game.questionTimer + " seconds");
 		game.checkResponse();
-		if(game.questionTimer === 1){
-			$("#timer").html("time remaining: " + game.questionTimer + " second!");
-		}
-		if(game.questionTimer === 0){
+		if(game.answeredQuestion===true){
 			game.stop();
+		}else if(game.questionTimer === 1){
+			$("#timer").html("time remaining: " + game.questionTimer + " second!");
+		}else if(game.questionTimer === 0){
+			game.stop();
+			console.log(game.qa[game.currentSelection]);
+			console.log(game.currentSelection + " = contents of game.currentSelection");
+			console.log("contents of game.qa currentSelection below:");
+			console.log(game.qa[game.currentSelection]);
 			game.userUnansweredAnswers ++;
 			$("#answers").html("<div class='text'>" + game.incorrectAnswerResponse[Math.floor(Math.random()*game.incorrectAnswerResponse.length)] + "</div>");
 			$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].answer + "</div>");
-			$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].explanation + "</div>");
+			$("#answers").append("<div class='text' style='text-align: justify;'>" + game.qa[game.currentSelection].explanation + "</div>");
 			game.qa.splice(game.currentSelection,1);
-			if(game.questionsRemaining()){
-				game.setAnswerTimer();
-				game.timedAnswerReveal();
-			}else{
-				game.generateQuestion();
-			}
-		}
-		if(game.answeredQuestion===true){
-			game.stop();
+			game.setAnswerTimer();
+			game.timedAnswerReveal();
 		}
 	},
 	stop: function(){
@@ -220,7 +216,7 @@ var game =
 	},
 	generateQuestion: function(){
 		console.log(game.questionsRemaining() + ": questions are remaining");
-		game.questionsRemaining();
+		//game.questionsRemaining();
 		game.answeredQuestion = false;
 		if(game.questionsRemaining()){
 			game.setQuestionTimer();
@@ -229,11 +225,9 @@ var game =
 			game.currentSelection = Math.floor(Math.random()*game.qa.length);
 			game.currentQuestion = game.qa[game.currentSelection].question;
 			console.log(game.currentSelection);
-			console.log(game.currentQuestion + " =current question");
 			//choose the random array element location of (game.qa[game.currentSelection].answersIncorrect.length+1) answers for the correct answer
 			game.correctAnswerPlace = Math.floor(Math.random()*(game.qa[game.currentSelection].answersIncorrect.length + 1));
 			console.log("correct answer place is " + game.correctAnswerPlace);
-			console.log("current answer array is " + currentAnswers);
 			var totalAnswerCount = game.qa[game.currentSelection].answersIncorrect.length + 1;
 			console.log("total answers for this question are: " + totalAnswerCount);
 			//create a currentAnswers array to hold all incorrect and the one correct answer, for the current question.
@@ -241,7 +235,6 @@ var game =
 			//populate currentAnswers array with answers randomly presented
 			//WHY will statement 2 in this for loop not take the content of the totalAnswerCount variable instead???
 			for(var i = 0; i < totalAnswerCount; i++){
-				console.log(i);
 				var chooseRandomWrongAnswer = 0;
 				if(i === game.correctAnswerPlace){
 					currentAnswers.push(game.qa[game.currentSelection].answer);
@@ -250,12 +243,12 @@ var game =
 					chooseRandomWrongAnswer = Math.floor(Math.random()*game.qa[game.currentSelection].answersIncorrect.length);
 					console.log(chooseRandomWrongAnswer);
 					currentAnswers.push(game.qa[game.currentSelection].answersIncorrect[chooseRandomWrongAnswer]);
-					console.log(game.qa[game.currentSelection].answersIncorrect);
+					//console.log(game.qa[game.currentSelection].answersIncorrect);
 					game.qa[game.currentSelection].answersIncorrect.splice(chooseRandomWrongAnswer,1);
-					console.log(game.qa[game.currentSelection].answersIncorrect);
+					//console.log(game.qa[game.currentSelection].answersIncorrect + " answersIncorrect remaining");
 				}
-				console.log("current answer array is " + currentAnswers);
 			}
+			console.log("current answer array is " + currentAnswers);
 			$("#question").html(game.currentQuestion);
 			var choices = "";
 			for(var i = 0; i<currentAnswers.length; i++){
@@ -264,6 +257,8 @@ var game =
 				//$("#answers").append(choices);
 			}
 			$("#answers").html(choices);
+			var questionNumber = 9 - game.qa.length;
+			$("#question-status").html("<hr style='width:80%;'>question: " + questionNumber + " of 8");
 		} else {
 			game.stop();
 			//after all questions completed, final page says, "here's how you did:"
@@ -277,9 +272,11 @@ var game =
 			$("#answers").append("<div class='text'> Incorrect Answers: " + game.userIncorrectAnswers + "</div>");
 			$("#answers").append("<div class='text'> Questions not answered: " + game.userUnansweredAnswers + "</div>");
 			game.percentageCorrect = ((game.userCorrectAnswers *100) / (game.userCorrectAnswers + game.userIncorrectAnswers + game.userUnansweredAnswers)).toFixed(2);
-			$("#answers").append("<div class='text'> Questions answered correctly: " + game.percentageCorrect + "%</div>");
-			$("#answers").append("<button id='start-button' class='start-over'>" + "try again" + "</button>");
-			$("#answers").append("<iframe width='560' height='315' src='https://www.youtube.com/embed/-_uQrjktq2w' frameborder='0' allowfullscreen></iframe>");
+			$("#answers").append("<div class='text'>Your Score: " + game.percentageCorrect + "%</div>");
+			$("#answers").append("<button id='start-button' class='start-over' title='take this quiz again'>try again</button>");
+			//$("#answers").append("<br/><br/><iframe width='560' height='315' src='https://www.youtube.com/embed/-_uQrjktq2w' frameborder='0' allowfullscreen></iframe>");
+			$("#answers").append("<br/><br/><iframe width='448' height='252' src='https://www.youtube.com/embed/-_uQrjktq2w' frameborder='0' allowfullscreen></iframe>");
+			$("#question-status").html("<hr style='width:80%;'>Stick a fork in me. I'm done.");
 			game.startOver();
 		}
 	},
@@ -300,36 +297,53 @@ var game =
 	},
 	checkResponse:function(){
 		$(".possible-answer").on("click",function(){
-			game.stop();
+			//game.stop();
 			console.log("game.stop() function called because possible-answer clicked");
-			game.answeredQuestion = true;//this stops the timer if user picks an answer
+			game.answeredQuestion = true;//this stops the timer if user picks an answer.
+			//setting game.amsweredQuestion to true makes the game.decrement function perform game.stop();
 			console.log("user clicked on an answer? " + game.answeredQuestion);
 			console.log("id of this possible answer is " + $(this).attr("id"));
 			console.log("correct answer place is " + game.correctAnswerPlace);
 			//if user selection is correct:
 			console.log(game.userCorrectAnswers + " answers user got correct");
-			console.log(game.qa[game.currentSelection] + " = contents of game.qa currentSelection");
+			console.log(game.currentSelection + " = contents of game.currentSelection");
+			console.log("contents of game.qa currentSelection below:");
+			console.log(game.qa[game.currentSelection]);
 			if($(this).attr("id") === game.correctAnswerPlace.toString()){
+				game.stop();
 				game.userCorrectAnswers ++;
-				console.log(game.userCorrectAnswers+ " userCorrectAnswers");
-				$("#answers").html("<div class='text'>" + game.qa[game.currentSelection].answer + "</div>");
-				$("#answers").append("<div class='text'>" + game.correctAnswerResponse[Math.floor(Math.random()*game.correctAnswerResponse.length)] + "</div>");
+				console.log(game.userCorrectAnswers + " userCorrectAnswers");
+				$("#answers").html("<div class='text'>" + game.correctAnswerResponse[Math.floor(Math.random()*game.incorrectAnswerResponse.length)] + "</div>");
+				$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].answer + "</div>");
 				$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].explanation + "</div>");
+				console.log(game.qa.length);
+				game.qa.splice(game.currentSelection,1);
+				console.log("number of possible questions left is " + game.qa.length);
+				game.setAnswerTimer();
+				game.timedAnswerReveal();
 			} else{
+				game.stop();
 				game.userIncorrectAnswers ++;
 				$("#answers").html("<div class='text'>" + game.incorrectAnswerResponse[Math.floor(Math.random()*game.incorrectAnswerResponse.length)] + "</div>");
 				$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].answer + "</div>");
 				$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].explanation + "</div>");
+				console.log(game.qa.length);
+				game.qa.splice(game.currentSelection,1);
+				console.log("number of possible questions left is " + game.qa.length);
+				game.setAnswerTimer();
+				game.timedAnswerReveal();
 			}
+
 			//remove this game.qa array element from available elements so
 			//the same question cannot be asked during this session
 			// use the splice method to remove the one element at
 			//index game.currentSelection, without leaving a "undefined" "hole" in the game.qa array
-			console.log(game.qa.length);
-			game.qa.splice(game.currentSelection,1);
-			console.log("number of possible questions left is " + game.qa.length);
-			game.setAnswerTimer();
-			game.timedAnswerReveal();
+			
+			// console.log(game.qa.length);
+			// game.qa.splice(game.currentSelection,1);
+			// console.log("number of possible questions left is " + game.qa.length);
+			// game.setAnswerTimer();
+			// game.timedAnswerReveal();
 		});
 	}
 };
@@ -339,12 +353,8 @@ $(document).ready(function(){
 		$("#start-button").hide();
 		console.log(game.qa);
 		// game.qa = qaOriginal;
-		console.log(qaOOO);
-		// game.questionsRemaining();
-		$("#timer").html("timer");
-		game.setQuestionTimer();
+		$("#timer").html("[timer]");
 		game.generateQuestion();
-		// game.checkResponse();
 	});
 });
 
