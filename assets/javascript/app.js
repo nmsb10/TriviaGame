@@ -134,7 +134,7 @@ var game =
 			answer: "electricity",
 			explanation: "Most landlords (both for single family homes and condos) require the tenant to pay for their own electricity use. Some renters moving from outside the Chicagoland area are surprised to learn appliances currently in the property will remain in the property for the duration of the lease. With many condo building rentals, basic cable is usually included, and sometimes heat, AC, and cooking gas (but confirm first with the individual property)."
 		}],
-	correctAnswerResponse: ["Good job.", "Correct.","That's right."],
+	correctAnswerResponse: ["Good job.", "Correct.","That's right.","Yes.","That's right!"],
 	incorrectAnswerResponse: ["The correct answer is:","The right answer is:"],
 	userCorrectAnswers: 0,
 	userIncorrectAnswers: 0,
@@ -146,6 +146,8 @@ var game =
 	percentageCorrect:0,
 	questionTimer:0,
 	answerTimer:0,
+	userScores:[],
+	gameAttempts:0,
 	// counter:0,
 	answeredQuestion:false,
 	//http://www.w3schools.com/jsref/met_win_setinterval.asp
@@ -178,7 +180,8 @@ var game =
 		console.log("game.decrement initiated");
 		game.questionTimer --;
 		$("#timer").html("time remaining: " + game.questionTimer + " seconds");
-		game.checkResponse();
+		//putting game.checkResponse here screwed up the program when user clicked on potential answer??
+		//game.checkResponse();
 		if(game.answeredQuestion===true){
 			game.stop();
 		}else if(game.questionTimer === 1){
@@ -259,6 +262,8 @@ var game =
 			$("#answers").html(choices);
 			var questionNumber = 9 - game.qa.length;
 			$("#question-status").html("<hr style='width:80%;'>question: " + questionNumber + " of 8");
+			//very important! put the check response here!!!
+			game.checkResponse();
 		} else {
 			game.stop();
 			//after all questions completed, final page says, "here's how you did:"
@@ -272,6 +277,13 @@ var game =
 			$("#answers").append("<div class='text'> Incorrect Answers: " + game.userIncorrectAnswers + "</div>");
 			$("#answers").append("<div class='text'> Questions not answered: " + game.userUnansweredAnswers + "</div>");
 			game.percentageCorrect = ((game.userCorrectAnswers *100) / (game.userCorrectAnswers + game.userIncorrectAnswers + game.userUnansweredAnswers)).toFixed(2);
+			game.userScores.push(game.percentageCorrect);
+			game.gameAttempts ++;
+			if(game.userScores.length===1){
+				$("#content-summary-text-2").append("<br/><br/><h2 id='user-score'>your scores: " + game.userScores + "%</h2>");
+			}else{
+				$("#user-score").append(", " + game.userScores[game.gameAttempts-1] + "%");
+			}
 			$("#answers").append("<div class='text'>Your Score: " + game.percentageCorrect + "%</div>");
 			$("#answers").append("<button id='start-button' class='start-over' title='take this quiz again'>try again</button>");
 			//$("#answers").append("<br/><br/><iframe width='560' height='315' src='https://www.youtube.com/embed/-_uQrjktq2w' frameborder='0' allowfullscreen></iframe>");
@@ -297,9 +309,7 @@ var game =
 	},
 	checkResponse:function(){
 		$(".possible-answer").on("click",function(){
-			//game.stop();
-			console.log("game.stop() function called because possible-answer clicked");
-			game.answeredQuestion = true;//this stops the timer if user picks an answer.
+			//game.answeredQuestion = true;//this stops the timer if user picks an answer.
 			//setting game.amsweredQuestion to true makes the game.decrement function perform game.stop();
 			console.log("user clicked on an answer? " + game.answeredQuestion);
 			console.log("id of this possible answer is " + $(this).attr("id"));
@@ -315,7 +325,7 @@ var game =
 				console.log(game.userCorrectAnswers + " userCorrectAnswers");
 				$("#answers").html("<div class='text'>" + game.correctAnswerResponse[Math.floor(Math.random()*game.incorrectAnswerResponse.length)] + "</div>");
 				$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].answer + "</div>");
-				$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].explanation + "</div>");
+				$("#answers").append("<div class='text' style='text-align: justify;'>" + game.qa[game.currentSelection].explanation + "</div>");
 				console.log(game.qa.length);
 				game.qa.splice(game.currentSelection,1);
 				console.log("number of possible questions left is " + game.qa.length);
@@ -326,7 +336,7 @@ var game =
 				game.userIncorrectAnswers ++;
 				$("#answers").html("<div class='text'>" + game.incorrectAnswerResponse[Math.floor(Math.random()*game.incorrectAnswerResponse.length)] + "</div>");
 				$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].answer + "</div>");
-				$("#answers").append("<div class='text'>" + game.qa[game.currentSelection].explanation + "</div>");
+				$("#answers").append("<div class='text' style='text-align: justify;'>" + game.qa[game.currentSelection].explanation + "</div>");
 				console.log(game.qa.length);
 				game.qa.splice(game.currentSelection,1);
 				console.log("number of possible questions left is " + game.qa.length);
