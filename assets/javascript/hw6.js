@@ -31,7 +31,7 @@ $(document).on('click','.special-button', function(){
 	//take the data-name attribute from the button, make the variable
 	//topic equal to the data-name attribute
 	var topic = $(this).data("name");
-	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic +
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic +
 	"&api_key=dc6zaTOxFJmzC&limit=10";
 
 	//create an AJAX call
@@ -75,7 +75,7 @@ $(document).on("click",".gif-div", function(){
 	var id = $(this).attr("data-id");
 	//create a variable animated equal to the data-animated attribute
 	var animated = $(this).attr("data-animated");
-	var queryURL = "http://api.giphy.com/v1/gifs/" + id +"?api_key=dc6zaTOxFJmzC";
+	var queryURL = "https://api.giphy.com/v1/gifs/" + id +"?api_key=dc6zaTOxFJmzC";
 	//give the selected gif-div the id of picked.
 	$(this).attr("id", "picked");
 	console.log(this);
