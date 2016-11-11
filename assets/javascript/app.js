@@ -248,14 +248,14 @@ var game =
 		$(".possible-answer").on("click",function(){
 			//game.answeredQuestion = true;//this stops the timer if user picks an answer.
 			//setting game.amsweredQuestion to true makes the game.decrement function perform game.stop();
-			console.log("user clicked on an answer? " + game.answeredQuestion);
-			console.log("id of this possible answer is " + $(this).attr("id"));
+			//console.log("user clicked on an answer? " + game.answeredQuestion);
+			//console.log("id of this possible answer is " + $(this).attr("id"));
 			console.log("correct answer place is " + game.correctAnswerPlace);
 			//if user selection is correct:
 			console.log(game.userCorrectAnswers + " answers user got correct");
-			console.log(game.currentSelection + " = contents of game.currentSelection");
-			console.log("contents of game.qa currentSelection below:");
-			console.log(game.qa[game.currentSelection]);
+			//console.log(game.currentSelection + " = contents of game.currentSelection");
+			//console.log("contents of game.qa currentSelection below:");
+			//console.log(game.qa[game.currentSelection]);
 			if($(this).attr("id") === game.correctAnswerPlace.toString()){
 				game.stop();
 				game.userCorrectAnswers ++;
