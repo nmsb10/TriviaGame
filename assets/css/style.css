@@ -172,19 +172,6 @@ header *{
 	vertical-align:top;
 }
 
-#main-content-summary{
-	width: 20%;
-	/*want the total max width to be 200px. left plus right padding plus borders is 14px*/
-	/*therefore the max content width is 200px - 14px*/
-	max-width: 186px;
-	min-height: 150px;
-	background: rgba(0, 0, 0, 0.45);
-	padding: 15px 10px;
-	/* border: width style color; */
-	border:2px solid rgba(78, 42, 132,1);
-	border-radius:7px;
-}
-
 h1{
 	font-family: 'Georgia', Times, "Times New Roman", serif;
 	font-size: 20px;
@@ -200,79 +187,105 @@ h2, h3{
 	text-align: center;
 }
 
-#content-name{
-	padding: 0px 0px 10px 0px;
-	line-height: 125%;
-}
-
-#content-summary-text, #content-summary-text-2{
-	text-align: justify;
-	padding: 10px 0px 0px 0px;
-	line-height: 125%;
-}
-
-#question-status{
-	padding: 10px 0px 0px 0px;
-	line-height: 125%;
-}
-
-#main-content{
-	width: 67%;
-	min-height: 250px;
-	margin-left: 3%;
+#main-content-about-me{
+	/*need display block so will accept margin-left and margin-right auto*/
+	display:block;
+	width: 80%;
+	margin: 0px auto 25px;
 	margin-bottom: 25px;
 	background: rgba(0, 0, 0, 0.45);
 	/*why does more than 5px side padding make this section not cooperate?*/
-	padding: 20px 15px;
+	padding: 20px;
 	border: 2px solid rgba(78, 42, 132,1);
 	border-radius:7px;
-	text-align:center;
-	padding: 20px auto;
 }
 
-#start-button{
+#photo-jonathon{
+	width: 125px;
+	margin: 20px 20px 0px 0px;
+	float: left;
+/*	display: inline helps the paragraph text wrap around the photo*/
+	display:inline;
+}
+
+p{
 	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
-	font-size:17px;
-	color: rgba(255,255,255,1);
-	background: rgba(0, 0, 0, 0.45);
-	border:2px solid rgba(78, 42, 132,0.75);
-	border-radius:10px;
+	font-size: 21px;
+	font-weight: 400;
+	color: rgba(245,245,245,1);
 }
 
-#start-button:hover{
-	color: rgba(0,0,0,1);
-	background: rgba(255, 255, 255, 0.45);
-	border:2px solid rgba(78, 42, 132,0.75);
-	cursor: pointer;
-}
-
-.text{
-	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
-	font-size:20px;
-	color: rgba(255,255,255,1);
-	text-align:center;
-	margin-bottom:15px;
-}
-
-#user-score{
+#jonathon-title{
 	text-align: left;
+	margin-bottom: 20px;
 }
 
-#question{
-	color: rgba(255, 255, 255, 1);
-	font-style: italic;
-	font-weight: 600;
+.main-content-about-me, p{
+	font-size:18px;
+	text-align: justify;
+/*	this increases the spaces between lines */
+	line-height: 120%;
+	margin: 20px 0px;
 }
 
-.possible-answer:hover{
-	border-radius:7px;
-	background-color: rgba(235,235,235,0.7);
+
+/* Dropdown Button */
+/* The container <div> - needed to position the dropdown content */
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    /*background-color: #f9f9f9;*/
+    background-color: rgba(230,230,230,0.2);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    border-radius: 15px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	font-size:13px;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover{
+	background-color: lime;
+	color:purple;
+	border-radius: 10px;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: lime;
+}
+
+
+.dropdown:link, .dropdown:visited, .dropdown:active{
+	text-decoration: none;
+	color: rgba(230,230,230,1);
+	color:lime;
+}
+
+.dropdown:hover{
+	font-size: 17px;
+	background-color: rgba(230,230,230,0.3);
 	/*color:purple;*/
 	color: rgba(128, 0, 128, 1);
-	cursor: pointer;
 }
-
-
 
 .wrapper{
 	min-height:100%;
@@ -330,17 +343,6 @@ footer{
 
 
 
-
-
-
-p{
-	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
-	font-size: 21px;
-	font-weight: 400;
-	color: rgba(245,245,245,1);
-	text-align: center;
-}
-
 ul, li{
 	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
 	font-size: 20px;
@@ -349,8 +351,6 @@ ul, li{
 	color: rgba(0,0,0,1);
 	text-align: center;
 }
-
-
 
 
 

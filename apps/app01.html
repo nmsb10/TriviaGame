@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Jonathon Nagatani | application one</title>
+	<link rel="stylesheet" type="text/css" href=".././assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href=".././assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href=".././assets/css/app01.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<div class="wrapper">
+	<!-- because header is position fixed (which has no height), must give the header's horizontal-section div a specific height equal to the header box's height (ie the header-section with greatest height) so the next horizontal section begins at the bottom of the header box. -->
+	<div class="horizontal-section" style="height: 105.333px;">
+		<header>
+			<!-- consult css file .header-section for why inline style font-size:0 inserted here -->
+			<div class="good-fit" style="font-size: 0;">
+				<!-- cannot make these header-sections span. A span is inherently display: inline, but cannot take a width or height -->
+				<div class="header-section header-section-left">
+				</div>
+				<div class="header-section header-section-center">
+					<a id="center-name" href="../index.html" title="Jonathon Nagatani">jonathon<br>nagatani</a>
+				</div>
+				<div class="header-section header-section-right">
+				</div>
+			</div>
+		</header>
+	</div>
+	<div class="horizontal-section">
+		<div class="good-fit good-fit-95">
+			<div id='shadow-box-outer'>
+				<div id='shadow-box-inner'>
+					application one
+				</div>
+			</div>
+			<div id='date-today'>
+				<div class="line-width">
+					<div class='line-width-centerportion'>
+						[current date]
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="horizontal-section" id="middle-section">
+		<div class="good-fit good-fit-85">
+			<section id='updates-user'>
+				<form id = "form-username-input">
+					<input type = "text" id="input-username" placeholder='your name' title='please enter your name'>
+					<input id = "add-player-button" type = "submit" value = "begin" title='after typing your name, click this button (or press the enter key on your keyboard) to begin playing'>
+				</form>
+			</section>
+			<section class='horizontal-section'>
+				<div id='asset-value' title='current asset price'>
+					32.57
+				</div>
+			</section>
+		</div>
+	</div>
+	<div class="horizontal-section" id="middle-section">
+		<div class="good-fit good-fit-95">
+			<section class="main-content-section" id="main-content-about-me" style='margin-top:250px;'>
+				<h1 title="about jonathon nagatani" id="jonathon-title">Jonathon Nagatani</h1>
+				<!-- <hr> adds a line. You may also define a percentage width Don't use a closing tag or it may screw stuff up! -->
+				<hr width = "90%"/>
+				<p>Jonathon's mission is simple. Create a "Wow!" experience for each of his clients, every day. As a Realtor and up-and-coming Full Stack Web Developer, Jonathon provides services tailored to your specific needs, at exceptional value.</p>
+				<p>Expect straightforward advice, research, and service, supported by salient analysis custom designed for your needs. Whether buying your next property, selling your home for the most money in the most convenient manner, or seeking a completely custom application to enhance your everyday life, enjoy the benefits of Jonathon's comprehensive resources carefully designed to achieve your goals. Jonathon dedicates himself to thrilling clients with the results of their collaboration.</p>
+				<p>Call or e-mail Jonathon now for a complimentary, no-obligation consultation. Start enjoying the freedom and security that confidential guidance and eloquent application development will bring to your business and personal lives. Your unconditional complete satisfaction is assured.</p>
+			</section>
+		</div>
+	</div>
+	<div class="push"></div> <!-- push class for the sticky footer -->
+</div><!-- /wrapper -->
+<div class="horizontal-section">
+	<footer>
+		<div class="good-fit">
+			<div id="footer-content">
+				Copyright &copy; 2016 <a class="footer-link" href="https://www.linkedin.com/in/jonathonnagatani" target="_blank" title="Jonathon on LinkedIn">Jonathon Nagatani</a>. All Rights Reserved.
+			</div>
+		</div>
+	</footer>
+
+<!-- LINK TO FIREBASE GOES HERE -->
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+
+<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src=".././assets/javascript/app01.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+/*http://stackoverflow.com/questions/609517/why-em-instead-of-px
+*/
+/*http://www.w3schools.com/css/css_positioning.asp
+*/
+.wrapper{
+	/*http://www.w3schools.com/colors/colors_picker.asp*/
+	/*http://www.w3schools.com/cssref/css_units.asp*/
+	/*http://www.w3schools.com/css/css_align.asp*/
+    background: -webkit-linear-gradient(right bottom, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to top left, rgba(150,150,150,1), rgba(255,255,255,0))); /* Standard syntax (must be last) */
+	background-size: 100%;
+	background: rgba(255,255,255,1);
+}
+
+body{
+	background:white;
+}
+
+header{
+	margin: 15px auto;
+	background: rgba(0,0,0,1);
+	background: -webkit-linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.3), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.3), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.3), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.3), rgba(255,255,255,0)); /* Standard syntax (must be last) */
+    z-index:99;
+}
+
+/*then need to specify a height because with position absolute this element gets height 0*/
+.header-section{
+	/*	and 75px is the closest integer value for the center-name <a> element (both height + margins top and bottom)*/
+	height:75px;
+}
+
+/*need the left, right, and position: absolute properties so this <a> element is centered on it's 0 width parent.*/
+#center-name{
+/*	set left and right to equal %, so this element is an equal amount from both left and right of the edges of the nearest positioned ancestors.
+*/
+	/*would like to find a solution so this element is not the width of the whole header, so href is only over the content letters*/
+	position: absolute;
+	left:0;
+	right:0;
+	/*set margin-right to -5px because letter-spacing is 5px, and we need to counteract the final 5px space created at the end of the last letter*/
+	margin-right:-5px;
+}
+
+.good-fit-95{
+	width:95%;
+}
+
+.good-fit-85{
+	width:85%;
+}
+
+#shadow-box-outer{
+	width: 90%;
+	margin: 0% 5%;
+	font-size: 15px;
+	height: 25px;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
+    /*as this box has the box shadow, in order for the shadow to appear on top of content below,
+    position should be relative http://stackoverflow.com/questions/9199433/cant-get-box-shadow-to-appear-above-div*/
+    position:relative;
+}
+
+#shadow-box-inner{
+	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+	font-size:1em;
+	line-height:25px;
+	text-align:center;
+	background: rgba(255, 255, 255, 1);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+	border-right: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+#date-today{
+	height:50px;
+}
+
+.line-width{
+	width:100%;
+	border-bottom: 1.5px solid black;
+	height: 50%;
+}
+
+.line-width-centerportion{
+	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+	font-size: 12px;
+	width:100px;
+	text-align: center;
+	/*make line-height same as height of parent height to center text vertically*/
+	line-height:50px;
+	border-radius:7px;
+	margin: 0 auto;
+	background: rgba(255, 255, 255, 1);
+}
+
+#app-title-text{
+	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+	font-size: 17px;
+	font-weight: 300;
+	color: rgba(0, 0, 0, 1);
+	margin-left:auto;
+	margin-right:auto;
+	top:0;
+	bottom:0;
+	white-space: nowrap;
+}
+
+#middle-section{
+	margin-top:15px;
+	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+}
+
+#form-username-input{
+	text-align:center;
+	font-size: 15px;
+}
+
+#input-username{
+	text-align:center;
+	font-size:1em;
+	border: 2px solid rgba(78, 42, 132, 1);
+	border-radius: 5px;
+}
+
+#add-player-button{
+	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+	font-size: 1em;
+	font-weight: 400;
+	color: rgba(0, 0, 0, 1);
+	border: 2px solid rgba(78, 42, 132, 1);
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 1);
+	cursor:pointer;
+}
+
+#add-player-button:hover{
+	color: rgba(255, 255, 255,1);
+	background: rgba(78, 42, 132,1);
+}
+
+#asset-value{
+	width: 100px;
+	height: 100px;
+	font-family: 'goudy old style', serif;
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 100px;
+	text-align:center;
+	color: rgba(0, 0, 0, 1);
+	border: 2px dashed rgba(0, 0, 0, 1);	
+	border-radius: 50px;
+	margin:15px auto 0px;
+}
+
+
+
+
+
+
+
+.selections{
+	line-height:175%;
+	font-family: helvetica, arial, sans-serif;
+	font-weight: 600;
+	color: purple;
+	font-variant: small-caps;
+
+
+
+}
