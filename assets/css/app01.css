@@ -55,8 +55,8 @@ header{
 }
 
 #shadow-box-outer{
-	width: 90%;
-	margin: 0% 5%;
+	width: 70%;
+	margin: 0% 15%;
 	font-size: 15px;
 	height: 25px;
     box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
@@ -75,12 +75,12 @@ header{
 	border-right: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-#date-today{
-	height:50px;
+.line-center-outside{
+	height: 50px;
 }
 
 .line-width{
-	width:100%;
+	width: 100%;
 	border-bottom: 1.5px solid black;
 	height: 50%;
 }
@@ -88,10 +88,10 @@ header{
 .line-width-centerportion{
 	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
 	font-size: 12px;
-	width:100px;
+	width:130px;
 	text-align: center;
 	/*make line-height same as height of parent height to center text vertically*/
-	line-height:50px;
+	line-height: 50px;
 	border-radius:7px;
 	margin: 0 auto;
 	background: rgba(255, 255, 255, 1);
@@ -110,7 +110,7 @@ header{
 }
 
 #middle-section{
-	margin-top:15px;
+	margin-top: 0px;
 	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -122,7 +122,7 @@ header{
 #input-username{
 	text-align:center;
 	font-size:1em;
-	border: 2px solid rgba(78, 42, 132, 1);
+	border: 0.5px solid rgba(78, 42, 132, 1);
 	border-radius: 5px;
 }
 
@@ -142,7 +142,53 @@ header{
 	background: rgba(78, 42, 132,1);
 }
 
-#asset-value{
+.user-message{
+	width: 90%;
+	margin: 0 auto;
+	font-size: 15px;
+	text-align: center;
+	font-style: italic;
+	height: 25px;
+	line-height:25px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+}
+
+.price-asset-history{
+	width: 90%;
+	margin: 0.5em auto 0em;
+	text-align: left;
+	font-size: 15px;
+	height: 25px;
+	line-height:25px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.price-asset{
+	width: 90%;
+	font-size: 15px;
+	height: 25px;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
+    /*as this box has the box shadow, in order for the shadow to appear on top of content below,
+    position should be relative http://stackoverflow.com/questions/9199433/cant-get-box-shadow-to-appear-above-div*/
+    position:relative;
+    border: 1px solid black;
+}
+
+.price-historic{
+	font-weight: bold;
+	font-family: arial;
+	display: inline-block;
+}
+
+.price-historic-up{
+	color: rgba(0, 255, 0, 1);
+}
+
+.price-historic-down{
+	color: rgba(255, 0, 0, 1);
+}
+
+.asset-value{
 	width: 100px;
 	height: 100px;
 	font-family: 'goudy old style', serif;
@@ -151,7 +197,7 @@ header{
 	line-height: 100px;
 	text-align:center;
 	color: rgba(0, 0, 0, 1);
-	border: 2px dashed rgba(0, 0, 0, 1);	
+	border: 1px dashed rgba(0, 0, 0, 1);	
 	border-radius: 50px;
 	margin:15px auto 0px;
 }
