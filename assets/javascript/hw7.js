@@ -307,6 +307,8 @@ fdb.ref('players').on('value', function(snapshot) {
 	//https://firebase.google.com/docs/database/web/offline-capabilities
 	var broccoli = fdb.ref('players').child('playerOne');
 	broccoli.onDisconnect().remove();
+	var sweetpotato = fdb.ref('players').child('playerTwo');
+	sweetpotato.onDisconnect().remove();
  	//fdb.ref('players').child('playerTwo').onDisconnect('playerTwo').remove();
  	//fdb.ref('players').child('playerOne').onDisconnect().set(false);
 // //console log any errors
