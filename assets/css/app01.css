@@ -151,16 +151,18 @@ header{
 	height: 25px;
 	line-height:25px;
     border: 1px solid rgba(0, 0, 0, 0.20);
+    overflow:auto;
 }
 
 .price-asset-history{
 	width: 90%;
 	margin: 0.5em auto 0em;
-	text-align: left;
-	font-size: 15px;
+	text-align: center;
+	font-size: 16px;
 	height: 25px;
 	line-height:25px;
     border: 1px solid rgba(0, 0, 0, 0.5);
+    overflow: auto;
 }
 
 .price-asset{
@@ -181,10 +183,16 @@ header{
 }
 
 .price-historic-up{
+	font-weight: bold;
+	font-family: arial;
+	display: inline-block;
 	color: rgba(0, 255, 0, 1);
 }
 
 .price-historic-down{
+	font-weight: bold;
+	font-family: arial;
+	display: inline-block;
 	color: rgba(255, 0, 0, 1);
 }
 
