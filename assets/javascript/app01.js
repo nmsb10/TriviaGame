@@ -268,6 +268,9 @@ var assetPrice = {
 		//console.log('assetpriceinitial = ' + assetPriceInitial);
 		$('#asset-value').text(assetPriceInitial);
 		assetPriceCurrent = assetPriceInitial;
+		//reset playerShares to 0, in case they bought or sold shares prior to asset price initializing
+		playerShares = 0;
+		$('#player-shares').text(playerShares);
 		//console.log(typeof assetPriceCurrent);
 		//console.log('asset price current = ' + assetPriceCurrent);
 	},
