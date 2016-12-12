@@ -53,7 +53,7 @@ $(document).ready(function(){
 		 	//fdb.ref('players').child('playersActive').child(playerName).set(playerInfo);
 
 		 	//create custom user updates fields for delivering messages to player and showing the most recent asset price changes
-		 	var userUpdates = '<div class="user-message" id="user-message-' + playerName + '" title="communications exclusively for '+ playerName + '"></div><div class="price-asset-history" id="price-asset-history-'+ playerName +'" title = "asset price history"><div id="recent-prices"></div></div>';
+		 	var userUpdates = '<div class="user-message" id="user-message-' + playerName + '" title="communications exclusively for '+ playerName + '"></div><div class="price-asset-history" id="price-asset-history-'+ playerName +'" title = "asset price change history"><div id="recent-prices"></div></div>';
 		 	$('#updates-user').html(userUpdates);
 		 	//this javascript was refreshing the page!!!!! but wanted to use instead of jquery right above
 		 	//document.getElementById('updates-user').innerHTML(userUpdates);

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>crystal collector</title>
+	<link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/stylehw4.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<!-- wrapper for the sticky footer -->
+<div class="wrapper">
+	<header>
+		<div class="good-fit">
+			<div id="hdlinks-left">
+				<!-- for some reason these show up right to left?? might be related to css style float:right-->
+				<a class="header-link header-link-left" href="">philosophy</a>
+				<a class="header-link header-link-left" href="">about</a>
+			</div>
+			<div id="hdlink-center">
+				<a id="center-name" href="../index.html" title="Jonathon Nagatani">jonathon<br>nagatani</a>
+			</div>
+			<div id="hdlinks-right">
+				<a class="header-link header-link-right" href="">homeworks</a>
+				<a class="header-link header-link-right" href="">games</a>
+				<a class="header-link header-link-right" href="">contact</a>
+			</div>
+		</div>
+	</header>
+
+	<div id="middle">
+	<div class="good-fit">
+		<section id="content-summary">
+			<h1 id="content-name">
+	 		 Crystals Collector
+			</h1>
+			<hr width="80%">
+			<h2 id="content-edition">
+			  Edition<br/>
+			  German Shepherd &amp Passionfruit
+			</h2>		
+		</section>
+
+		<section id="main-content">
+			<div id="game-content">
+				<div id="titles">
+					<div class="top-title">
+					  Random number:
+					</div>
+					<div class="top-title" style="margin-left:90px">
+					  Your total score:
+					</div>
+				</div>
+				<div id="game-line">
+					<div id="random-number-box">
+						<div id="random-number">
+						0
+						</div>
+					</div>
+					<div id="your-score-box">
+						<div id="your-score">
+						0
+						</div>
+					</div>
+					<div id="wins-losses">
+						<div id="win-status">
+						  Time to play!
+						</div>
+						<div>
+						  Wins:
+						</div>
+						<div id="wins-count">
+						0
+						</div>
+						<div>
+						  Losses:
+						</div>
+						<div id="losses-count">
+						0
+						</div>
+					</div>
+				</div>			
+				<div id="image-line">
+					<div class="image" id="image1">
+						<img src="../assets/images/01.JPG" class="character-image">
+					</div>
+					<div class="image" id="image2">
+						<img src="../assets/images/02.JPG" class="character-image">
+					</div>
+					<div class="image" id="image3">
+						<img src="../assets/images/03.JPG" class="character-image">
+					</div>
+					<div class="image" id="image4">
+						<img src="../assets/images/04.JPG" class="character-image">
+					</div>
+				</div>
+
+				<div id="instructions">
+				<p>
+				  Examine the random number.<br/>There are four images above. Click on an image to add points to your score.<br/>Win the game by exactly matching your total score to the random number. If your total score exceeds the random number, you lose the game.<br/>You must click on an image to discover its hidden value.<br/>Each time the game starts, the hidden values for each image will also change. Good luck!<br/>~completed the "easy" project this week. hope you like!~
+				</p>
+				</div>
+				
+				<hr width="85%">
+			</div> <!-- /leftside-winning-stats -->
+		</section>	
+	</div>	
+	</div>
+	<div class="push"></div> <!-- push class for the sticky footer -->
+</div> <!-- /wrapper -->
+	<footer>
+	<div id="for-contact-links-positioning">
+		<div id="centered-footer-content">
+			Copyright &copy; 2016 <a class="footer-link" href="https://www.linkedin.com/in/jonathonnagatani" target="_blank" title="Jonathon on LinkedIn">Jonathon Nagatani</a>. All Rights Reserved.
+		</div>
+	</div>
+	</footer>
+<!-- should load the javascript after the DOM, because the DOM needs to be painted first, so THEN the javascript can change the painted DOM-->
+<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="../assets/javascript/hw4.js"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hangman Real Estate</title>
+	<link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/stylehw3.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<!-- wrapper for the sticky footer -->
+<div class="wrapper">
+	<header>
+		<div class="good-fit">
+			<div id="hdlinks-left">
+				<!-- for some reason these show up right to left?? might be related to css style float:right-->
+				<a class="header-link header-link-left" href="">philosophy</a>
+				<a class="header-link header-link-left" href="">about</a>
+			</div>
+			<div id="hdlink-center">
+				<a id="center-name" href="../index.html" title="Jonathon Nagatani">jonathon<br>nagatani</a>
+			</div>
+			<div id="hdlinks-right">
+				<a class="header-link header-link-right" href="">homeworks</a>
+				<a class="header-link header-link-right" href="">games</a>
+				<a class="header-link header-link-right" href="">contact</a>
+			</div>
+		</div>
+	</header>
+
+	<div id="middle">
+	<div class="good-fit">
+		<section id="content-summary">
+			<h1 id="content-name">
+	 		 Hangman
+			</h1>
+			<hr width="80%">
+			<h2 id="content-edition">
+			  Real Estate Edition
+			</h2>		
+		</section>
+
+		<section id="main-content">
+			<div id="leftside-winning-stats">
+				<p>
+				  current game message:
+				</p>
+				<p id="game-message">
+				  press the button to begin playing!
+				</p>
+				<p>
+				  words you won:
+				</p>
+				<div id="winning-words">
+				</div>
+				<hr width="85%">
+				<p>
+				  notes:
+				</p>
+				<ul>
+				<li>don't press space bar. otherwise new game will occur</li>
+				<li>when user guesses all words, need better conclusion</li>
+				<li>all keys register as guesses. need to limit accepted guesses to letters.</li>
+				<li>improve the css</li>
+				<li>make responsive using media queries.</li>
+				<li>use gitignore file that ignores files like .DS_Store??</li>
+				<li>http://www.w3schools.com/jsref/jsref_statements.asp</li>
+				</ul>
+			</div> <!-- /leftside-winning-stats -->
+			<div class="rightside-game-status" id="total-winner">
+				<button onclick="startPlaying()" id="start-button">Click to Start Playing!</button>
+				<p>
+				  Wins:
+				</p>
+				<p id="score">
+				  0
+				</p>
+				<br/>
+				<p>
+				  Current Word:
+				</p>
+				<p id="letter-spaces">
+				  ?
+				</p>
+				<br/>
+				<p>
+				  Guesses remaining:
+				</p>
+				<p id="guesses-remaining">
+				  13
+				</p>
+				<br/>
+				<p>
+				  Letters guessed:
+				</p>
+				<p id="letters-guessed">
+				  ?
+				</p>
+				<br/>
+				<p>
+				  Current Game Attempt #<br>&amp Win %:
+				</p>
+				<p id="attempts-win-percentage">
+				  0 | 0.00%
+				</p>
+			</div> <!-- /rightside-game-status -->	
+		</section>	
+	</div>	
+	</div>
+	<div class="push"></div> <!-- push class for the sticky footer -->
+</div> <!-- /wrapper -->
+	<footer>
+	<div id="for-contact-links-positioning">
+		<div id="centered-footer-content">
+			Copyright &copy; 2016 <a class="footer-link" href="https://www.linkedin.com/in/jonathonnagatani" target="_blank" title="Jonathon on LinkedIn">Jonathon Nagatani</a>. All Rights Reserved.
+		</div>
+<!-- 		<div id="sidebar">
+			<div id="contact-me">
+			<a href="https://github.com/nmsb10" target="_blank" title="nmsb10"><img class="logo-link" src="./assets/images/logo github.png"></a>
+
+			!!!need to make the linkedin logo slightly larger than the other two because the actual image already appears to have an approximate 5px margin. Increased the linkedin logo width in the CSS
+
+			<a href="https://www.linkedin.com/in/jonathonnagatani" target="_blank" title="jonathon on linkedin"><img id="logo-link-linkedinsmaller" src="./assets/images/logo linkedin.png"></a>
+			<a href="http://stackoverflow.com/users/6828743/happytoo?tab=profile" target="_blank" title="jonathon on stack overflow"><img class="logo-link" src="./assets/images/logo stack overflow.png"></a>
+			</div>
+		</div>
+-->
+	</div>
+	</footer>
+<!-- should load the javascript after the DOM, because the DOM needs to be painted first, so THEN the javascript can change the painted DOM-->
+<script type="text/javascript" src="../assets/javascript/hw3.js"></script>
+</body>
+</html>
