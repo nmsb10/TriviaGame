@@ -17,6 +17,10 @@ var userName = '';
 var assetPriceInitial = 0;
 var assetPriceCurrent = 0;
 var pricesMostRecent = [];
+var playerUnits = 10000;
+var playerShares = 0;
+var playerSharesShorted = 0;
+var shortSaleResolved = false;
 
 //REMEMBER: CODE EVERYTHING ONLY ONCE
 $(document).ready(function(){
@@ -66,6 +70,92 @@ $(document).ready(function(){
 		//enables user to press enter key and not refresh page by doing so
 		return false;
 	});
+
+	//purchase shares
+	$("#button-buy-shares").on("click", function(){
+		//as html inputs are type=number, only numbers allowed as inputs
+		var sharesToBuy = $("#input-buyassets").val().trim();
+		console.log(typeof(sharesToBuy));
+		if(isNaN(sharesToBuy) || sharesToBuy ==='' || sharesToBuy ===0){
+			updateUserMessage('notanBuy');
+			$("#input-buyassets").val('');
+			return false;
+		}else{
+			//ensure has sufficient units to purchase
+			if((assetPriceCurrent*sharesToBuy)>playerUnits){
+				var maxShares = playerUnits / assetPriceCurrent;
+				$('.user-message').html("Your Units permits you to buy a maximum of " + maxShares.toFixed(2) + " shares at the current asset price of " + assetPriceCurrent.toFixed(2) + ".");
+				$("#input-buyassets").val('');
+			}else if(sharesToBuy <0){
+				//sharesToBuy.slice(1) removes the - character at the start of the string. Slicing at 1 removes all character in the string before 1 (so in this case, just removes the character in the string at position 0)
+				$('.user-message').html('Thank you for playing. If you wish to short sell ' + sharesToBuy.slice(1) + ' shares, kindly utilize the Short Sale Interface.');
+				$("#input-buyassets").val('');
+			}else if(sharesToBuy > 0 && (assetPriceCurrent*sharesToBuy)<playerUnits){
+				var totalCost = assetPriceCurrent*sharesToBuy;
+				playerUnits -= totalCost;
+				playerShares += parseFloat(sharesToBuy);
+				$('#player-units').text(playerUnits.toFixed(2));
+				$('#player-shares').text(playerShares);
+				$("#input-buyassets").val('');
+				$('.user-message').html('Transaction confirmed: ' + sharesToBuy + ' shares purchased at ' + assetPriceCurrent.toFixed(2) + ' units per share. Total cost of ' + totalCost.toFixed(2) + ' units. Thank you.');
+			}
+		}
+		return false;
+	});
+
+	//sell shares
+	$("#button-sell-shares").on("click", function(){
+		var sharesToSell = $("#input-sellassets").val().trim();
+		if(isNaN(sharesToSell) || sharesToSell ==='' || sharesToSell === 0){
+			updateUserMessage('notanSell');
+			$("#input-sellassets").val('');
+		}else{
+			//ensure has sufficient shares to sell
+			if(sharesToSell>playerShares){
+				$('.user-message').html("You currently possess " + playerShares + ' shares available to sell.');
+				$("#input-sellassets").val('');
+			}else if(sharesToSell <0){
+				$('.user-message').html("If you wish to purchase " + sharesToSell.slice(1) + " shares, please use the Buy Interface. Thank you.");
+				$("#input-sellassets").val('');
+			}else if(sharesToSell>0){
+				var totalSale = assetPriceCurrent*sharesToSell;
+				playerUnits += totalSale;
+				playerShares -= parseFloat(sharesToSell);
+				$('#player-units').text(playerUnits.toFixed(2));
+				$('#player-shares').text(playerShares);
+				$("#input-sellassets").val('');
+				$('.user-message').html('Transaction confirmed: ' + sharesToSell + ' shares sold at ' + assetPriceCurrent.toFixed(2) + ' units per share. Total sale of ' + totalSale.toFixed(2) + ' units. Thank you.');
+			}
+		}
+		return false;
+	});
+
+	//short sell shares
+	$("#button-shortsell-shares").on("click", function(){
+		var sharesToShortSell = $("#input-shortsellassets").val().trim();
+		if(isNaN(sharesToShortSell) || sharesToShortSell ==='' || sharesToShortSell === 0){
+			updateUserMessage('notanShort');
+			$("#input-shortsellassets").val('');
+		}else{
+			if(sharesToSell>playerShares){
+				$('.user-message').html("You currently possess " + playerShares + ' shares available to sell.');
+				$("#input-sellassets").val('');
+			}else if(sharesToSell <0){
+				$('.user-message').html("If you wish to purchase " + sharesToSell.slice(1) + " shares, please use the Buy Interface. Thank you.");
+				$("#input-sellassets").val('');
+			}else if(sharesToSell>0){
+				var totalSale = assetPriceCurrent*sharesToSell;
+				playerUnits += totalSale;
+				playerShares -= parseFloat(sharesToSell);
+				$('#player-units').text(playerUnits.toFixed(2));
+				$('#player-shares').text(playerShares);
+				$("#input-sellassets").val('');
+				$('.user-message').html('Transaction confirmed: ' + sharesToSell + ' shares shorted at ' + assetPriceCurrent.toFixed(2) + ' units per share. You have 20 seconds to resolve your short sale. for a total sale of ' + totalSale.toFixed(2) + ' units. Thank you.');
+				$("#button-shortsell-shares").disabled = true;
+			}
+		}
+		return false;
+	});
 });
 
 function showDate(){
@@ -77,6 +167,10 @@ function showDate(){
 	var dayCurrent = dateFun.dayTwoDigits(d.getDate());
 	var date = dayCurrent + ' ' + monthCurrent + ' ' + yearCurrent;
 	$('#date-today').text(date);
+	var updatedFooter = '<div id="footer-content">Copyright &copy; 2016 - ' + yearCurrent +
+	' <a class="footer-link" href="https://www.linkedin.com/in/jonathonnagatani" target="_blank"' + 
+	' title="Jonathon on LinkedIn">Jonathon Nagatani</a>. All Rights Reserved.</div>';
+	$('#footer-content').replaceWith(updatedFooter);
 }
 
 var dateFun = {
@@ -117,12 +211,27 @@ var timer =
 		if(action==='changeAssetValue'){
 			counterAssetValueChange = setInterval(assetPrice.changeValue, 500);
 		}
+		if(action==='shortSale'){
+			timer.setTimer('shortSaleTimer');
+			counterShortSale = setInterval(shortSale, 1000);
+		}
 	},
 	timerWelcome:  0,
+	timerShortSale: 0,
 	setTimer: function(hello){
-		if(hello==='welcomeTimer'){
-			timer.timerWelcome = 5;
+		switch(hello){
+			case 'welcomeTimer':
+				timer.timerWelcome = 5;
+				break;
+			case 'shortSaleTimer':
+				timer.timerShortSale = 20;
+				break;
+			default:
+				break;
 		}
+		// if(hello==='welcomeTimer'){
+		// 	timer.timerWelcome = 5;
+		// }
 	},
 	welcomeCountdown: function(){
 		if(timer.timerWelcome>1){
@@ -142,6 +251,9 @@ var timer =
 		}
 		if(specificCounter==='changeAssetValueCounter'){
 			clearInterval(counterAssetValueChange);
+		}
+		if(specificCounter==='shortSaleCounter'){
+			clearInterval(counterShortSale);
 		}
 	}
 };
@@ -194,6 +306,15 @@ var assetPrice = {
 function updateUserMessage(message){
 	if(message==='welcome'){
 		$('.user-message').html("Welcome <b>" + userName + '</b>. Your Objective: Increase your units.');
+	}
+	if(message==='notanBuy'){
+		$('.user-message').html('Please enter a number of shares you wish to buy.');	
+	}
+	if(message==='notanSell'){
+		$('.user-message').html('Please enter a number of shares you wish to sell.');	
+	}
+	if(message==='notanShort'){
+		$('.user-message').html('Please enter a number of shares you wish to short sell.');	
 	}
 }
 
@@ -252,6 +373,27 @@ function showPricesRecent(){
 		}
 	}
 }
+
+function shortSale(){
+	if(timer.timerShortSale >1){
+		//do stuff
+		timer.timerShortSale --;
+	}else if(timer.timerShortSale===1){
+		//do stuff
+		timer.timerShortSale --;
+	}else if(timer.timerShortSale === 0){
+		timer.stop('shortSaleCounter');
+		$("#button-shortsell-shares").disabled = false;
+
+
+
+
+	}
+}
+
+//display record ending balance (pulled from firebase records)
+//Top Producers:
+//username; end balance; time spent
 
 
 //check the database if the player exists.

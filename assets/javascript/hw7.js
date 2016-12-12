@@ -339,12 +339,6 @@ fdb.ref('turn').on('value', function(snapshot) {
 	}
 });
 
-var reset =
-{
-
-
-};
-
 var game =
 {
 	twoPlayers:function(){

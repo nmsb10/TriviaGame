@@ -60,17 +60,34 @@
 					00.00
 				</div>
 			</section>
-		</div>
-	</div>
-	<div class="horizontal-section" id="middle-section">
-		<div class="good-fit good-fit-95">
-			<section class="main-content-section" id="main-content-about-me">
-				<h1 title="about jonathon nagatani" id="jonathon-title">Jonathon Nagatani</h1>
-				<!-- <hr> adds a line. You may also define a percentage width Don't use a closing tag or it may screw stuff up! -->
-				<hr width = "90%"/>
-				<p>Jonathon's mission is simple. Create a "Wow!" experience for each of his clients, every day. As a Realtor and up-and-coming Full Stack Web Developer, Jonathon provides services tailored to your specific needs, at exceptional value.</p>
-				<p>Expect straightforward advice, research, and service, supported by salient analysis custom designed for your needs. Whether buying your next property, selling your home for the most money in the most convenient manner, or seeking a completely custom application to enhance your everyday life, enjoy the benefits of Jonathon's comprehensive resources carefully designed to achieve your goals. Jonathon dedicates himself to thrilling clients with the results of their collaboration.</p>
-				<p>Call or e-mail Jonathon now for a complimentary, no-obligation consultation. Start enjoying the freedom and security that confidential guidance and eloquent application development will bring to your business and personal lives. Your unconditional complete satisfaction is assured.</p>
+			<section class='horizontal-section' style='text-align:center;'>
+				<div id='player-ownership'>
+					<div>your units:</div>
+					<div id='player-units'>10000.00</div>
+					<div>your shares:</div>
+					<div id='player-shares'>0</div>
+				</div>
+				<div class = 'buy-sell' id='buy'>
+					<form class='form-buysell' id = "form-buy-input">
+						<input type = "number" class='transaction-amount-input' id="input-buyassets" placeholder='# shares to buy' title='enter shares to buy'>
+						<br/>
+						<input class='button-buysell' id = "button-buy-shares" type = "submit" value = "BUY" title='after typing your desired number of shares, click this button (or press the enter key on your keyboard) to buy'>
+					</form>
+				</div>
+				<div class = 'buy-sell' id='sell'>
+					<form class='form-buysell' id = "form-sell-input">
+						<input type = "number" class='transaction-amount-input' id="input-sellassets" placeholder='# shares to sell' title='enter shares to sell'>
+						<br/>
+						<input class='button-buysell' id = "button-sell-shares" type = "submit" value = "SELL" title='after typing your desired number of shares, click this button (or press the enter key on your keyboard) to sell'>
+					</form>
+				</div>
+				<div class = 'buy-sell' id='shortsell'>
+					<form class='form-buysell' id = "form-shortsell-input">
+						<input type = "number" class='transaction-amount-input' id="input-shortsellassets" placeholder='short sell' title='enter shares to short sell'>
+						<br/>
+						<input class='button-buysell' id = "button-shortsell-shares" type = "submit" value = "SHORT" title='after typing your desired number of shares, click this button (or press the enter key on your keyboard) to short sell'>
+					</form>
+				</div>
 			</section>
 		</div>
 	</div>

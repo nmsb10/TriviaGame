@@ -204,11 +204,55 @@ header{
 	font-weight: 700;
 	line-height: 100px;
 	text-align:center;
-	color: rgba(0, 0, 0, 1);
+	color: rgba(37, 78, 58, 1);
 	border: 1px dashed rgba(0, 0, 0, 1);	
 	border-radius: 50px;
 	margin:15px auto 0px;
 }
+
+#player-ownership{
+	border: 1px solid rgba(48, 15, 45, 0.1);
+	padding: 3px;
+	margin: 15px auto;
+	margin-bottom:0px;
+	width:220px;
+}
+
+#player-units{
+	font-weight:bold;
+	margin-bottom:5px;
+}
+
+#player-shares{
+	font-weight:bold;
+	margin-bottom:5px;
+}
+
+.buy-sell{
+	display: inline-block;
+	width: 125px;
+	/*height: 65px;*/
+	border: 2px solid rgba(48, 15, 45, 1);
+	box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
+	color: white;
+	background-color: rgba(48, 15, 45, 1);
+	margin: 15px;
+}
+
+.form-buysell{
+	text-align:center;
+}
+
+.button-buysell{
+	margin-bottom:10px;
+}
+
+.transaction-amount-input{
+	width: 100px;
+	text-align:center;
+	margin: 10px;
+}
+
 
 
 
