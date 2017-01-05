@@ -1,246 +1,24 @@
-/*http://www.w3schools.com/css/css3_transitions.asp
-http://www.w3schools.com/css/css3_animations.asp
-http://www.w3schools.com/colors/colors_picker.asp
-http://www.w3schools.com/cssref/css_units.asp
-http://www.w3schools.com/css/css_align.asp*/
+html, body{
+	/* height: 100% for the ryanfait sticky footer */
+	height: 100%;
+}
 
 /*https://rush.uber.com/enterprise*/
 /*https://www.chase.com/*/
 
 body{
-	/*background: url("../images/two.jpg");
-	background-repeat: no-repeat;*/
+	/*http://www.w3schools.com/colors/colors_picker.asp*/
+	/*http://www.w3schools.com/cssref/css_units.asp*/
+	/*http://www.w3schools.com/css/css_align.asp*/
+	background: url("../images/one.JPG");
+	background-repeat: no-repeat;
 	/*background color for areas not covered by background image*/
 	/* these rgba values correspond to background-color: #404040
 	final number indicates opacity; 0 = invisible, 1 = opaque*/
 	/*Hexadecimal: #4E2A84*/
-	/*background-color: rgba(78, 42, 132,1);*/
-	/*background-color: rgba(220, 220, 220,1);*/
-	/*background-size: 100%;*/
-	/*background-size: contain;
-	background-position: center;*/
-	background-color:rgba(255, 255, 255, 1);
-	/*define default font family, size, color, and weight:*/
-	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
-	font-size: 15px;
-	color: rgba(0, 0, 0, 1);
-	font-weight: 400;
+	background-color: rgba(78, 42, 132,1);
+	background-size: 100%;	
 }
-
-#welcome{
-	/*display inline-block makes this div content only the size of the contents*/
-	display: inline-block;
-	width: 80px;
-	height:17px;
-	line-height: 17px;
-	font-family: 'Georgia', Times, "Times New Roman", serif;
-	letter-spacing: 2px;
-	/*set margin-right to -2px because letter-spacing is 2px, and we need to counteract the final 2px space created at the end of the last letter
-	margin-right:-2px;*/
-	text-align: center;
-	color: rgba(255, 255, 255, 1);
-	background-color: rgba(48, 15, 45, 1);
-	padding: 10px;
-	border: 1px solid lime;
-	border-radius: 7px;
-	/*with position fixed, can center this div relative to the viewport using
-	left, right, top, and bottom. But then must account for the width and height
-	of this div, so give negative margins*/
-	position: fixed;
-	left: 50%;
-	margin-left: -50px;
-	top: 50%;
-	margin-top: -18.5px;
-	-webkit-transition: background-color 3s, -webkit-transform 1.5s, box-shadow 3s; /* For Safari 3.1 to 6.0 */
-    transition: background-color 3s, transform 1.5s, box-shadow 3s;
-}
-
-#welcome:hover{
-	cursor: pointer;
-	background-color: lime;
-	-webkit-transform: rotate(360deg); /* Safari */
-    transform: rotate(360deg);
-    /*http://www.w3schools.com/cssref/css3_pr_box-shadow.asp
-	horizontal shadow position; vertical shadow position; blur distance; shadow size; color*/
-    box-shadow: 8px 8px 15px rgba(48, 15, 45, 1);
-}
-
-header{
-	width:100%;
-	background-color: rgba(255, 255, 255, 1);
-	color: #f2f2f2;
-	padding:0;
-	border:0;
-	margin:0;
-	border-bottom: 2px solid rgba(255, 255, 255, 1);
-	-webkit-transition: background-color 1s, border-bottom 1s; /* For Safari 3.1 to 6.0 */
-    transition: background-color 1s, border-bottom 1s;
-}
-
-header:hover{
-	background-color: rgba(15,15,15,0.5);
-	border-bottom: 2px solid rgba(48, 15, 45, 1);
-}
-
-#home{
-	font-family: 'Georgia', Times, "Times New Roman", serif;
-	letter-spacing: 5px;
-	padding-left: 5px;
-	padding-right: 10px;
-}
-
-/*#header-links{
-	display: inline-block;
-}*/
-
-.hlink{
-	padding: 5px;
-	border-radius: 5px 5px 0px 0px;
-	border-style: solid;
-	border-width: 1.2px 1.2px 0px;
-	border-color: rgba(255, 255, 255, 1);
-	-webkit-transition: border-color 1s; /* For Safari 3.1 to 6.0 */
-    transition: border-color 1s;
-}
-
-.hlink:hover{
-	border-color: rgba(48, 15, 45, 1);
-}
-
-.kale{
-	display: inline-block;
-}
-
-
-
-/* Dropdown Button */
-/* The container <div> - needed to position the dropdown content */
-.dropdown{
-    position: relative;
-    display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    /*background-color: #f9f9f9;*/
-    background-color: rgba(230,230,230,0.2);
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    border-radius: 15px;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-	font-size:13px;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover{
-	background-color: lime;
-	color:purple;
-	border-radius: 10px;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: lime;
-}
-
-
-.dropdown:link, .dropdown:visited, .dropdown:active{
-	text-decoration: none;
-	color: rgba(230,230,230,1);
-	color:lime;
-}
-
-.dropdown:hover{
-	background-color: rgba(230,230,230,0.3);
-	/*color:purple;*/
-	color: rgba(128, 0, 128, 1);
-}
-
-
-
-footer{
-	background: rgba(255, 255, 255, 1);	
-	border-top: 3px solid rgba(255, 255, 255, 1);
-	text-align: center;
-	/*need clear:both for the footer if you want it to always be below
-	the bottommost middle section content. Without clear both, the footer
-	will go beneath the middle content.*/
-	clear:both;
-	position:fixed;
-	/*need to define width because position is fixed*/
-	width: 100%;
-	top: 100%;
-	margin-top: -30.667px;
-	/*used -30.667px for bottom margin because the footer height is 28px
-	and footer border is 3px, but renders as 2.667px for some reason*/
-	-webkit-transition: background 1s, border-top 3s; /* For Safari 3.1 to 6.0 */
-    transition: background 1s, border-top 3s;
-}
-
-footer:hover{
-	background: rgba(64,64,64,1);	
-	border-top: 3px solid rgba(48, 15, 45, 1);
-}
-
-#footer-content{
-	font-family: 'Georgia', Times, "Times New Roman", serif;
-	font-size: 10px;
-	color: #f2f2f2;
-	padding: 9px 0;
-}
-
-.footer-link:link, .footer-link:visited, .footer-link:active{
-	text-decoration: none;
-	color: #f2f2f2;
-	text-decoration: none;
-	-webkit-transition: color 1s; /* For Safari 3.1 to 6.0 */
-    transition: color 1s;
-}
-
-.footer-link:hover{
-	text-decoration: underline;
-	color: lime;
-/*	background-color: lime;
-	color: rgb(78, 42, 132);*/
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
 
 .horizontal-section{
 	/*display block should put these elements each on their own "separate line."
@@ -268,11 +46,14 @@ footer:hover{
 	position: relative;*/
 }
 
-/*header{
+header{
 	background: rgba(0,0,0,0.45);
 	/*http://www.w3schools.com/css/css3_gradients.asp*/
-    /*background: -webkit-linear-gradient(top, rgba(0,0,0,0.65), rgba(0,0,0,0)); /* For Safari 5.1 to 6.0 */
-/*	position fixed is positioned relative to the viewport,
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0.65), rgba(0,0,0,0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top, rgba(0,0,0,0.65), rgba(0,0,0,0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.65), rgba(0,0,0,0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0)); /* Standard syntax (must be last) */
+	/*position fixed is positioned relative to the viewport,
 	which means it always stays in the same place even if the
 	page is scrolled. The top, right, bottom, and left properties
 	are used to position the element.*/
@@ -281,9 +62,9 @@ footer:hover{
 	viewport, like fixed). However; if an absolute positioned
 	element has no positioned ancestors, it uses the document
 	body, and moves along with page scrolling.*/
-/*	position: fixed;
-	width: 100%;*/
-/*}*/
+	position: fixed;
+	width: 100%;
+}
 
 /*using * means the header and all children have this property(ies)*/
 header *{
@@ -448,6 +229,64 @@ p{
 }
 
 
+/* Dropdown Button */
+/* The container <div> - needed to position the dropdown content */
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    /*background-color: #f9f9f9;*/
+    background-color: rgba(230,230,230,0.2);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    border-radius: 15px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	font-size:13px;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover{
+	background-color: lime;
+	color:purple;
+	border-radius: 10px;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: lime;
+}
+
+
+.dropdown:link, .dropdown:visited, .dropdown:active{
+	text-decoration: none;
+	color: rgba(230,230,230,1);
+	color:lime;
+}
+
+.dropdown:hover{
+	font-size: 17px;
+	background-color: rgba(230,230,230,0.3);
+	/*color:purple;*/
+	color: rgba(128, 0, 128, 1);
+}
+
 .wrapper{
 	min-height:100%;
 	/*used -33.91px for bottom margin because the footer height is 27.45px
@@ -465,6 +304,33 @@ should equal the footer height. */
 	height: 30.45px;
 }
 
+footer{
+	background: rgba(64,64,64,1);	
+	border-top: 3px solid #4E2A84;
+	text-align: center;
+	/*need clear:both for the footer if you want it to always be below
+	the bottommost middle section content. Without clear both, the footer
+	will go beneath the middle content.*/
+	clear:both;
+}
+
+#footer-content{
+	font-family: 'Georgia', Times, "Times New Roman", serif;
+	font-size: 10px;
+	color: #f2f2f2;
+	padding: 9px 0;
+}
+
+.footer-link:link, .footer-link:visited, .footer-link:active{
+	text-decoration: none;
+	color: #f2f2f2;
+}
+
+.footer-link:hover{
+	text-decoration: underline;
+	background-color: lime;
+	color: rgb(78, 42, 132);
+}
 
 
 	/*use overflow auto if you want a scrollbar only if the content
@@ -472,6 +338,19 @@ should equal the footer height. */
 	scrollbars, which are disabled if no content is clipped.*/
 /*	overflow:auto;*/	
 
+
+
+
+
+
+ul, li{
+	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+	font-size: 20px;
+	font-weight: 400;
+/*	color: #000000;*/
+	color: rgba(0,0,0,1);
+	text-align: center;
+}
 
 
 
@@ -505,4 +384,3 @@ should equal the footer height. */
 .logo-link:last-child{
 	margin-right:0;
 }*/
-

@@ -57,7 +57,7 @@ var entireGame = {
 		}
 		if(entireGame.wordBank.length===0){
 			document.getElementById("game-message").innerHTML = "Awesome! You correctly guessed ALL the words. A+!";
-			document.getElementById("score").innerHTML = "<img src='./assets/images/goodjob.JPG' alt='you won' style='width:350px'>";
+			document.getElementById("score").innerHTML = "<img src='../assets/images/goodjob.JPG' alt='you won' style='width:350px'>";
 		}
     },
 

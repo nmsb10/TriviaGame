@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Use the <head> element to define the head elements, including title (required), style, link (for defining a link between this document and an external resource such as an external style sheet)-->
+<head>
+	<meta charset="UTF-8">
+	<title>dedication to you | Jonathon Nagatani</title>
+	<!-- when linking to an external style sheet, use relative file paths, NOT absolute file paths. Use ./ to start at the same folder as this html file. Use / to go to another folder and continue until you have the right .css file. If you need to go up a folder(s), use ../ -->
+	<link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./assets/css/style01.css">
+	<!-- Include the viewport tag so the media queries will function and perform properly on mobile devices.
+	A <meta> viewport element gives the browser instructions on how to control the page's dimensions and scaling. The width=device-width part sets the width of the page to follow the screen-width of the device (which will vary depending on the device). The initial-scale=1.0 part sets the initial zoom level when the page is first loaded by the browser.-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<!-- wrapper for the sticky footer -->
+<!-- Use a class when you will be using the css style elements more than once -->
+<!-- Use an id when you plan to use the css style elements only once ie for this one specific instance of this element only-->
+<div class="wrapper">
+	<!-- because header is position fixed (which has no height), must give the header's horizontal-section div a specific height equal to the header box's height so the next horizontal section begins at the bottom of the header box. -->
+	<div class="horizontal-section" style="height: 74.18px;">
+		<header>
+			<!-- consult css file .header-section for why inline style font-size:0 inserted here -->
+			<div class="good-fit" style="font-size: 0;">
+				<!-- cannot make these header-sections span. A span is inherently display: inline, but cannot take a width or height -->
+				<div class="header-section header-section-left">
+					<a class="header-link header-link-left" href="realestate.html" title="jonathon's real estate">real estate</a>
+					<a class="header-link header-link-left" href="" title="about Jonathon">about</a>
+					<a class="header-link header-link-left" href="" title="philosophy">philosophy</a>
+				</div>
+				<div class="header-section header-section-center">
+					<a id="center-name" href="index.html" title="Jonathon Nagatani">jonathon<br>nagatani</a>
+				</div>
+				<div class="header-section header-section-right">
+					<!-- <a class="header-link header-link-right" href="indexhw6.html" title="Jonathon's homeworks">homeworks</a> -->
+					<div class="dropdown">
+						<a class="header-link header-link-right" href="homeworks.html" title="Jonathon's homeworks">homeworks</a>
+						<div class="dropdown-content">
+							<a href="homeworks/hw3.html">Homework 3</a>
+							<a href="homeworks/hw4.html">Homework 4</a>
+							<a href="homeworks/hw5.html">Homework 5</a>
+							<a href="homeworks/hw6.html">Homework 6</a>
+							<a href="homeworks/hw7.html">Homework 7</a>
+						</div>
+					</div>
+					<div class="dropdown">
+						<a class="header-link header-link-right" href="" title="applications by Jonathon">apps</a>
+						<div class="dropdown-content">
+							<a href="apps/app01.html">Application One</a>
+						</div>
+					</div>
+					<a class="header-link header-link-right" href="" title="contact Jonathon">contact</a>
+				</div>
+			</div>
+		</header>
+	</div>
+	<div class="horizontal-section" id="middle-section">
+		<div class="good-fit" style="font-size:0;">
+			<section class="main-content-section" id="main-content-about-me">
+				<h1 title="about jonathon nagatani" id="jonathon-title">Jonathon Nagatani</h1>
+				<!-- <hr> adds a line. You may also define a percentage width Don't use a closing tag or it may screw stuff up! -->
+				<hr width = "90%"/>
+				<img src="./assets/images/photo_jn.jpg" alt="jonathon nagatani" title="jonathon nagatani" id="photo-jonathon">
+				<p>Jonathon's mission is simple. Create a "Wow!" experience for each of his clients, every day. As a Realtor and up-and-coming Full Stack Web Developer, Jonathon provides services tailored to your specific needs, at exceptional value.</p>
+				<p>Expect straightforward advice, research, and service, supported by salient analysis custom designed for your needs. Whether buying your next property, selling your home for the most money in the most convenient manner, or seeking a completely custom application to enhance your everyday life, enjoy the benefits of Jonathon's comprehensive resources carefully designed to achieve your goals. Jonathon dedicates himself to thrilling clients with the results of their collaboration.</p>
+				<p>Call or e-mail Jonathon now for a complimentary, no-obligation consultation. Start enjoying the freedom and security that confidential guidance and eloquent application development will bring to your business and personal lives. Your unconditional complete satisfaction is assured.</p>
+			</section>
+		</div>
+	</div>
+	<div class="push"></div> <!-- push class for the sticky footer -->
+</div><!-- /wrapper -->
+<div class="horizontal-section">
+	<footer>
+		<div class="good-fit">
+			<div id="footer-content">
+				Copyright &copy; 2016 <a class="footer-link" href="https://www.linkedin.com/in/jonathonnagatani" target="_blank" title="Jonathon on LinkedIn">Jonathon Nagatani</a>. All Rights Reserved.
+			</div>
+		</div>
+<!-- 		<div id="for-contact-links-positioning" style="position:relative;">
+		</div> -->
+	</footer>
+
+
+<!-- should load the javascript after the DOM, because the DOM needs to be painted first, so THEN the javascript can change the painted DOM-->
+<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+<!-- <script type="text/javascript" src="./assets/javascript/app.js"></script> -->
+</body>
+</html>
