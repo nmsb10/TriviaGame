@@ -173,8 +173,8 @@ header:hover{
 
 
 footer{
-	background: rgba(255, 255, 255, 1);	
-	border-top: 3px solid rgba(255, 255, 255, 1);
+	background: rgba(255, 255, 255, 0.35);	
+	border-top: 3px solid rgba(255, 255, 255, 0.35);
 	text-align: center;
 	/*need clear:both for the footer if you want it to always be below
 	the bottommost middle section content. Without clear both, the footer
