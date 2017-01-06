@@ -1,0 +1,98 @@
+.homelink:link, .homelink:visited, .homelink:active{
+	text-decoration: none;
+	color: #f2f2f2;
+	-webkit-transition: color 1s; /* For Safari 3.1 to 6.0 */
+    transition: color 1s;
+}
+
+.homelink:hover{
+	color:lime;
+}
+
+.supplemental-link{
+	border:none;
+	border-radius: 5px;
+}
+
+.supplemental-link:hover{
+	background-color: initial;
+	color: #f2f2f2;
+}
+
+.horizontal-portion{
+	/*display block should put these elements each on their own "separate line."
+	display: inline-block puts all elements on the same line as long as the
+	widths let the elements fit. If the width of an element puts it over the max
+	width, then the next element automatically begins on the next lower "row"*/	
+	display: block;
+	width: 100%;
+	padding: 0px;
+	border: 0px;
+	margin: 0px;
+}
+
+.good-fit-95{
+	width: 95%;
+	margin: 0 auto;
+}
+
+.good-fit-90{
+	width: 90%;
+	margin: 0 auto;
+}
+
+.line-center-outside{
+	height: 30px;
+}
+
+.line-width{
+	width: 100%;
+	border-bottom: 1.5px solid #f2f2f2;
+	height: 50%;
+	-webkit-transition: border-bottom-color 1s; /* For Safari 3.1 to 6.0 */
+    transition: border-bottom-color 1s;
+}
+
+.line-width-centerportion{
+	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+	font-size: 12px;
+	color: #f2f2f2;
+	width:130px;
+	text-align: center;
+	/*make line-height same as height of parent height to center text vertically*/
+	line-height: 30px;
+	border-radius:7px;
+	margin: 0 auto;
+	background: rgba(255, 255, 255, 1);
+	-webkit-transition: color 1s; /* For Safari 3.1 to 6.0 */
+    transition: color 1s;
+}
+
+.line-width:hover{
+	border-bottom-color: rgba(48, 28, 48, 1);
+}
+
+.line-width-centerportion:hover{
+	color: rgba(48, 28, 48, 1);
+}
+
+#shadow-box-outer{
+	width: 55%;
+	margin: 0% 22.5%;
+	font-size: 15px;
+	height: 25px;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
+    /*as this box has the box shadow, in order for the shadow to appear on top of content below,
+    position should be relative http://stackoverflow.com/questions/9199433/cant-get-box-shadow-to-appear-above-div*/
+    position:relative;
+}
+
+#shadow-box-inner{
+	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+	font-size:1em;
+	line-height:25px;
+	text-align:center;
+	background: rgba(255, 255, 255, 1);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+	border-right: 1px solid rgba(0, 0, 0, 0.5);
+}
