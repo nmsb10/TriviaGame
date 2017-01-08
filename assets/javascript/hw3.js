@@ -230,39 +230,3 @@ function startPlaying() {
 	document.getElementById("start-button").innerHTML = "click to change word";
 	entireGame.userGuessesLetter();
 }
-
-// <script>
-// function person(firstName,lastName,age,eyeColor) {
-//     this.firstName = firstName;
-//     this.lastName = lastName;
-//     this.age = age;
-//     this.eyeColor = eyeColor;
-//     this.changeName = function (name) {
-//         this.lastName = name;
-//     }
-// }
-// var myMother = new person("Sally","Rally",48,"green");
-// myMother.changeName("Doe");
-// document.getElementById("demo").innerHTML =
-// "My mother's last name is " + myMother.lastName;
-// </script>
-
-//document.queryselector??
-//use a switch statement??
-//functions that return values??
-//indexOf (returns -1 if not in there)
-
-// arrayName.indexOf("elementInTheArray") = returns the
-// index number of that element
-
-		// function vowelChecker(x){
-		// 	var wordSplit = x.split("");
-		// 	var firstLetter = wordSplit[0];
-		// 	if(firstLetter.toLowerCase() ==="a" || firstLetter.toLowerCase() ==="e" || firstLetter.toLowerCase()==="i" || firstLetter.toLowerCase() ==="o" || firstLetter.toLowerCase()==="u"){
-		// 		console.log("the first letter in " + x + " is a vowel.")
-		// 	}
-		// 	else{
-		// 		console.log("the first letter in " + x + " is NOT a vowel.")				
-		// 	}
-		// }
-		//firstCharacter = x.toLowerCase().charAt(0);

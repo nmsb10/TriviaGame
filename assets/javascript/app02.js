@@ -38,6 +38,35 @@ var dateFun = {
 	}
 };
 
+document.getElementById('add-bet-button').addEventListener("click", function(){
+	var bet = document.getElementById('input-bet').value;
+	
+	console.log(paper);
+	document.getElementById('input-bet').value = '';
+	return;
+});
+
+//.value, .innerHTML
+//document.queryselector??
+//use a switch statement??
+//functions that return values??
+//indexOf (returns -1 if not in there)
+
+// arrayName.indexOf("elementInTheArray") = returns the
+// index number of that element
+
+		// function vowelChecker(x){
+		// 	var wordSplit = x.split("");
+		// 	var firstLetter = wordSplit[0];
+		// 	if(firstLetter.toLowerCase() ==="a" || firstLetter.toLowerCase() ==="e" || firstLetter.toLowerCase()==="i" || firstLetter.toLowerCase() ==="o" || firstLetter.toLowerCase()==="u"){
+		// 		console.log("the first letter in " + x + " is a vowel.")
+		// 	}
+		// 	else{
+		// 		console.log("the first letter in " + x + " is NOT a vowel.")				
+		// 	}
+		// }
+		//firstCharacter = x.toLowerCase().charAt(0);
+
 //http://www.w3schools.com/howto/howto_css_modals.asp
 //http://www.w3schools.com/jsref/dom_obj_document.asp
 
