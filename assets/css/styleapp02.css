@@ -17,6 +17,28 @@
 .supplemental-link:hover{
 	background-color: initial;
 	color: #f2f2f2;
+	cursor: pointer;
+}
+
+.app-name{
+	position:absolute;
+	right:15px;
+	top:0;
+	display:inline-block;
+	border:none;
+	border-bottom: 1.5px solid rgba(255, 255, 255, 1);
+	text-decoration:none;
+	padding: 5px;
+	color: rgba(48, 28, 48, 0.5);
+	background-color: rgba(255, 255, 255, 1);
+	box-shadow: 11px 11px 10px 1px rgba(0,0,0,0.2);
+	-webkit-transition: color 1s, box-shadow 1s; /* For Safari 3.1 to 6.0 */
+    transition: color 1s, box-shadow 1s;
+}
+
+.app-name:hover{
+	color: rgba(48, 28, 48, 1);
+	box-shadow: -11px 7px 10px 5px rgba(0,0,0,0.35);
 }
 
 .horizontal-portion{
@@ -87,12 +109,75 @@
     position:relative;
 }
 
-#shadow-box-inner{
-	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
-	font-size:1em;
-	line-height:25px;
+#updates-user{
+/*	position:absolute;*/
+}
+
+#form-input-bet{
 	text-align:center;
+	font-size: 15px;
+}
+
+#input-bet{
+	width: 200px;
+	text-align: center;
+	font-size: 1em;
+	border: 0.5px solid rgba(48, 28, 48, 1);
+}
+
+#add-bet-button{
+	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+	font-size: 1em;
+	font-weight: 400;
+	color: rgba(48, 28, 48, 1);
+	border: 1px solid rgba(48, 28, 48, 1);
 	background: rgba(255, 255, 255, 1);
-	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-	border-right: 1px solid rgba(0, 0, 0, 0.5);
+	cursor:pointer;
+}
+
+#add-bet-button:hover{
+	color: rgba(255, 255, 255,1);
+	background: rgba(48, 28, 48, 1);
+}
+
+#roll-button{
+	width: 50px;
+	height: 50px;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 50px;
+	text-align:center;
+	color: rgba(255, 255, 255,1);
+	background-color: lime;
+	border: 1px solid rgba(48, 28, 48, 1);
+	border-radius: 25px;
+	margin:7px auto 0px;
+	cursor: pointer;
+	-webkit-transition: -webkit-transform 1s, box-shadow 1s; /* For Safari 3.1 to 6.0 */
+    transition: transform 1s, box-shadow 1s;
+}
+
+#roll-button:hover{
+	cursor: pointer;
+	background-color: lime;
+	-webkit-transform: rotate(720deg); /* Safari */
+    transform: rotate(720deg);
+    /*http://www.w3schools.com/cssref/css3_pr_box-shadow.asp
+	horizontal shadow position; vertical shadow position; blur distance; shadow size; color*/
+    box-shadow: 0px 0px 7px 11px rgba(48, 28, 48, 0.5);
+}
+
+#player-bets{
+	text-align:center;
+}
+
+.bet-summary{
+	display: inline-block;
+	width: 125px;
+	height:100px;
+	border: 2px solid rgba(48, 15, 45, 1);
+	box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
+	color: white;
+	background-color: rgba(48, 15, 45, 1);
+	margin: 15px;
 }
