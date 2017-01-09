@@ -4,9 +4,6 @@ http://www.w3schools.com/colors/colors_picker.asp
 http://www.w3schools.com/cssref/css_units.asp
 http://www.w3schools.com/css/css_align.asp*/
 
-/*https://rush.uber.com/enterprise*/
-/*https://www.chase.com/*/
-
 /*http://stackoverflow.com/questions/609517/why-em-instead-of-px
 */
 
@@ -18,7 +15,6 @@ body{
 	final number indicates opacity; 0 = invisible, 1 = opaque*/
 	/*Hexadecimal: #4E2A84*/
 	/*background-color: rgba(78, 42, 132,1);*/
-	/*background-color: rgba(220, 220, 220,1);*/
 	/*background-size: 100%;*/
 	/*background-size: contain;
 	background-position: center;*/
@@ -163,7 +159,9 @@ header:hover{
 	color: #f2f2f2;
 }
 
-/* Show the dropdown menu on hover */
+/* Show the dropdown menu on hover. note, can only affect children
+if you desire to change the css for one (child) element while hovering
+over a (parent) different element */
 .dropdown:hover .dropdown-content {
     display: block;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -178,7 +176,7 @@ header:hover{
 
 footer{
 	background: rgba(255, 255, 255, 0.35);	
-	border-top: 3px solid rgba(255, 255, 255, 0.35);
+	border-top: 3px solid rgba(255, 255, 255, 0);
 	text-align: center;
 	/*need clear:both for the footer if you want it to always be below
 	the bottommost middle section content. Without clear both, the footer
