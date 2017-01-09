@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 	//http://stackoverflow.com/questions/799981/document-ready-equivalent-without-jquery
 	showDate();
+	//submitBet();
 });
 
 function showDate(){
@@ -30,21 +31,34 @@ var dateFun = {
 		}
 	},
 	dayTwoDigits: function(dayNumber){
-		if(dayNumber<10){
-			return '0'+ dayNumber;
-		}else{
-			return dayNumber;
-		}
+		return dayNumber<10 ? '0' + dayNumber : dayNumber;
+		// if(dayNumber<10){
+		// 	return '0'+ dayNumber;
+		// }else{
+		// 	return dayNumber;
+		// }
 	}
 };
 
+function submitBet(){
+ 	document.getElementById('add-bet-button').addEventListener('click', function(){
+ 		console.log('button worked');
+ 		return;
+// 		var bet = document.getElementById('input-bet').value;
+// 		console.log(bet);
+// 		return;
+// 	// document.getElementById('input-bet').value = '';
+ });
+}
+
 document.getElementById('add-bet-button').addEventListener("click", function(){
-	var bet = document.getElementById('input-bet').value;
-	
+	var paper = document.getElementById('input-bet').value;
+	console.log('will this work?');
 	console.log(paper);
 	document.getElementById('input-bet').value = '';
 	return;
 });
+
 
 //.value, .innerHTML
 //document.queryselector??
@@ -69,6 +83,8 @@ document.getElementById('add-bet-button').addEventListener("click", function(){
 
 //http://www.w3schools.com/howto/howto_css_modals.asp
 //http://www.w3schools.com/jsref/dom_obj_document.asp
+//http://www.w3schools.com/jsref/jsref_statements.asp
+//http://www.w3schools.com/jsref/dom_obj_event.asp
 
 //new app: enter numbers, display numbers entered, then press button
 //to calculate mean and median
