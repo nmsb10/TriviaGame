@@ -104,7 +104,7 @@ function enterRequest(){
 				stringsArray.push(requestArray[i]);
 			}
 		}
-		var currentBet = new Bet();
+		var currentBet = new Bet(false, false, false);
 		if(stringsArray.length === 1){
 			switch(stringsArray[0]){
 				case 'pass':
@@ -137,10 +137,16 @@ function enterRequest(){
 					currentBet.type = 'dontcome';
 					break;
 				default:
-					console.log('unknown bet TYPE');
+					console.log('unknown bet TYPE: ' + stringsArray[0]);
 					break;
 			}
 		}else if (stringsArray.length > 1){
+			//ALTERNATIVE METHOD 'branch approach':
+				//1. Place MultiwordBet words in an array
+				//2. have "most used" (eg come, pass) words first
+				//3. since stringsArray will be shorter than the multiwordbet array, starting with the first stringsArray word, compare with all the multiwordbet array words
+				//4. if a word matches, then compare the 2nd stringsArray word to the logical additional words that would be used with the first word.
+				//5. continue to narrow down until you are certain of the requested option
 			//you must have a multiword bet if the strings array length is > 1
 			var mwbet = new MultiwordBet();
 			//check if any of the words is a part of the possible multi-word bet words from the options in the MultiwordBet constructor
@@ -185,7 +191,6 @@ function enterRequest(){
 						break;
 				}
 			}
-			console.log(mwbet);
 			//evaluate mwbet to properly assign currentBet.type
 			//should I have a return after each else if statement?
 			for(var key in mwbet){
@@ -209,16 +214,30 @@ function enterRequest(){
 			}
 		}
 		//evaluate for the number and bet amount
-		if(numbersArray.length === 1){
-			currentBet.amount = numbersArray[0];
-		}else{
-			currentBet.amount = numbersArray[1];
-			currentBet.number = numbersArray[0];
+		//screen and correct for numbers with commas or - values
+		//if the bet has a type, then proceed with assigning amount and number
+		if(currentBet.type){
+			if(numbersArray.length === 1 && (currentBet.type === 'donotpassline' || currentBet.type === 'passline' || currentBet.type === 'come' || currentBet.type === 'dontcome' || currentBet.type === 'placeodds' || currentBet.type === 'layodds')){
+				if(parseInt(numbersArray[0]) > 0){
+					currentBet.amount = parseInt(numbersArray[0]);
+					currentBet.number = true;
+				}
+			//there should be both an amount AND number
+			//check that the numbers are positive
+			}else if(numbersArray.length > 1 && parseInt(numbersArray[0]) > 0 && parseInt(numbersArray[1]) > 0){
+				currentBet.number = parseInt(numbersArray[0]);
+				currentBet.amount = parseInt(numbersArray[1]);
+			}
 		}
-		//evaluate the constructor using the submitBet function
+		//evaluate the constructor using the submitBet function IF currentBet has all necessary factors
 		//submitBet(currentBet.type, currentBet.amount, currentBet.number);
-		submitBet(currentBet);
-		document.getElementById('input-bet').value = '';
+		if(currentBet.type && currentBet.amount && currentBet.number){
+			submitBet(currentBet);
+			console.log('bet successful: ');
+		}else{
+			console.log('bet NOT successful: ');
+		}
+		console.log(currentBet);
 		//return false;
 		event.preventDefault();
 	});
@@ -269,11 +288,9 @@ function updateRollStatus(dieOne, dieTwo){
 
 function submitBet(bet){
 	//turn bet.amount into a string
-	var betAmount = '$' + Math.floor(bet.amount);
-	console.log(bet.type);
+	var betAmount = '$' + bet.amount;
 	switch(bet.type){
 		case 'passline':
-			console.log('passline bet');
 			var betDisplay = "<div class = 'lacinato'><div class = 'lacinato-header' id = 'passline-bet'>pass line (1 to 1)</div><div class = 'lacinato-content'>"+
 				"pass line bet: " + betAmount + "</div></div>";
 			document.getElementById('bet-summary-primary').innerHTML += betDisplay;
@@ -301,6 +318,7 @@ function submitBet(bet){
 			break;
 	}
 }
+
 function displayPlayerBalance(player){
 	//add commas to the balance number
 	//http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
