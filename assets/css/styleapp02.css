@@ -143,15 +143,12 @@
 #roll-button{
 	width: 50px;
 	height: 50px;
-	font-size: 20px;
-	font-weight: 700;
-	line-height: 50px;
 	text-align:center;
 	color: rgba(255, 255, 255,1);
 	background-color: lime;
 	border: 1px solid rgba(48, 28, 48, 1);
 	border-radius: 25px;
-	margin:7px auto 0px;
+	margin:7px auto;
 	cursor: pointer;
 	-webkit-transition: -webkit-transform 1s, box-shadow 1s; /* For Safari 3.1 to 6.0 */
     transition: transform 1s, box-shadow 1s;
@@ -160,11 +157,35 @@
 #roll-button:hover{
 	cursor: pointer;
 	background-color: lime;
-	-webkit-transform: rotate(720deg); /* Safari */
-    transform: rotate(720deg);
+	/*-webkit-transform: rotate(720deg);*/ /* Safari */
+    /*transform: rotate(720deg);*/
     /*http://www.w3schools.com/cssref/css3_pr_box-shadow.asp
 	horizontal shadow position; vertical shadow position; blur distance; shadow size; color*/
     box-shadow: 0px 0px 7px 11px rgba(48, 28, 48, 0.5);
+}
+
+#roll-button:active{
+	background-color: purple;
+}
+
+#roll-description, #point-number{
+	height: 12.5px;
+	width: 100%;
+	font-size:10px;
+	line-height: 25px;
+}
+
+#point-number{
+	line-height:6.25px;
+}
+
+#roll-word{
+	height: 25px;
+	width: 100%;
+	font-size: 20px;
+	line-height:25px;
+	font-weight: 700;
+
 }
 
 #player-bets{
@@ -173,11 +194,74 @@
 
 .bet-summary{
 	display: inline-block;
-	width: 125px;
-	height:100px;
-	border: 2px solid rgba(48, 15, 45, 1);
+	width: 230px;
+	border: 1px solid rgba(48, 28, 48, 1);
 	box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
 	color: white;
-	background-color: rgba(48, 15, 45, 1);
+	background-color: rgba(190, 190, 190, 1);
 	margin: 15px;
+	vertical-align: top;
+}
+
+.lacinato{
+	width: 90%;
+	margin: 0 auto;
+	/*background-color: lime;*/
+	margin-top: 15px;
+}
+
+.lacinato:first-child{
+	margin-top: 5%;
+}
+
+.lacinato:last-child{
+	margin-bottom: 5%;
+}
+
+.lacinato-header{
+	border-radius: 11px 11px 0px 0px;
+	border: 5px solid white;
+	border-bottom:none;
+	background-color: rgba(48, 28, 48, 1);
+	color: rgba(255, 255, 255, 1);
+	height: 20px;
+	font-size: 18px;
+	line-height:20px;
+	text-align:left;
+	padding: 3px 5px;
+}
+
+.lacinato-content{
+	border-radius: 0px 0px 11px 11px;
+	border: 5px solid lime;
+	border-top: none;
+	background-color: rgba(255, 255, 255, 1);
+	color: purple;
+	height: 80px;
+	font-size: 15px;
+	text-align:left;
+	padding: 3px 5px;
+}
+
+#roll-results{
+	background-color: rgba(255, 255, 255, 1);
+	color: black;
+	border: 1px solid black;
+	overflow: auto;
+	height:64px;
+}
+
+.two-dice{
+	display: inline-block;
+}
+
+.dice-result{
+	height: 15px;
+	width: 15px;
+	background-color: rgba(255, 0, 0, 0.85);
+	color: rgba(255, 255, 255, 1);
+	text-align: center;
+	line-height: 15px;
+	padding: 5px;
+	margin: 3px;
 }
