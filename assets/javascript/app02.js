@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 	//http://stackoverflow.com/questions/799981/document-ready-equivalent-without-jquery
 	showDate();
+	displayPlayerBalance(playerBets);
 	updateRollButton();
 	enterRequest();
 	roll();
@@ -67,6 +68,14 @@ function MultiwordBet(){
 	this.lay = false;
 	this.come = false;
 }
+
+var playerBets = {
+	balance: 5057700,
+	passline: [],
+	donotpassline: [],
+	come:[],
+	dontcome:[],
+};
 
 function updateRollButton(){
 	if(rollStatus.comeOut){
@@ -259,10 +268,15 @@ function updateRollStatus(dieOne, dieTwo){
 }
 
 function submitBet(bet){
+	//turn bet.amount into a string
+	var betAmount = '$' + Math.floor(bet.amount);
 	console.log(bet.type);
 	switch(bet.type){
 		case 'passline':
 			console.log('passline bet');
+			var betDisplay = "<div class = 'lacinato'><div class = 'lacinato-header' id = 'passline-bet'>pass line (1 to 1)</div><div class = 'lacinato-content'>"+
+				"pass line bet: " + betAmount + "</div></div>";
+			document.getElementById('bet-summary-primary').innerHTML += betDisplay;
 			break;
 		case 'donotpassline':
 			console.log('don\'t pass bet');
@@ -286,6 +300,12 @@ function submitBet(bet){
 			console.log('unknown bet type');
 			break;
 	}
+}
+function displayPlayerBalance(player){
+	//add commas to the balance number
+	//http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+	var balance = '$' + player.balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	document.getElementById('player-balance').innerText = balance;
 }
 
 

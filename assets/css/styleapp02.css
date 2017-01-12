@@ -192,6 +192,17 @@
 	text-align:center;
 }
 
+#bet-summary-primary{
+	display: inline-block;
+	width: 230px;
+	border: 1px solid rgba(48, 28, 48, 1);
+	box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
+	color: white;
+	background-color: rgba(190, 190, 190, 1);
+	margin: 15px;
+	vertical-align: top;
+}
+
 .bet-summary{
 	display: inline-block;
 	width: 230px;
@@ -203,6 +214,14 @@
 	vertical-align: top;
 }
 
+.player-name{
+	margin: 5px;
+}
+
+#player-balance{
+	display: inline;
+}
+
 .lacinato{
 	width: 90%;
 	margin: 0 auto;
@@ -210,8 +229,8 @@
 	margin-top: 15px;
 }
 
-.lacinato:first-child{
-	margin-top: 5%;
+.lacinato:nth-child(2){
+	margin-top: 0;
 }
 
 .lacinato:last-child{
@@ -237,7 +256,7 @@
 	border-top: none;
 	background-color: rgba(255, 255, 255, 1);
 	color: purple;
-	height: 80px;
+	min-height: 65px;
 	font-size: 15px;
 	text-align:left;
 	padding: 3px 5px;
