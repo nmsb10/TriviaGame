@@ -61,7 +61,7 @@ function pickOne(silver){
 		console.log(whichPick);
 		//if the quote was already picked, then perform recursive
 		if(silver[whichPick].p){
-			pickOne(silver);
+			pickOne(thoughts);
 		}else{
 			var quote = silver[whichPick].q;
 			console.log(whichPick);

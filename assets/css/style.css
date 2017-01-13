@@ -55,7 +55,8 @@ body{
 }
 
 #welcome:hover{
-	cursor: pointer;
+	/*cursor: pointer;*/
+	cursor: default;
 	background-color: lime;
 	-webkit-transform: rotate(360deg); /* Safari */
     transform: rotate(360deg);
