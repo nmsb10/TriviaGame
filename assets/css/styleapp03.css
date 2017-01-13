@@ -1,0 +1,249 @@
+.app-name{
+	position:absolute;
+	right:15px;
+	top:0;
+	display:inline-block;
+	border:none;
+	border-bottom: 1.5px solid rgba(255, 255, 255, 1);
+	text-decoration:none;
+	padding: 5px;
+	color: rgba(48, 28, 48, 0.5);
+	background-color: rgba(255, 255, 255, 1);
+	box-shadow: 11px 11px 10px 1px rgba(0,0,0,0.2);
+	-webkit-transition: color 1s, box-shadow 1s; /* For Safari 3.1 to 6.0 */
+    transition: color 1s, box-shadow 1s;
+}
+
+.app-name:hover{
+	color: rgba(48, 28, 48, 1);
+	box-shadow: -11px 7px 10px 5px rgba(0,0,0,0.35);
+}
+
+#user-statistics{
+	width: 100%;
+	height: 35px;
+	color: rgba(48, 28, 48, 1);
+	text-align: center;
+	font-size: 23px;
+	font-weight: 700;
+}
+
+.player-stats{
+	display: inline-block;
+	line-height:35px;
+}
+
+#start-button{
+	width: 50px;
+	height: 50px;
+	text-align:center;
+	color: rgba(48, 28, 48, 1);
+	background-color: lime;
+	border: 1px solid rgba(48, 28, 48, 1);
+	border-radius: 25px;
+	margin:7px auto;
+	cursor: pointer;
+	-webkit-transition: -webkit-transform 1s, font-style 1s; /* For Safari 3.1 to 6.0 */
+    transition: transform 1s, font-style 1s;
+}
+
+#start-button:hover{
+	cursor: pointer;
+	-webkit-transform: rotate(720deg); /* Safari */
+    transform: rotate(720deg);
+    font-style: italic;
+}
+
+#start-button:active{
+	background-color: purple;
+}
+
+#start-word{
+	height: 25px;
+	width: 100%;
+	font-size: 19px;
+	line-height:50px;
+	font-weight: 700;
+	text-align: center;
+}
+
+#form-input-answer{
+	text-align:center;
+	font-size: 15px;
+}
+
+#user-response{
+	text-align: center;
+	width: 150px;
+	height:30px;
+	font-size:22px;
+	line-height: 30px;
+}
+
+#answer-button{
+	height:36px;
+	vertical-align: top;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#shadow-box-outer{
+	width: 55%;
+	margin: 0% 22.5%;
+	font-size: 15px;
+	height: 25px;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
+    /*as this box has the box shadow, in order for the shadow to appear on top of content below,
+    position should be relative http://stackoverflow.com/questions/9199433/cant-get-box-shadow-to-appear-above-div*/
+    position:relative;
+}
+
+#updates-user{
+/*	position:absolute;*/
+}
+
+
+
+#input-bet{
+	width: 200px;
+	text-align: center;
+	font-size: 1em;
+	border: 0.5px solid rgba(48, 28, 48, 1);
+}
+
+#add-bet-button{
+	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+	font-size: 1em;
+	font-weight: 400;
+	color: rgba(48, 28, 48, 1);
+	border: 1px solid rgba(48, 28, 48, 1);
+	background: rgba(255, 255, 255, 1);
+	cursor:pointer;
+}
+
+#add-bet-button:hover{
+	color: rgba(255, 255, 255,1);
+	background: rgba(48, 28, 48, 1);
+}
+
+
+
+#roll-description, #point-number{
+	height: 12.5px;
+	width: 100%;
+	font-size:10px;
+	line-height: 25px;
+}
+
+#point-number{
+	line-height:6.25px;
+}
+
+#player-bets{
+	text-align:center;
+}
+
+#bet-summary-primary{
+	display: inline-block;
+	width: 230px;
+	border: 1px solid rgba(48, 28, 48, 1);
+	box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
+	color: white;
+	background-color: rgba(190, 190, 190, 1);
+	margin: 15px;
+	vertical-align: top;
+}
+
+.bet-summary{
+	display: inline-block;
+	width: 230px;
+	border: 1px solid rgba(48, 28, 48, 1);
+	box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
+	color: white;
+	background-color: rgba(190, 190, 190, 1);
+	margin: 15px;
+	vertical-align: top;
+}
+
+.player-name{
+	margin: 5px;
+}
+
+#player-balance{
+	display: inline;
+}
+
+.lacinato{
+	width: 90%;
+	margin: 0 auto;
+	/*background-color: lime;*/
+	margin-top: 15px;
+}
+
+.lacinato:nth-child(2){
+	margin-top: 0;
+}
+
+.lacinato:last-child{
+	margin-bottom: 5%;
+}
+
+.lacinato-header{
+	border-radius: 11px 11px 0px 0px;
+	border: 5px solid white;
+	border-bottom:none;
+	background-color: rgba(48, 28, 48, 1);
+	color: rgba(255, 255, 255, 1);
+	height: 20px;
+	font-size: 18px;
+	line-height:20px;
+	text-align:left;
+	padding: 3px 5px;
+}
+
+.lacinato-content{
+	border-radius: 0px 0px 11px 11px;
+	border: 5px solid lime;
+	border-top: none;
+	background-color: rgba(255, 255, 255, 1);
+	color: purple;
+	min-height: 25px;
+	font-size: 15px;
+	text-align:left;
+	padding: 3px 5px;
+}
+
+#roll-results{
+	background-color: rgba(255, 255, 255, 1);
+	color: black;
+	border: 1px solid black;
+	overflow: auto;
+	height:64px;
+}
+
+.two-dice{
+	display: inline-block;
+}
+
+.dice-result{
+	height: 15px;
+	width: 15px;
+	background-color: rgba(255, 0, 0, 0.8);
+	color: rgba(255, 255, 255, 1);
+	text-align: center;
+	line-height: 15px;
+	padding: 5px;
+	margin: 3px;
+	-webkit-transition: background-color 2s; /* For Safari 3.1 to 6.0 */
+    transition: background-color 2s;
+}

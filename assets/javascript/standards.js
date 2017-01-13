@@ -83,3 +83,10 @@ function pickOne(silver){
 function resetArray(item, index){
 	return item.p = false;
 }
+
+
+//add one letter at a time
+//for(var i= 0; i<quote.length; i++){
+	//timer function (eg every 250 milliseconds) for the following:
+	//document.getElementById('wherequotewillbe').innerText +=quote[i];
+//}
