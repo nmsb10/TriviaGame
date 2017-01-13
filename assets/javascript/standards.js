@@ -46,7 +46,7 @@ var thoughts =
 var timer =
 {
 	interval: function(){
-		counter = setInterval(timer.showAThought, 2000);
+		counter = setInterval(timer.showAThought, 5000);
 	},
 	showAThought: function(){
 		var uniqueThought = pickOne(thoughts);
