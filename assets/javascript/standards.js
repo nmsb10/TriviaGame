@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 	//http://stackoverflow.com/questions/799981/document-ready-equivalent-without-jquery
 	showDate();
-	showThoughts();
+	showThoughts(thoughts);
 });
 
 function showDate(){
@@ -17,12 +17,8 @@ function showDate(){
 	document.getElementById('ginger').innerHTML = updatedFooter;
 }
 
-function showThoughts(){
-	timer.interval();
-}
-
-var shown = 0;
-
+var order = [];
+var shownThoughts = 0;
 var thoughts =
 [
 	//{thought , picked}
@@ -43,46 +39,80 @@ var thoughts =
 	{q: '"Conduct your life as though your every act were to become a universal law for all people."', p: false}
 ];
 
+function showThoughts(array){
+	order = genRandomOrderArray(array);
+	console.log(order);
+	timer.interval();
+}
+
+function genRandomOrderArray(input){
+	var orderArray = [];
+	for(var i = 0; i<input.length; i++){
+		orderArray.push(i);
+	}
+	//http://www.w3schools.com/js/js_array_sort.asp
+	orderArray.sort(function(a, b){
+		return 0.5 - Math.random();
+	});
+	return orderArray;
+}
+
 var timer =
 {
 	interval: function(){
-		counter = setInterval(timer.showAThought, 5000);
+		counter = setInterval(timer.showAThought, 5500);
 	},
 	showAThought: function(){
-		var uniqueThought = pickOne(thoughts);
-		console.log(uniqueThought);
-		document.getElementById('thoughts-container').innerText = uniqueThought;
+		var uniqueThought = '';
+		console.log(shownThoughts);
+		if(shownThoughts < thoughts.length){
+			uniqueThought = thoughts[order[shownThoughts]].q;
+			shownThoughts ++;
+			console.log(shownThoughts + ": " + uniqueThought);
+			document.getElementById('thoughts-container').innerText = uniqueThought;
+		}else{
+			shownThoughts = 0;
+			//must stop this counter, otherwise will continue to perform showThoughts function while also performing it again and again, simultaneously
+			timer.stop();
+			showThoughts(thoughts);
+		}
+	},
+	stop: function(){
+		clearInterval(counter);
 	}
 };
 
-function pickOne(silver){
-	if(shown<silver.length){
-		var whichPick = Math.floor(Math.random()*silver.length);
-		console.log(whichPick);
-		//if the quote was already picked, then perform recursive
-		if(silver[whichPick].p){
-			pickOne(thoughts);
-		}else{
-			var quote = silver[whichPick].q;
-			console.log(whichPick);
-			silver[whichPick].p = true;
-			shown++;
-			console.log(typeof quote);
-			return quote;
-		}
-	}else{
-		//after all thoughts have been displayed once, rest "picked" key
-		//values for all thoughts to false
-		//and reset shown to 0
-		shown = 0;
-		thoughts.map(resetArray);
-		timer.showAThought();
-	}
-}
 
-function resetArray(item, index){
-	return item.p = false;
-}
+
+// function pickOne(silver){
+// 	if(shown<silver.length){
+// 		var whichPick = Math.floor(Math.random()*silver.length);
+// 		console.log(whichPick);
+// 		//if the quote was already picked, then perform recursive
+// 		if(silver[whichPick].p){
+// 			pickOne(thoughts);
+// 			return;
+// 		}else{
+// 			var quote = silver[whichPick].q;
+// 			silver[whichPick].p = true;
+// 			shown++;
+// 			console.log('which pick: ' + whichPick + " shown: " + shown);
+// 			console.log(quote);
+// 			return quote;
+// 		}
+// 	}else{
+// 		//after all thoughts have been displayed once, reset "picked" key
+// 		//values for all thoughts to false
+// 		//and reset shown to 0
+// 		shown = 0;
+// 		thoughts.map(resetArray);
+// 		timer.showAThought();
+// 	}
+// }
+
+// function resetArray(item, index){
+// 	return item.p = false;
+// }
 
 
 //add one letter at a time
