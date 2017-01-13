@@ -41,7 +41,6 @@ var thoughts =
 
 function showThoughts(array){
 	order = genRandomOrderArray(array);
-	console.log(order);
 	timer.interval();
 }
 
@@ -64,11 +63,9 @@ var timer =
 	},
 	showAThought: function(){
 		var uniqueThought = '';
-		console.log(shownThoughts);
 		if(shownThoughts < thoughts.length){
 			uniqueThought = thoughts[order[shownThoughts]].q;
 			shownThoughts ++;
-			console.log(shownThoughts + ": " + uniqueThought);
 			document.getElementById('thoughts-container').innerText = uniqueThought;
 		}else{
 			shownThoughts = 0;
