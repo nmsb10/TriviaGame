@@ -89,6 +89,10 @@ function updateRollButton(){
 
 function enterRequest(){
 	document.getElementById('add-bet-button').addEventListener('click', function(event){
+		//return false;
+		//event.preventDefault() prevents the page from refreshing because
+		//refreshing the page is the default after submitting a form
+		event.preventDefault();
 		var bet = document.getElementById('input-bet').value;
 		document.getElementById('input-bet').value = '';
 		//evaluate the request
@@ -238,8 +242,6 @@ function enterRequest(){
 			console.log('bet NOT successful: ');
 		}
 		console.log(currentBet);
-		//return false;
-		event.preventDefault();
 	});
 }
 
@@ -252,6 +254,10 @@ function roll(){
 		};
 		var twoDiceDisplay = "<div class='two-dice'><div class='dice-result'>" + dice.one + "</div><div class='dice-result'>" + dice.two + "</div></div>";
 		document.getElementById('roll-results').innerHTML += twoDiceDisplay;
+		//https://cssanimation.rocks/list-items/
+		//http://www.w3schools.com/jsref/met_element_setattribute.asp
+		// document.getElementsByClassName("dice-result").setAttribute("style", "background-color: rgba(255, 0, 0, 0.85);");
+		//document.getElementsByClassName("dice-result").style.backgroundColor = 'rgba(255, 0, 0, 0.85)';
 		resolveBets(dice.one, dice.two);
 		updateRollStatus(dice.one, dice.two);
 		updateRollButton();

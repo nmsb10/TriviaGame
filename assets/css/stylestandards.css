@@ -1,0 +1,29 @@
+#thoughts-container{
+	position: absolute;
+	/*note the top starts with bottom of the header*/
+	margin: 0 10%;
+	padding:0;
+	border:0;
+	top:45%;
+	width: 80%;
+	/*background-color: rgba(200, 200, 200, 1);*/
+	overflow: auto;
+
+	text-align: center;
+	letter-spacing: 2px;
+	font-size: 20px;
+	line-height:30px;
+	/*because footer with border is ~31px;*/
+	margin-bottom: 31px;
+}
+
+#thoughts{
+	background-color: rgba(150, 150, 150, 1);
+	margin: 0 auto;
+	width: 80%;
+	vertical-align: middle;
+	text-align: center;
+	letter-spacing: 2px;
+	font-size: 20px;
+	line-height:30px;
+}
