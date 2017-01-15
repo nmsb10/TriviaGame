@@ -17,8 +17,6 @@ function showDate(){
 	document.getElementById('ginger').innerHTML = updatedFooter;
 }
 
-var order = [];
-var shownThoughts = 0;
 var thoughts =
 [
 	//{thought , picked}
@@ -40,9 +38,44 @@ var thoughts =
 ];
 
 function showThoughts(array){
-	order = genRandomOrderArray(array);
+	timer.currentArray = timer.generateRandomArrayOrder(array);
 	timer.interval();
 }
+
+var timer =
+{
+	shownThoughts: 0,
+	currentArray: [],
+	generateRandomArrayOrder: function(array){
+		//http://www.w3schools.com/js/js_array_sort.asp
+		array.sort(function(a, b){
+			return 0.5 - Math.random();
+		});
+		return array;
+	},
+	interval: function(){
+		// console.log(this.counter);
+		// timer.counter = setInterval(timer.showAThought(), 1000);
+		counter = setInterval(timer.showAThought, 5000);
+	},
+	showAThought: function(){
+		if(timer.shownThoughts < timer.currentArray.length-1){
+			document.getElementById('thoughts-container').innerText = timer.currentArray[timer.shownThoughts].q;
+			timer.shownThoughts ++;
+		}else{
+			//must display the final quote in the array here. Otherwise if the quote is displayed in  the
+			//about if statement, then for this interval, the last quote will display for double the quantity of the time
+			document.getElementById('thoughts-container').innerText = timer.currentArray[timer.shownThoughts].q;
+			//must stop this counter, otherwise will continue to perform showThoughts function while also performing it again and again, simultaneously
+			timer.shownThoughts = 0;
+			timer.stop();
+			showThoughts(thoughts);
+		}
+	},
+	stop: function(){
+		clearInterval(counter);
+	}
+};
 
 function genRandomOrderArray(input){
 	var orderArray = [];
@@ -55,29 +88,6 @@ function genRandomOrderArray(input){
 	});
 	return orderArray;
 }
-
-var timer =
-{
-	interval: function(){
-		counter = setInterval(timer.showAThought, 5500);
-	},
-	showAThought: function(){
-		var uniqueThought = '';
-		if(shownThoughts < thoughts.length){
-			uniqueThought = thoughts[order[shownThoughts]].q;
-			shownThoughts ++;
-			document.getElementById('thoughts-container').innerText = uniqueThought;
-		}else{
-			shownThoughts = 0;
-			//must stop this counter, otherwise will continue to perform showThoughts function while also performing it again and again, simultaneously
-			timer.stop();
-			showThoughts(thoughts);
-		}
-	},
-	stop: function(){
-		clearInterval(counter);
-	}
-};
 
 
 
@@ -117,3 +127,60 @@ var timer =
 	//timer function (eg every 250 milliseconds) for the following:
 	//document.getElementById('wherequotewillbe').innerText +=quote[i];
 //}
+
+
+
+
+
+
+//TO COPY AN ARRAY:
+
+//var copyOfArray = thoughts.slice(0);
+
+
+
+//to iterate through an array to search for an element:
+//var found = thoughts.find(function (item){
+	//return item.item_id === answer.item_id;
+//});
+
+
+//=================================================================
+//pete's suggestion for selecting random array element only once, then being able to repeat once every element selected once
+// function randoArrayThing(){
+// 	var theQuotes = [
+// 	{t: 'jhsdvcskhjdvc', id: new Date().getTime() + 1},
+// 	{t: 'what what', id: new Date().getTime() + 2},
+// 	{t: 'ok tgehn', id: new Date().getTime() + 3},
+// 	{t: 'stuff ', id: new Date().getTime() + 4},
+// 	{t: 'pizza', id: new Date().getTime() + 5},
+// 	{t: 'cosmos', id: new Date().getTime() + 6}
+// 	];
+//     function getQ(){
+//     	var newQ = theQuotes[Math.floor(Math.random() * theQuotes.length)];
+//     	theQuotes = theQuotes.filter(function(qt) {
+//     		return qt.id !== newQ.id;
+//     	});
+//     	return newQ;
+//     }
+//     return {
+//     	see: function(){
+//     		console.log(theQuotes);
+//     	},
+//     	getQuote: function(){
+//     		 console.log(getQ().t);
+//     	}, 
+//     	addQuote: function(text){
+//     		if(!text){
+//     			console.log('add letters!');
+//     			return;
+//     		}
+//     		theQuotes.push({t: text , id: new Date().getTime()});
+//     	}    
+//     };
+// }
+
+// var quoteThing = randoArrayThing();
+// quoteThing.addQuote('hi');
+
+
