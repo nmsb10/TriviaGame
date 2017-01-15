@@ -1,12 +1,17 @@
 //REMEMBER: CODE EVERYTHING ONLY ONCE
 //Do not Repeat Yourself = DRY
+
+//when ready to use module.exports for date functions
+//var FooterDate = require('./index.js');
+
 document.addEventListener("DOMContentLoaded", function(event) {
 	//http://stackoverflow.com/questions/799981/document-ready-equivalent-without-jquery
 	showDate();
-	displayPlayerBalance(playerBets);
-	updateRollButton();
-	enterRequest();
-	roll();
+	// displayPlayerBalance(playerBets);
+	// updateRollButton();
+	// enterRequest();
+	// roll();
+	begin();
 });
 
 function showDate(){
@@ -43,206 +48,154 @@ var dateFun = {
 	}
 };
 
-var rollStatus = {
-	comeOut: true,
-	point:0,
-	rollNumber:0
-};
-
-function Bet(type, amount, number){
-	this.type = type;
-	this.amount = amount;
-	this.number = number;
+function begin(){
+	var extraPlayers = 	generateAdditionalPlayers(2);
+	console.log(extraPlayers);
+	// extraPlayers.map(displaybalance);
+	// function displaybalance(item, index){
+	// 	return console.log(item.balance);
+	// }
+	displayExtraPlayers(extraPlayers);
+	acceptBets(extraPlayers);
 }
 
-function MultiwordBet(){
-	this.bet = false;
-	this.pass = false;
-	this.passline = false;
-	this.line = false;
-	this.do = false;
-	this.not = false;
-	this.dont = false;
-	this.place = false;
-	this.odds = false;
-	this.lay = false;
-	this.come = false;
+function generateAdditionalPlayers(newPlayers){
+	var more = [];
+	for(var i = 0; i < newPlayers; i++){
+		var player = new Player();
+		//because the human player will be named player1
+		player.name = 'player' + (i+2);
+		player.balance = Math.floor(Math.random()*100)*5+2000;
+		player.currentBets = new PlayerBets();
+		player.bettingProfile = new BettingProfile();
+		more.push(player);
+	}
+	return more;
 }
 
-var playerBets = {
-	balance: 5057700,
-	passline: [],
-	donotpassline: [],
-	come:[],
-	dontcome:[],
+//store all bets, balance, betting patterns and preferences by an individual player
+var Player = function(){
+	this.name = name;
+	this.balance = 0;
+	this.currentBets = {};
+	this.bettingProfile = {};
 };
 
-function updateRollButton(){
-	if(rollStatus.comeOut){
-		document.getElementById('roll-description').innerText = 'come out';
-		document.getElementById('point-number').innerText = 'no point';
-	}else{
-		document.getElementById('roll-description').innerText = 'point is';
-		document.getElementById('point-number').innerText = rollStatus.point;
+//stores all bets (and active or off status) made by all players
+var PlayerBets = function(){
+	this.passline = [];
+	this.dontpass = [];//{flatBet:0, layOdds:0, active:true, rollNumber: 1}
+	this.come = [];
+	this.dontcome = [];
+	this.place = {
+		4:[],
+		5:[],
+		6:[],
+		8:[],
+		9:[],
+		10:[]
+	};
+};
+
+var BettingProfile = function(){
+	this.makePassLineBet = true;
+	this.makePassLineOdds = true;
+	this.makeDontPassBet = false;
+	this.makeDPOdds = false;
+	this.makeComeBet = true;
+	this.makeComeBetOdds = true;
+	this.makePlaceBets = false;
+	this.place4 = false;
+	this.place5 = false;
+	this.place6 = false;
+	this.place8 = false;
+	this.place9 = false;
+	this.place10 = false;
+};
+
+function displayExtraPlayers(players){
+	for(var i = 0; i < players.length; i++){
+		var stuff = '<div class = "bet-summary" id="bet-summary-'+ players[i].name + '"><div class = "player-heading"><div class = "player-name">'+ players[i].name + ':</div><div class = '+
+		'"player-balance" id = "balance-' + players[i].name + '">$' + players[i].balance + '</div></div><div class = "lacinato"><div class = '+
+		'"lacinato-header">don\'t pass b12 (1 to 1)</div><div class = "lacinato-content">good job on this important task completion</div></div>';
+		document.getElementById('player-bets').innerHTML += stuff;
 	}
 }
 
-function enterRequest(){
-	document.getElementById('add-bet-button').addEventListener('click', function(event){
-		//return false;
-		//event.preventDefault() prevents the page from refreshing because
-		//refreshing the page is the default after submitting a form
-		event.preventDefault();
-		var bet = document.getElementById('input-bet').value;
-		document.getElementById('input-bet').value = '';
-		//evaluate the request
-		var requestArray = bet.split(' ');
-		var numbersArray = [];
-		var stringsArray = [];
-		//separate the request into an array of strings, and a separate array of numbers
-		for(var i = 0; i<requestArray.length; i++){
-			//parseFloat?
-			if(parseInt(requestArray[i])){
-				numbersArray.push(requestArray[i]);
-			}else{
-				stringsArray.push(requestArray[i]);
-			}
-		}
-		var currentBet = new Bet(false, false, false);
-		if(stringsArray.length === 1){
-			switch(stringsArray[0]){
-				case 'pass':
-				case 'passline':
-				case 'pl':
-					currentBet.type = 'passline';
-					break;
-				case 'don\'tpass':
-				case 'dontpass':
-				case 'dp':
-					currentBet.type = 'donotpassline';
-					break;
-				case 'place':
-					currentBet.type = 'place';
-					break;
-				case 'odds'://note if user only specifies odds, it is assumed this is for a pass line bet, and not laying odds or placing odds on a come bet
-				case 'placeodds':
-					currentBet.type = 'placeodds';
-					break;
-				case 'lo':
-				case 'layodds':
-					currentBet.type = 'layodds';
-					break;
-				case 'come':
-				case 'comebet':
-					currentBet.type = 'come';
-					break;
-				case 'dc':
-				case 'dontcome':
-					currentBet.type = 'dontcome';
-					break;
-				default:
-					console.log('unknown bet TYPE: ' + stringsArray[0]);
-					break;
-			}
-		}else if (stringsArray.length > 1){
-			//ALTERNATIVE METHOD 'branch approach':
-				//1. Place MultiwordBet words in an array
-				//2. have "most used" (eg come, pass) words first
-				//3. since stringsArray will be shorter than the multiwordbet array, starting with the first stringsArray word, compare with all the multiwordbet array words
-				//4. if a word matches, then compare the 2nd stringsArray word to the logical additional words that would be used with the first word.
-				//5. continue to narrow down until you are certain of the requested option
-			//you must have a multiword bet if the strings array length is > 1
-			var mwbet = new MultiwordBet();
-			//check if any of the words is a part of the possible multi-word bet words from the options in the MultiwordBet constructor
-			for(var j = 0; j < stringsArray.length; j++){
-				switch(stringsArray[j]){
-					case 'bet':
-						mwbet.bet = true;
-						break;
-					case 'pass':
-						mwbet.pass = true;
-						break;
-					case 'passline':
-						mwbet.passline = true;
-						break;
-					case 'line':
-						mwbet.line = true;
-						break;
-					case 'do':
-						mwbet.do = true;
-						break;
-					case 'not':
-						mwbet.not = true;
-						break;
-					case 'dont':
-					case 'don\'t':
-						mwbet.dont = true;
-						break;
-					case 'place':
-						mwbet.place = true;
-						break;
-					case 'odds':
-						mwbet.odds = true;
-						break;
-					case 'lay':
-						mwbet.lay = true;
-						break;
-					case 'come':
-						mwbet.come = true;
-						break;
-					default:
-						console.log('unknown WORD used in bet request: '+ stringsArray[j]);
-						break;
+function acceptBets(players){
+	if(rollStatus.comeOut){
+		for(var i = 0; i < players.length; i++){
+			if(players[i].bettingProfile.makePassLineBet){
+				//this particular bet will be a multiple of 5 between 5 and 25
+				var betAmount = Math.floor((Math.random()*5) + 1) * 5;
+				if(checkFunds(players[i], betAmount)){
+					var bet = new IndividualBet(betAmount, 0, true, rollStatus.rollNumber);
+					var publicBet = new Bet(players[i].name, 'passline', betAmount, 0, true, null, rollStatus.rollnumber);
+					//add bet to this players' bet
+					players[i].currentBets.passline.push(bet);
+					//add bet to table bets
+					tableBets.passline.push(publicBet);
+					//display bet on DOM
 				}
-			}
-			//evaluate mwbet to properly assign currentBet.type
-			//should I have a return after each else if statement?
-			for(var key in mwbet){
-				console.log('searching mwbet now!!!');
-				if((mwbet.do && mwbet.not && mwbet.pass) || (mwbet.dont && mwbet.pass) || (mwbet.dont && mwbet.pass && mwbet.bet) || (mwbet.do && mwbet.not && mwbet.passline) || (mwbet.do && mwbet.not && mwbet.passline && mwbet.bet)){
-					currentBet.type = 'donotpassline';
-				}else if((mwbet.pass && mwbet.line) || (mwbet.passline && mwbet.bet) || (mwbet.pass && mwbet.line && mwbet.bet)){
-					//MUST check for a "plain" pass line bet AFTER don't pass
-					currentBet.type = 'passline';
-				}else if(mwbet.place && mwbet.odds){
-					currentBet.type = 'placeodds';
-				}else if(mwbet.lay && mwbet.odds){
-					currentBet.type = 'layodds';
-				}else if((mwbet.dont && mwbet.come) || (mwbet.dont && mwbet.come && mwbet.bet) || (mwbet.do && mwbet.not && mwbet.come) || (mwbet.do && mwbet.not && mwbet.come && mwbet.bet)){
-					currentBet.type = 'dontcome';
-				}else if(mwbet.come && mwbet.bet){//MUST check for a "plain" come bet AFTER don't come
-					currentBet.type = 'come';
-				}else if(mwbet.place && mwbet.bet){
-					currentBet.type = 'place';
-				}
+				
 			}
 		}
-		//evaluate for the number and bet amount
-		//screen and correct for numbers with commas or - values
-		//if the bet has a type, then proceed with assigning amount and number
-		if(currentBet.type){
-			if(numbersArray.length === 1 && (currentBet.type === 'donotpassline' || currentBet.type === 'passline' || currentBet.type === 'come' || currentBet.type === 'dontcome' || currentBet.type === 'placeodds' || currentBet.type === 'layodds')){
-				if(parseInt(numbersArray[0]) > 0){
-					currentBet.amount = parseInt(numbersArray[0]);
-					currentBet.number = true;
-				}
-			//there should be both an amount AND number
-			//check that the numbers are positive
-			}else if(numbersArray.length > 1 && parseInt(numbersArray[0]) > 0 && parseInt(numbersArray[1]) > 0){
-				currentBet.number = parseInt(numbersArray[0]);
-				currentBet.amount = parseInt(numbersArray[1]);
-			}
-		}
-		//evaluate the constructor using the submitBet function IF currentBet has all necessary factors
-		//submitBet(currentBet.type, currentBet.amount, currentBet.number);
-		if(currentBet.type && currentBet.amount && currentBet.number){
-			submitBet(currentBet);
-			console.log('bet successful: ');
-		}else{
-			console.log('bet NOT successful: ');
-		}
-		console.log(currentBet);
-	});
+	}else{
+
+	}
+
+}
+
+function checkFunds(player, bet){
+	return player.balance < bet ? false : true;
+}
+
+var IndividualBet = function(amount, odds, active, rollnumber){
+	this.flatbet = amount;
+	this.odds = odds;
+	this.active = active;
+	this.rollnumber = rollnumber;
+};
+
+var Bet = function(player, type, amount, odds, active, number, rollnumber){
+	this.player = player;
+	this.type = type;
+	this.flatbet = amount;
+	this.odds = odds;
+	this.active = active;
+	this.number = number;
+	this.rollNumber = rollnumber;
+};
+
+//once a bet is made, add to the playerBets within Player
+//also add the same bet to the tableBets object
+//display bet on the DOM
+//have separate tableBets object so after a roll, resolve bets based on tableBets.
+var tableBets = {
+	passline: [],//include odds as one of the object elements
+	dontpass: [],//[{player: playerName, flatBet:0, layOdds:0, active:true},{player: playerTwoName, flatBet:0, layOdds:0, active: true} ]
+	come: [],
+	dontcome: [],
+	place: {
+		4:[],
+		5:[],
+		6:[],
+		8:[],
+		9:[],
+		10:[]
+	}
+};
+
+var rollStatus = {
+	rollNumber:0,
+	comeOut: true,
+	point:0,
+	streak:0,
+	history:[]
+};
+
+function displayBet(){
+	
 }
 
 function roll(){
@@ -258,15 +211,21 @@ function roll(){
 		//http://www.w3schools.com/jsref/met_element_setattribute.asp
 		// document.getElementsByClassName("dice-result").setAttribute("style", "background-color: rgba(255, 0, 0, 0.85);");
 		//document.getElementsByClassName("dice-result").style.backgroundColor = 'rgba(255, 0, 0, 0.85)';
+		updateRollButton();		
 		resolveBets(dice.one, dice.two);
 		updateRollStatus(dice.one, dice.two);
-		updateRollButton();
 		// event.preventDefault();
 	});
 }
 
-function resolveBets(one, two){
-
+function updateRollButton(){
+	if(rollStatus.comeOut){
+		document.getElementById('roll-description').innerText = 'come out';
+		document.getElementById('point-number').innerText = 'no point';
+	}else{
+		document.getElementById('roll-description').innerText = 'point is';
+		document.getElementById('point-number').innerText = rollStatus.point;
+	}
 }
 
 function updateRollStatus(dieOne, dieTwo){
@@ -290,6 +249,10 @@ function updateRollStatus(dieOne, dieTwo){
 			rollStatus.comeOut = true;
 		}
 	}
+}
+
+function resolveBets(one, two){
+
 }
 
 function submitBet(bet){
@@ -325,7 +288,8 @@ function submitBet(bet){
 	}
 }
 
-function displayPlayerBalance(player){
+
+function updatePlayerBalance(player){
 	//add commas to the balance number
 	//http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 	var balance = '$' + player.balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -333,6 +297,214 @@ function displayPlayerBalance(player){
 }
 
 
+
+
+
+// function MultiwordBet(){
+// 	this.bet = false;
+// 	this.pass = false;
+// 	this.passline = false;
+// 	this.line = false;
+// 	this.do = false;
+// 	this.not = false;
+// 	this.dont = false;
+// 	this.place = false;
+// 	this.odds = false;
+// 	this.lay = false;
+// 	this.come = false;
+// }
+
+
+
+// function enterRequest(){
+// 	document.getElementById('add-bet-button').addEventListener('click', function(event){
+// 		//return false;
+// 		//event.preventDefault() prevents the page from refreshing because
+// 		//refreshing the page is the default after submitting a form
+// 		event.preventDefault();
+// 		var bet = document.getElementById('input-bet').value;
+// 		document.getElementById('input-bet').value = '';
+// 		//evaluate the request
+// 		var requestArray = bet.split(' ');
+// 		var numbersArray = [];
+// 		var stringsArray = [];
+// 		//separate the request into an array of strings, and a separate array of numbers
+// 		for(var i = 0; i<requestArray.length; i++){
+// 			//parseFloat?
+// 			if(parseInt(requestArray[i])){
+// 				numbersArray.push(requestArray[i]);
+// 			}else{
+// 				stringsArray.push(requestArray[i]);
+// 			}
+// 		}
+// 		var currentBet = new Bet(false, false, false);
+// 		if(stringsArray.length === 1){
+// 			switch(stringsArray[0]){
+// 				case 'pass':
+// 				case 'passline':
+// 				case 'pl':
+// 					currentBet.type = 'passline';
+// 					break;
+// 				case 'don\'tpass':
+// 				case 'dontpass':
+// 				case 'dp':
+// 					currentBet.type = 'donotpassline';
+// 					break;
+// 				case 'place':
+// 					currentBet.type = 'place';
+// 					break;
+// 				case 'odds'://note if user only specifies odds, it is assumed this is for a pass line bet, and not laying odds or placing odds on a come bet
+// 				case 'placeodds':
+// 					currentBet.type = 'placeodds';
+// 					break;
+// 				case 'lo':
+// 				case 'layodds':
+// 					currentBet.type = 'layodds';
+// 					break;
+// 				case 'come':
+// 				case 'comebet':
+// 					currentBet.type = 'come';
+// 					break;
+// 				case 'dc':
+// 				case 'dontcome':
+// 					currentBet.type = 'dontcome';
+// 					break;
+// 				default:
+// 					console.log('unknown bet TYPE: ' + stringsArray[0]);
+// 					break;
+// 			}
+// 		}else if (stringsArray.length > 1){
+// 			//ALTERNATIVE METHOD 'branch approach':
+// 				//1. Place MultiwordBet words in an array
+// 				//2. have "most used" (eg come, pass) words first
+// 				//3. since stringsArray will be shorter than the multiwordbet array, starting with the first stringsArray word, compare with all the multiwordbet array words
+// 				//4. if a word matches, then compare the 2nd stringsArray word to the logical additional words that would be used with the first word.
+// 				//5. continue to narrow down until you are certain of the requested option
+// 			//you must have a multiword bet if the strings array length is > 1
+// 			var mwbet = new MultiwordBet();
+// 			//check if any of the words is a part of the possible multi-word bet words from the options in the MultiwordBet constructor
+// 			for(var j = 0; j < stringsArray.length; j++){
+// 				switch(stringsArray[j]){
+// 					case 'bet':
+// 						mwbet.bet = true;
+// 						break;
+// 					case 'pass':
+// 						mwbet.pass = true;
+// 						break;
+// 					case 'passline':
+// 						mwbet.passline = true;
+// 						break;
+// 					case 'line':
+// 						mwbet.line = true;
+// 						break;
+// 					case 'do':
+// 						mwbet.do = true;
+// 						break;
+// 					case 'not':
+// 						mwbet.not = true;
+// 						break;
+// 					case 'dont':
+// 					case 'don\'t':
+// 						mwbet.dont = true;
+// 						break;
+// 					case 'place':
+// 						mwbet.place = true;
+// 						break;
+// 					case 'odds':
+// 						mwbet.odds = true;
+// 						break;
+// 					case 'lay':
+// 						mwbet.lay = true;
+// 						break;
+// 					case 'come':
+// 						mwbet.come = true;
+// 						break;
+// 					default:
+// 						console.log('unknown WORD used in bet request: '+ stringsArray[j]);
+// 						break;
+// 				}
+// 			}
+// 			//evaluate mwbet to properly assign currentBet.type
+// 			//should I have a return after each else if statement?
+// 			for(var key in mwbet){
+// 				console.log('searching mwbet now!!!');
+// 				if((mwbet.do && mwbet.not && mwbet.pass) || (mwbet.dont && mwbet.pass) || (mwbet.dont && mwbet.pass && mwbet.bet) || (mwbet.do && mwbet.not && mwbet.passline) || (mwbet.do && mwbet.not && mwbet.passline && mwbet.bet)){
+// 					currentBet.type = 'donotpassline';
+// 				}else if((mwbet.pass && mwbet.line) || (mwbet.passline && mwbet.bet) || (mwbet.pass && mwbet.line && mwbet.bet)){
+// 					//MUST check for a "plain" pass line bet AFTER don't pass
+// 					currentBet.type = 'passline';
+// 				}else if(mwbet.place && mwbet.odds){
+// 					currentBet.type = 'placeodds';
+// 				}else if(mwbet.lay && mwbet.odds){
+// 					currentBet.type = 'layodds';
+// 				}else if((mwbet.dont && mwbet.come) || (mwbet.dont && mwbet.come && mwbet.bet) || (mwbet.do && mwbet.not && mwbet.come) || (mwbet.do && mwbet.not && mwbet.come && mwbet.bet)){
+// 					currentBet.type = 'dontcome';
+// 				}else if(mwbet.come && mwbet.bet){//MUST check for a "plain" come bet AFTER don't come
+// 					currentBet.type = 'come';
+// 				}else if(mwbet.place && mwbet.bet){
+// 					currentBet.type = 'place';
+// 				}
+// 			}
+// 		}
+// 		//evaluate for the number and bet amount
+// 		//screen and correct for numbers with commas or - values
+// 		//if the bet has a type, then proceed with assigning amount and number
+// 		if(currentBet.type){
+// 			if(numbersArray.length === 1 && (currentBet.type === 'donotpassline' || currentBet.type === 'passline' || currentBet.type === 'come' || currentBet.type === 'dontcome' || currentBet.type === 'placeodds' || currentBet.type === 'layodds')){
+// 				if(parseInt(numbersArray[0]) > 0){
+// 					currentBet.amount = parseInt(numbersArray[0]);
+// 					currentBet.number = true;
+// 				}
+// 			//there should be both an amount AND number
+// 			//check that the numbers are positive
+// 			}else if(numbersArray.length > 1 && parseInt(numbersArray[0]) > 0 && parseInt(numbersArray[1]) > 0){
+// 				currentBet.number = parseInt(numbersArray[0]);
+// 				currentBet.amount = parseInt(numbersArray[1]);
+// 			}
+// 		}
+// 		//evaluate the constructor using the submitBet function IF currentBet has all necessary factors
+// 		//submitBet(currentBet.type, currentBet.amount, currentBet.number);
+// 		if(currentBet.type && currentBet.amount && currentBet.number){
+// 			submitBet(currentBet);
+// 			console.log('bet successful: ');
+// 		}else{
+// 			console.log('bet NOT successful: ');
+// 		}
+// 		console.log(currentBet);
+// 	});
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//to copy an array: arrayCopy = originalArray.slice(0);
 
 //answer for keeping the chat thing scrolled to bottom unless user scrolls otherwise
 	//http://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up

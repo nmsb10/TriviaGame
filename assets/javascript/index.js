@@ -20,6 +20,27 @@ function showDate(){
 	document.getElementById('bilberry').innerHTML = updatedFooter;
 }
 
+// var dateData = function(front, back){
+// 	this.
+// 	this.front = front;
+// 	this.back = back;
+// 	this.showFront = function(){
+// 		console.log(this.front);
+// 	};
+// 	this.showBack = function(){
+// 		console.log(this.back);
+// 	};
+// 	this.printCards = function(){
+// 		this.showFront();
+// 		this.showBack();
+// 		fs.appendFile('basic-cards.txt',this.front + ',' + this.back + '\n**', function(err){
+// 			if(err){
+// 				console.log(err);
+// 			}
+// 		});
+// 	};
+// };
+
 var dateFun = {
 	calculateMonth: function(monthNumber){
 		var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -36,4 +57,8 @@ var dateFun = {
 			return dayNumber;
 		}
 	}
+};
+
+module.exports = {
+	displayDate: showDate
 };

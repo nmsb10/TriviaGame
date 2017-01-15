@@ -143,12 +143,17 @@
 	vertical-align: top;
 }
 
-.player-name{
+.player-heading{
 	margin: 5px;
 }
 
-#player-balance{
+.player-name{
+	display:inline;
+}
+
+.player-balance{
 	display: inline;
+	margin-left: 5px;
 }
 
 .lacinato{
