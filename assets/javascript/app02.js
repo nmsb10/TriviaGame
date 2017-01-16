@@ -7,11 +7,9 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 	//http://stackoverflow.com/questions/799981/document-ready-equivalent-without-jquery
 	showDate();
-	// displayPlayerBalance(playerBets);
-	// updateRollButton();
 	// enterRequest();
-	// roll();
 	begin();
+	//activateRoll();
 });
 
 function showDate(){
@@ -48,15 +46,41 @@ var dateFun = {
 	}
 };
 
+var rollStatus = {
+	rollNumber:0,
+	comeOut: true,
+	point:0,
+	streak:0,
+	history:[]
+};
+
+//resolve bets based on tableBets.
+var tableBets = {
+	passline: [],//include odds as one of the object elements
+	dontpass: [],//[{player: playerName, type: 'dontpass', flatbet: betamount, layOdds:0, active:true, number:null, rollnumber: rollnumber},{player: playerTwoName, flatBet:0, layOdds:0, active: true} ]
+	come: [],
+	dontcome: [],
+	place: {
+		4:[],
+		5:[],
+		6:[],
+		8:[],
+		9:[],
+		10:[]
+	}
+};
+
 function begin(){
+	console.log('come out roll!!!!! Let\'s play.');
+	updateRollButton();
 	var extraPlayers = 	generateAdditionalPlayers(2);
-	console.log(extraPlayers);
 	// extraPlayers.map(displaybalance);
 	// function displaybalance(item, index){
 	// 	return console.log(item.balance);
 	// }
 	displayExtraPlayers(extraPlayers);
 	acceptBets(extraPlayers);
+	activateRoll(extraPlayers);
 }
 
 function generateAdditionalPlayers(newPlayers){
@@ -66,6 +90,7 @@ function generateAdditionalPlayers(newPlayers){
 		//because the human player will be named player1
 		player.name = 'player' + (i+2);
 		player.balance = Math.floor(Math.random()*100)*5+2000;
+		console.log(player.name + " balance = " + player.balance);
 		player.currentBets = new PlayerBets();
 		player.bettingProfile = new BettingProfile();
 		more.push(player);
@@ -77,8 +102,8 @@ function generateAdditionalPlayers(newPlayers){
 var Player = function(){
 	this.name = name;
 	this.balance = 0;
-	this.currentBets = {};
-	this.bettingProfile = {};
+	this.currentBets = {};//equal to PlayerBets
+	this.bettingProfile = {};//equal to Betting Profile
 };
 
 //stores all bets (and active or off status) made by all players
@@ -127,8 +152,16 @@ function acceptBets(players){
 		for(var i = 0; i < players.length; i++){
 			if(players[i].bettingProfile.makePassLineBet){
 				//this particular bet will be a multiple of 5 between 5 and 25
-				var betAmount = Math.floor((Math.random()*5) + 1) * 5;
-				if(checkFunds(players[i], betAmount)){
+				//also, for all future bets, ensure the bet is ONLY AN INTEGER!!
+				var betAmount = parseInt(Math.floor((Math.random()*5) + 1) * 5);
+				console.log(players[i].name + ' balance: ' + players[i].balance);
+				if(checkFunds(players[i].balance, betAmount)){
+					//remove funds from player balance
+					players[i].balance -= betAmount;
+					//update player's balance displayed on DOM
+					console.log(players[i].name + ' passline bet of: ' + betAmount + ' and current balance: ' + players[i].balance);
+
+					updateBalance(players[i].name, players[i].balance);
 					var bet = new IndividualBet(betAmount, 0, true, rollStatus.rollNumber);
 					var publicBet = new Bet(players[i].name, 'passline', betAmount, 0, true, null, rollStatus.rollnumber);
 					//add bet to this players' bet
@@ -136,18 +169,30 @@ function acceptBets(players){
 					//add bet to table bets
 					tableBets.passline.push(publicBet);
 					//display bet on DOM
+					displayBet(players[i].name, 'passline', betAmount);
 				}
-				
 			}
 		}
 	}else{
-
+		return;
 	}
 
 }
 
-function checkFunds(player, bet){
-	return player.balance < bet ? false : true;
+function checkFunds(balance, bet){
+	return balance > bet ? true: console.log('insufficient funds for that bet amount');
+}
+
+function payForBet(player, bet){
+	console.log(player.balance);
+	player.balance -= bet;
+	updateBalance(player, bet);
+	//update balance in DOM
+}
+
+function updateBalance(player, balance){
+	var whichPlayerBalance = 'balance-' + player;
+	document.getElementById(whichPlayerBalance).innerText = '$' + balance;
 }
 
 var IndividualBet = function(amount, odds, active, rollnumber){
@@ -157,6 +202,7 @@ var IndividualBet = function(amount, odds, active, rollnumber){
 	this.rollnumber = rollnumber;
 };
 
+//added to tableBets
 var Bet = function(player, type, amount, odds, active, number, rollnumber){
 	this.player = player;
 	this.type = type;
@@ -167,39 +213,24 @@ var Bet = function(player, type, amount, odds, active, number, rollnumber){
 	this.rollNumber = rollnumber;
 };
 
-//once a bet is made, add to the playerBets within Player
-//also add the same bet to the tableBets object
-//display bet on the DOM
-//have separate tableBets object so after a roll, resolve bets based on tableBets.
-var tableBets = {
-	passline: [],//include odds as one of the object elements
-	dontpass: [],//[{player: playerName, flatBet:0, layOdds:0, active:true},{player: playerTwoName, flatBet:0, layOdds:0, active: true} ]
-	come: [],
-	dontcome: [],
-	place: {
-		4:[],
-		5:[],
-		6:[],
-		8:[],
-		9:[],
-		10:[]
+function displayBet(player, type, amount){
+	switch(type){
+		case 'passline':
+			var passlinebet = '<div class = "lacinato passline"><div class = "lacinato-header">pass line (1 to 1)</div><div class = "lacinato-content">'+
+				'pass line bet: $' + amount + '</div></div>';
+			var whichBetSummary = 'bet-summary-' + player;
+			document.getElementById(whichBetSummary).innerHTML += passlinebet;
+			break;
+		default:
+			console.log('unknown bet');
+			break;
 	}
-};
-
-var rollStatus = {
-	rollNumber:0,
-	comeOut: true,
-	point:0,
-	streak:0,
-	history:[]
-};
-
-function displayBet(){
-	
 }
 
-function roll(){
+function activateRoll(xtraplayers){
 	document.getElementById('roll-button').addEventListener('click', function(event){
+		console.log(tableBets);
+		console.log(rollStatus);
 		rollStatus.rollNumber ++;
 		var dice = {
 			one: Math.floor(Math.random()*6)+1,
@@ -211,9 +242,10 @@ function roll(){
 		//http://www.w3schools.com/jsref/met_element_setattribute.asp
 		// document.getElementsByClassName("dice-result").setAttribute("style", "background-color: rgba(255, 0, 0, 0.85);");
 		//document.getElementsByClassName("dice-result").style.backgroundColor = 'rgba(255, 0, 0, 0.85)';
-		updateRollButton();		
-		resolveBets(dice.one, dice.two);
+		resolveBets(dice.one, dice.two, xtraplayers);
 		updateRollStatus(dice.one, dice.two);
+		updateRollButton();
+		acceptBets(xtraplayers);
 		// event.preventDefault();
 	});
 }
@@ -251,8 +283,90 @@ function updateRollStatus(dieOne, dieTwo){
 	}
 }
 
-function resolveBets(one, two){
-
+function resolveBets(one, two, players){
+	var total = one + two;
+	if(rollStatus.comeOut){
+		if(total === 7 || total === 11){
+			console.log(tableBets);
+			for(var i = 0; i < tableBets.passline.length; i++){
+				//increase player balance by the amount of the bet
+				var winningPlayer = tableBets.passline[i].player;
+				var betAmount = tableBets.passline[i].flatbet;
+				for(var j = 0; j < players.length; j++){
+					if(players[j].name === winningPlayer){
+						players[j].balance += betAmount;
+						//remove this bet from playerBets
+						players[j].currentBets.passline.splice(0,1);
+						//update player's balance displayed on DOM
+						updateBalance(players[j].name, players[j].balance);
+					}
+				}
+			}
+			//remove all passline bets from tableBets and from the DOM
+			var elements = document.getElementsByClassName('passline');
+			while(elements.length > 0){
+				elements[0].parentNode.removeChild(elements[0]);
+			}
+			tableBets.passline = [];
+			console.log(tableBets);
+		}else if(total === 2 || total === 3 || total ===12){
+			console.log('pass line bets lose');
+			//remove passline bets from individual playerbets
+			for(var k = 0; k < players.length; k++){
+				if(players[k].passline){
+					players[k].passline = [];
+				}
+			}
+			//remove passline bets from tableBets and the DOM
+			document.getElementsByClassName('passline').parentNode.removeChild('passline');
+			tableBets.passline = [];
+			console.log(tableBets);
+		}
+	}else if(!rollStatus.comeOut){
+		if(total === 7){
+			//pass line bets lose
+			console.log('pass line bets lose');
+			//remove passline bets from individual playerbets
+			for(var l = 0; l < players.length; l++){
+				if(players[l].passline){
+					players[l].passline = [];
+				}
+			}
+			console.log(players);
+			//remove passline bets from tableBets and the DOM
+			//document.getElementsByClassName('passline').parentNode.removeChild('passline');
+			var elements2 = document.getElementsByClassName('passline');
+			while(elements2.length > 0){
+				elements2[0].parentNode.removeChild(elements2[0]);
+			}
+			tableBets.passline = [];
+			console.log(tableBets);
+		}else if (total === rollStatus.point){
+			//this is copied from when a front line winner wins code above
+			console.log(tableBets);
+			for(var m = 0; m < tableBets.passline.length; m++){
+				//increase player balance by the amount of the bet
+				var winner = tableBets.passline[m].player;
+				var woo = tableBets.passline[m].flatbet;
+				for(var n = 0; n < players.length; n++){
+					if(players[n].name === winner){
+						players[n].balance += woo;
+						//remove this bet from playerBets
+						players[n].currentBets.passline.splice(0,1);
+						//update player's balance displayed on DOM
+						updateBalance(players[n].name, players[n].balance);
+					}
+				}
+			}
+			//remove all passline bets from tableBets and from the DOM
+			var chicken = document.getElementsByClassName('passline');
+			while(chicken.length > 0){
+				chicken[0].parentNode.removeChild(chicken[0]);
+			}
+			tableBets.passline = [];
+			console.log(tableBets);
+		}
+	}
 }
 
 function submitBet(bet){
