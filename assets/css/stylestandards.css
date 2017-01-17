@@ -15,8 +15,8 @@
 	/*because footer with border is ~31px;*/
 	margin-bottom: 31px;
 	/*http://stackoverflow.com/questions/30125705/css-how-to-make-an-element-fade-in-and-then-fade-out*/
-	-webkit-animation: fadeinout 7s linear forwards;
-    animation: fadeinout 7s linear forwards;
+	-webkit-animation: fadeinout 8s linear forwards;
+    animation: fadeinout 8s linear forwards;
 }
 
 @-webkit-keyframes fadeinout {
