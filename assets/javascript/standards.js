@@ -42,44 +42,6 @@ function showThoughts(array){
 	timer.interval();
 }
 
-// <ul id="list">
-//   <li class="show">List item</li>
-//   <li class="show">List item</li>
-// </ul>
-// <button id="add-to-list">Add a list item</button>
-
-//NO ANIMATION:
-// li {
-//   list-style: none;
-//   background: #d1703c;
-//   color: #fff;
-//   height: 0;
-//   line-height: 2em;
-//   margin: 0;
-//   padding: 0 0.5em;
-//   overflow: hidden;
-//   width: 10em;
-// }
-
-// li.show {
-//   height: 2em;
-//   margin: 2px 0;
-// }
-
-// //====================================
-// //FOR A FADE EFFECT:
-// //ADD CLASS FADE TO A CONTAINER SURROUNDING THE LIST
-// .fade li {
-//   transition: all 0.4s ease-out;
-//   opacity: 0;
-//   height: 2em;
-// }
-// .fade li.show {
-//   opacity: 1;
-// }
-
-
-
 //add one letter at a time
 //for(var i= 0; i<quote.length; i++){
 	//timer function (eg every 250 milliseconds) for the following:
@@ -98,13 +60,9 @@ var timer =
 		return array;
 	},
 	interval: function(){
-		// console.log(this.counter);
-		// timer.counter = setInterval(timer.showAThought(), 1000);
 		counter = setInterval(timer.showAThought, 7000);
 	},
 	showAThought: function(){
-		//FOR ANIMATING THE NEW QUOTES SHOWN:
-		//https://cssanimation.rocks/list-items/
 		var container = document.getElementById('thoughts-container');
 		var newThought = document.createElement('div');
 		//remove the current thought:
@@ -113,10 +71,10 @@ var timer =
 			newThought.innerText = timer.currentArray[timer.shownThoughts].q;
 			newThought.id = "one-thought";
 			container.appendChild(newThought);
-			setTimeout(function(){
-				//if there were multiple classes, must have a space before show ie ' show'
-				newThought.className = newThought.className + 'show';
-			});
+			// setTimeout(function(){
+			// 	//if there were multiple classes, must have a space before show ie ' show'
+			// 	newThought.className = newThought.className + 'show';
+			// });
 			timer.shownThoughts ++;
 		}else{
 			//must display the final quote in the array here. Otherwise if the quote is displayed in  the
@@ -126,9 +84,9 @@ var timer =
 			newThought.innerText = timer.currentArray[timer.shownThoughts].q;
 			newThought.id = "one-thought";
 			container.appendChild(newThought);
-			setTimeout(function(){
-				newThought.className = newThought.className + 'show';
-			});
+			// setTimeout(function(){
+			// 	newThought.className = newThought.className + 'show';
+			// });
 			//must stop this counter, otherwise will continue to perform showThoughts function while also performing it again and again, simultaneously
 			timer.shownThoughts = 0;
 			timer.stop();

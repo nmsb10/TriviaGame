@@ -8,14 +8,70 @@
 	width: 80%;
 	/*background-color: rgba(200, 200, 200, 1);*/
 	overflow: auto;
-
 	text-align: center;
 	letter-spacing: 2px;
 	font-size: 20px;
 	line-height:30px;
 	/*because footer with border is ~31px;*/
 	margin-bottom: 31px;
+	/*http://stackoverflow.com/questions/30125705/css-how-to-make-an-element-fade-in-and-then-fade-out*/
+	-webkit-animation: fadeinout 7s linear forwards;
+    animation: fadeinout 7s linear forwards;
 }
+
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  20%, 80% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  20%, 80% { opacity: 1; }
+}
+
+
+/*===========================================*/
+/*used when utilizing the setTimeout for adding the 'show' class to the the thoughts*/
+/*//FOR ANIMATING THE NEW QUOTES SHOWN:
+//https://cssanimation.rocks/list-items/
+
+
+// <ul id="list">
+//   <li class="show">List item</li>
+//   <li class="show">List item</li>
+// </ul>
+// <button id="add-to-list">Add a list item</button>
+
+//NO ANIMATION:
+// li {
+//   list-style: none;
+//   background: #d1703c;
+//   color: #fff;
+//   height: 0;
+//   line-height: 2em;
+//   margin: 0;
+//   padding: 0 0.5em;
+//   overflow: hidden;
+//   width: 10em;
+// }
+
+// li.show {
+//   height: 2em;
+//   margin: 2px 0;
+// }
+
+// //====================================
+// //FOR A FADE EFFECT:
+// //ADD CLASS FADE TO A CONTAINER SURROUNDING THE LIST
+// .fade li {
+//   transition: all 0.4s ease-out;
+//   opacity: 0;
+//   height: 2em;
+// }
+// .fade li.show {
+//   opacity: 1;
+// }
+
 
 .fade #one-thought{
 	transition: all 2s ease-out;
@@ -24,19 +80,6 @@
 
 .fade #one-thought.show{
 	opacity: 1;
-}
-
-
+}*/
 
 /*===========================================*/
-
-#thoughts{
-	background-color: rgba(150, 150, 150, 1);
-	margin: 0 auto;
-	width: 80%;
-	vertical-align: middle;
-	text-align: center;
-	letter-spacing: 2px;
-	font-size: 20px;
-	line-height:30px;
-}
