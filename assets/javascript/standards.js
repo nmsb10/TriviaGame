@@ -25,14 +25,14 @@ var thoughts =
 	{q: 'Focus on the nutrition of your mind.', p: false},
 	{q: 'Do more for others than anyone else does for them.', p: false},
 	{q: 'I must earn my clients and friends every day. Never take a relationship (business or friend) for granted.', p: false},
-	{q: 'Go beyond "the normal."', p: false},
+	{q: 'Go beyond "the normal," especially for others.', p: false},
 	{q: 'What I do, not what I have, defines who and what I am.', p: false},
 	{q: 'Assume you are being recorded everywhere and that such recordings shall exist forever.', p: false},
 	{q: 'Is time the scarcest resource of all?', p: false},
-	{q: 'Does 1 minute of your time during one part of the day have a different value than the same length of time (one minute) during a different time of the day?', p: false},
+	{q: 'Does 1 minute of your time during one part of the day have a different value than the same length of time (1 minute) during a different time of the day?', p: false},
 	{q: 'Seek only positive energy.', p: false},
 	{q: 'Be the "calming force."', p: false},
-	{q: 'Through complaining, people embrace turning themselves into a "victim."', p: false},
+	{q: 'Through complaining, one embraces their identity as a "victim."', p: false},
 	{q: 'Less is more.', p: false},
 	{q: '"Conduct your life as though your every act were to become a universal law for all people."', p: false}
 ];
@@ -41,6 +41,50 @@ function showThoughts(array){
 	timer.currentArray = timer.generateRandomArrayOrder(array);
 	timer.interval();
 }
+
+// <ul id="list">
+//   <li class="show">List item</li>
+//   <li class="show">List item</li>
+// </ul>
+// <button id="add-to-list">Add a list item</button>
+
+//NO ANIMATION:
+// li {
+//   list-style: none;
+//   background: #d1703c;
+//   color: #fff;
+//   height: 0;
+//   line-height: 2em;
+//   margin: 0;
+//   padding: 0 0.5em;
+//   overflow: hidden;
+//   width: 10em;
+// }
+
+// li.show {
+//   height: 2em;
+//   margin: 2px 0;
+// }
+
+// //====================================
+// //FOR A FADE EFFECT:
+// //ADD CLASS FADE TO A CONTAINER SURROUNDING THE LIST
+// .fade li {
+//   transition: all 0.4s ease-out;
+//   opacity: 0;
+//   height: 2em;
+// }
+// .fade li.show {
+//   opacity: 1;
+// }
+
+
+
+//add one letter at a time
+//for(var i= 0; i<quote.length; i++){
+	//timer function (eg every 250 milliseconds) for the following:
+	//document.getElementById('wherequotewillbe').innerText +=quote[i];
+//}
 
 var timer =
 {
@@ -56,11 +100,22 @@ var timer =
 	interval: function(){
 		// console.log(this.counter);
 		// timer.counter = setInterval(timer.showAThought(), 1000);
-		counter = setInterval(timer.showAThought, 5000);
+		counter = setInterval(timer.showAThought, 7000);
 	},
 	showAThought: function(){
 		if(timer.shownThoughts < timer.currentArray.length-1){
-			document.getElementById('thoughts-container').innerText = timer.currentArray[timer.shownThoughts].q;
+			//remove the current thought:
+			document.getElementById('thoughts-container').innerText = '';
+			//FOR ANIMATING THE NEW QUOTES SHOWN:
+			//https://cssanimation.rocks/list-items/
+			var container = document.getElementById('thoughts-container');
+			var newThought = document.createElement('div');
+			newThought.innerText = timer.currentArray[timer.shownThoughts].q;
+			newThought.id = "one-thought";
+			container.appendChild(newThought);
+			setTimeout(function(){
+				newThought.className = newThought.className + 'show';
+			});
 			timer.shownThoughts ++;
 		}else{
 			//must display the final quote in the array here. Otherwise if the quote is displayed in  the
@@ -122,19 +177,8 @@ function genRandomOrderArray(input){
 // }
 
 
-//add one letter at a time
-//for(var i= 0; i<quote.length; i++){
-	//timer function (eg every 250 milliseconds) for the following:
-	//document.getElementById('wherequotewillbe').innerText +=quote[i];
-//}
-
-
-
-
-
 
 //TO COPY AN ARRAY:
-
 //var copyOfArray = thoughts.slice(0);
 
 

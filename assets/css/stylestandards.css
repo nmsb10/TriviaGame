@@ -1,4 +1,4 @@
-#thoughts-container{
+#one-thought{
 	position: absolute;
 	/*note the top starts with bottom of the header*/
 	margin: 0 10%;
@@ -16,6 +16,19 @@
 	/*because footer with border is ~31px;*/
 	margin-bottom: 31px;
 }
+
+.fade #one-thought{
+	transition: all 2s ease-out;
+	opacity: 0;
+}
+
+.fade #one-thought.show{
+	opacity: 1;
+}
+
+
+
+/*===========================================*/
 
 #thoughts{
 	background-color: rgba(150, 150, 150, 1);
