@@ -32,10 +32,10 @@
 
 #bet-request{
 	position:fixed;
-	width: 264px;
+	width: 272px;
 	/*to center horizontally, left 50% and margin-left = half of the width of this element*/
 	left: 50%;
-	margin-left: -132px;
+	margin-left: -136px;
 	top: 60px;
 }
 

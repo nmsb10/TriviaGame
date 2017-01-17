@@ -25,7 +25,7 @@ var thoughts =
 	{q: 'Focus on the nutrition of your mind.', p: false},
 	{q: 'Do more for others than anyone else does for them.', p: false},
 	{q: 'I must earn my clients and friends every day. Never take a relationship (business or friend) for granted.', p: false},
-	{q: 'Go beyond "the normal," especially for others.', p: false},
+	{q: 'Go beyond "the normal," especially when serving others.', p: false},
 	{q: 'What I do, not what I have, defines who and what I am.', p: false},
 	{q: 'Assume you are being recorded everywhere and that such recordings shall exist forever.', p: false},
 	{q: 'Is time the scarcest resource of all?', p: false},
@@ -100,27 +100,35 @@ var timer =
 	interval: function(){
 		// console.log(this.counter);
 		// timer.counter = setInterval(timer.showAThought(), 1000);
-		counter = setInterval(timer.showAThought, 7000);
+		counter = setInterval(timer.showAThought, 3000);
 	},
 	showAThought: function(){
+		//FOR ANIMATING THE NEW QUOTES SHOWN:
+		//https://cssanimation.rocks/list-items/
+		var container = document.getElementById('thoughts-container');
+		var newThought = document.createElement('div');
+		//remove the current thought:
+		document.getElementById('thoughts-container').innerText = '';
 		if(timer.shownThoughts < timer.currentArray.length-1){
-			//remove the current thought:
-			document.getElementById('thoughts-container').innerText = '';
-			//FOR ANIMATING THE NEW QUOTES SHOWN:
-			//https://cssanimation.rocks/list-items/
-			var container = document.getElementById('thoughts-container');
-			var newThought = document.createElement('div');
 			newThought.innerText = timer.currentArray[timer.shownThoughts].q;
 			newThought.id = "one-thought";
 			container.appendChild(newThought);
 			setTimeout(function(){
+				//if there were multiple classes, must have a space before show ie ' show'
 				newThought.className = newThought.className + 'show';
 			});
 			timer.shownThoughts ++;
 		}else{
 			//must display the final quote in the array here. Otherwise if the quote is displayed in  the
 			//about if statement, then for this interval, the last quote will display for double the quantity of the time
-			document.getElementById('thoughts-container').innerText = timer.currentArray[timer.shownThoughts].q;
+			//the following one line of code was the only code here prior to adding the css 'show' animation
+			//document.getElementById('thoughts-container').innerText = timer.currentArray[timer.shownThoughts].q;
+			newThought.innerText = timer.currentArray[timer.shownThoughts].q;
+			newThought.id = "one-thought";
+			container.appendChild(newThought);
+			setTimeout(function(){
+				newThought.className = newThought.className + 'show';
+			});
 			//must stop this counter, otherwise will continue to perform showThoughts function while also performing it again and again, simultaneously
 			timer.shownThoughts = 0;
 			timer.stop();

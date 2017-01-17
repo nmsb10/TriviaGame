@@ -19,6 +19,96 @@
 	box-shadow: -11px 7px 10px 5px rgba(0,0,0,0.35);
 }
 
+#main-content{
+	margin-top:20px;
+}
+
+#exam-content{
+	display: inline-block;
+	vertical-align: top;
+	width: 65%;
+	min-width: 250px;
+	min-height: 350px;
+	border: 2px solid black;
+	float: left;
+}
+
+#user-panel{
+	display: inline-block;
+	vertical-align: top;
+	width: 30%;
+	min-width: 200px;
+	height:300px;
+	border: 2px solid black;
+	float: right;
+}
+
+#start-button-div{
+	width: 130px;
+	height:40px;
+	/*border: 1px solid black;*/
+	margin: 50px auto 0px;
+}
+
+#sb-rectangle{
+	width: 100%;
+	height: 50%;
+	margin-top: 10px;
+	background-color: rgba(48, 28, 48, 1);
+	background: rgba(235,235,235,0.65);
+    background: -webkit-linear-gradient(right bottom, rgba(48, 28, 48, 1), rgba(48, 28, 48,0.2)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top left, rgba(48, 28, 48, 1), rgba(48, 28, 48,0.2)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top left, rgba(48, 28, 48, 1), rgba(48, 28, 48,0.2)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to top left, rgba(48, 28, 48, 1), rgba(48, 28, 48,0.2)); /* Standard syntax (must be last) */
+}
+
+#sb-center{
+	width: 40px;
+	height: 40px;
+	border-radius: 40px;
+	background-color: rgba(230, 230, 230, 1);
+	background-color: rgba(48, 28, 48, 1);
+	/*background: rgba(235,235,235,0.65);*/
+    background: -webkit-linear-gradient(left top, rgba(48, 28, 48, 1), rgba(150,150,150,1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, rgba(48, 28, 48, 1), rgba(150,150,150,1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, rgba(48, 28, 48, 1), rgba(150,150,150,1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, rgba(48, 28, 48, 1), rgba(150,150,150,1)); /* Standard syntax (must be last) */
+	border: 5px solid white;
+	position: relative;
+	left: 40px;
+	top: -35px;
+}
+
+.dif-button{
+	margin: 15px auto 0px;
+	width: 80px;
+	height: 25px;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 25px;
+	color: white;
+	background-color: rgba(48, 28, 48, 1);
+	cursor: pointer;
+	-webkit-transition: box-shadow 0.5s; /* For Safari 3.1 to 6.0 */
+    transition: box-shadow 0.5s;
+}
+
+.dif-button:hover{
+	box-shadow: 5px 5px 8px 1px rgba(0,0,0,0.7);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 #user-statistics{
 	width: 100%;
 	height: 35px;
@@ -86,164 +176,3 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-#shadow-box-outer{
-	width: 55%;
-	margin: 0% 22.5%;
-	font-size: 15px;
-	height: 25px;
-    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
-    /*as this box has the box shadow, in order for the shadow to appear on top of content below,
-    position should be relative http://stackoverflow.com/questions/9199433/cant-get-box-shadow-to-appear-above-div*/
-    position:relative;
-}
-
-#updates-user{
-/*	position:absolute;*/
-}
-
-
-
-#input-bet{
-	width: 200px;
-	text-align: center;
-	font-size: 1em;
-	border: 0.5px solid rgba(48, 28, 48, 1);
-}
-
-#add-bet-button{
-	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
-	font-size: 1em;
-	font-weight: 400;
-	color: rgba(48, 28, 48, 1);
-	border: 1px solid rgba(48, 28, 48, 1);
-	background: rgba(255, 255, 255, 1);
-	cursor:pointer;
-}
-
-#add-bet-button:hover{
-	color: rgba(255, 255, 255,1);
-	background: rgba(48, 28, 48, 1);
-}
-
-
-
-#roll-description, #point-number{
-	height: 12.5px;
-	width: 100%;
-	font-size:10px;
-	line-height: 25px;
-}
-
-#point-number{
-	line-height:6.25px;
-}
-
-#player-bets{
-	text-align:center;
-}
-
-#bet-summary-primary{
-	display: inline-block;
-	width: 230px;
-	border: 1px solid rgba(48, 28, 48, 1);
-	box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
-	color: white;
-	background-color: rgba(190, 190, 190, 1);
-	margin: 15px;
-	vertical-align: top;
-}
-
-.bet-summary{
-	display: inline-block;
-	width: 230px;
-	border: 1px solid rgba(48, 28, 48, 1);
-	box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.45);
-	color: white;
-	background-color: rgba(190, 190, 190, 1);
-	margin: 15px;
-	vertical-align: top;
-}
-
-.player-name{
-	margin: 5px;
-}
-
-#player-balance{
-	display: inline;
-}
-
-.lacinato{
-	width: 90%;
-	margin: 0 auto;
-	/*background-color: lime;*/
-	margin-top: 15px;
-}
-
-.lacinato:nth-child(2){
-	margin-top: 0;
-}
-
-.lacinato:last-child{
-	margin-bottom: 5%;
-}
-
-.lacinato-header{
-	border-radius: 11px 11px 0px 0px;
-	border: 5px solid white;
-	border-bottom:none;
-	background-color: rgba(48, 28, 48, 1);
-	color: rgba(255, 255, 255, 1);
-	height: 20px;
-	font-size: 18px;
-	line-height:20px;
-	text-align:left;
-	padding: 3px 5px;
-}
-
-.lacinato-content{
-	border-radius: 0px 0px 11px 11px;
-	border: 5px solid lime;
-	border-top: none;
-	background-color: rgba(255, 255, 255, 1);
-	color: purple;
-	min-height: 25px;
-	font-size: 15px;
-	text-align:left;
-	padding: 3px 5px;
-}
-
-#roll-results{
-	background-color: rgba(255, 255, 255, 1);
-	color: black;
-	border: 1px solid black;
-	overflow: auto;
-	height:64px;
-}
-
-.two-dice{
-	display: inline-block;
-}
-
-.dice-result{
-	height: 15px;
-	width: 15px;
-	background-color: rgba(255, 0, 0, 0.8);
-	color: rgba(255, 255, 255, 1);
-	text-align: center;
-	line-height: 15px;
-	padding: 5px;
-	margin: 3px;
-	-webkit-transition: background-color 2s; /* For Safari 3.1 to 6.0 */
-    transition: background-color 2s;
-}
