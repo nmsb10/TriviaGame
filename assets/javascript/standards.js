@@ -100,7 +100,7 @@ var timer =
 	interval: function(){
 		// console.log(this.counter);
 		// timer.counter = setInterval(timer.showAThought(), 1000);
-		counter = setInterval(timer.showAThought, 3000);
+		counter = setInterval(timer.showAThought, 7000);
 	},
 	showAThought: function(){
 		//FOR ANIMATING THE NEW QUOTES SHOWN:

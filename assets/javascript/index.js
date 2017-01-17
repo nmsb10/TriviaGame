@@ -59,6 +59,6 @@ var dateFun = {
 	}
 };
 
-module.exports = {
-	displayDate: showDate
-};
+// module.exports = {
+// 	displayDate: showDate
+// };

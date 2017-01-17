@@ -1,9 +1,5 @@
 //REMEMBER: CODE EVERYTHING ONLY ONCE
 //Do not Repeat Yourself = DRY
-
-//when ready to use module.exports for date functions
-//var FooterDate = require('./index.js');
-
 document.addEventListener("DOMContentLoaded", function(event) {
 	//http://stackoverflow.com/questions/799981/document-ready-equivalent-without-jquery
 	showDate();
