@@ -34,7 +34,9 @@ var thoughts =
 	{q: 'Be the "calming force."', p: false},
 	{q: 'Through complaining, one embraces their identity as a "victim."', p: false},
 	{q: 'Less is more.', p: false},
-	{q: '"Conduct your life as though your every act were to become a universal law for all people."', p: false}
+	{q: '"Conduct your life as though your every act were to become a universal law for all people."', p: false},
+	{q: 'Everyone is entitled to their beliefs. But holding a belief does not necessarily make it true. Or does it?', p: false},
+	{q: '"Truth is in the eye of the beholder." Do you make a distinction between truth and reality?', p: false}
 ];
 
 function showThoughts(array){
@@ -60,7 +62,7 @@ var timer =
 		return array;
 	},
 	interval: function(){
-		counter = setInterval(timer.showAThought, 7000);
+		counter = setInterval(timer.showAThought, 8000);
 	},
 	showAThought: function(){
 		var container = document.getElementById('thoughts-container');

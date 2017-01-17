@@ -1,0 +1,89 @@
+#one-thought{
+	position: absolute;
+	/*note the top starts with bottom of the header*/
+	margin: 0 10%;
+	padding:0;
+	border:0;
+	top:45%;
+	width: 80%;
+	/*background-color: rgba(200, 200, 200, 1);*/
+	overflow: auto;
+	text-align: center;
+	letter-spacing: 2px;
+	font-size: 20px;
+	line-height:30px;
+	/*because footer with border is ~31px;*/
+	margin-bottom: 31px;
+	/*http://stackoverflow.com/questions/30125705/css-how-to-make-an-element-fade-in-and-then-fade-out*/
+	-webkit-animation: fadeinout 7s linear forwards;
+    animation: fadeinout 7s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  20%, 80% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  20%, 80% { opacity: 1; }
+}
+
+body{
+	background-color: rgba(0, 0, 0, 1);
+	height:100%;
+	width: 100%;
+	position:fixed;
+}
+
+header{
+	color: rgba(242, 242, 242, 0.35);
+	background-color: rgba(255, 255, 255, 0);
+	border-bottom: 1.5px solid rgba(255, 255, 255, 0);
+	position:fixed;
+	z-index:2;
+}
+
+footer{
+	background: rgba(255, 255, 255, 0);
+	z-index:2;
+}
+
+
+
+#photo{
+	z-index:0;
+	position: fixed;
+	width: 100%;
+	/*top: -26px;*/
+	/*top:3%;*/
+	/*left:35%;*/
+	height:100%;
+
+	/*http://sixrevisions.com/css/responsive-background-image/*/
+	/* Location of the image */
+	background-image: url(../images/three.jpg);
+
+	/* Background image is centered vertically and horizontally at all times */
+	/*background-position: center center;*/
+	background-position: top center;
+
+	/* Background image doesn't tile */
+	background-repeat: no-repeat;
+
+	/* Background image is fixed in the viewport so that it doesn't move when 
+    the content's height is greater than the image's height */
+    background-attachment: fixed;
+
+    /* This is what makes the background image rescale based
+    on the container's size */
+    background-size: cover;
+    /*background-size: auto 100%;*/
+
+    /*can also write all the above like this:
+    background: url(background-photo.jpg) center center cover no-repeat fixed;*/
+
+    /* Set a background color that will be displayed
+    while the background image is loading */
+    /*background-color: #464646;*/
+}
