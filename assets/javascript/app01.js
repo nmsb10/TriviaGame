@@ -76,7 +76,6 @@ $(document).ready(function(){
 	$("#button-buy-shares").on("click", function(){
 		//as html inputs are type=number, only numbers allowed as inputs
 		var sharesToBuy = $("#input-buyassets").val().trim();
-		console.log(typeof(sharesToBuy));
 		if(isNaN(sharesToBuy) || sharesToBuy ==='' || sharesToBuy ===0){
 			updateUserMessage('notanBuy');
 			$("#input-buyassets").val('');

@@ -1,32 +1,8 @@
 body{
-	background-color: rgba(0, 0, 0, 1);
-	height:100%;
-	width: 100%;
-	position:fixed;
-}
-
-header{
-	color: rgba(242, 242, 242, 0.35);
-	background-color: rgba(255, 255, 255, 0);
-	border-bottom: 1.5px solid rgba(255, 255, 255, 0);
-	position:fixed;
-	z-index:2;
-}
-
-footer{
-	background: rgba(255, 255, 255, 0);
-	z-index:2;
-}
-
-#photo{
-	z-index:0;
-	position: fixed;
-	width: 100%;
-	height: 100%;
-
+	z-index: 0;
 	/*http://sixrevisions.com/css/responsive-background-image/*/
 	/* Location of the image */
-	background-image: url(../images/three.jpg);
+	background-image: url(../images/01.JPG);
 
 	/* Background image is centered vertically and horizontally at all times */
 	/*background-position: center center;*/
@@ -50,4 +26,17 @@ footer{
     /* Set a background color that will be displayed
     while the background image is loading */
     /*background-color: #464646;*/
+}
+
+header{
+	color: rgba(242, 242, 242, 0.35);
+	background-color: rgba(255, 255, 255, 0);
+	border-bottom: 1.5px solid rgba(255, 255, 255, 0);
+	position:fixed;
+	z-index:2;
+}
+
+footer{
+	background: rgba(255, 255, 255, 0);
+	z-index:2;
 }
