@@ -204,8 +204,8 @@ footer{
 }
 
 footer:hover{
-	background: rgba(64,64,64,1);	
-	border-top: 3px solid rgba(48, 15, 45, 1);
+	background: rgba(64,64,64,0.85);	
+	border-top: 3px solid rgba(48, 15, 45, 0.85);
 }
 
 #footer-content{

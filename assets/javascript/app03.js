@@ -40,6 +40,9 @@ var dateFun = {
 	}
 };
 
+//NOTE: the current streak counts correct consecutive answers. ends if a question has bank = 0, OR if an answer is wrong.
+//offer "activate bonus" where is eg streak of 5 questions, bonus points received.
+
 function begin(){
 	document.getElementById('start-button').addEventListener('click', function(event){
 		event.preventDefault();

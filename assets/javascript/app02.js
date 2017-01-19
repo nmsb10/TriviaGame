@@ -285,12 +285,13 @@ function resolveBets(one, two, players){
 		if(total === 7 || total === 11){
 			console.log(tableBets);
 			for(var i = 0; i < tableBets.passline.length; i++){
-				//increase player balance by the amount of the bet
 				var winningPlayer = tableBets.passline[i].player;
 				var betAmount = tableBets.passline[i].flatbet;
 				for(var j = 0; j < players.length; j++){
 					if(players[j].name === winningPlayer){
-						players[j].balance += betAmount;
+						//increase player balance by the amount of the bet PLUS winnings
+						//1 * betAmount because this bet pays 1 to 1 
+						players[j].balance += betAmount + (1 * betAmount);
 						//remove this bet from playerBets
 						players[j].currentBets.passline.splice(0,1);
 						//update player's balance displayed on DOM
@@ -346,7 +347,9 @@ function resolveBets(one, two, players){
 				var woo = tableBets.passline[m].flatbet;
 				for(var n = 0; n < players.length; n++){
 					if(players[n].name === winner){
-						players[n].balance += woo;
+						//increase player balance by the amount of the bet PLUS winnings
+						//1 * betAmount because this bet pays 1 to 1 
+						players[n].balance += woo + (1 * woo);
 						//remove this bet from playerBets
 						players[n].currentBets.passline.splice(0,1);
 						//update player's balance displayed on DOM

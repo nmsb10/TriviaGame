@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 function showDate(){
 	//http://www.w3schools.com/jsref/jsref_obj_date.asp
 	var d = new Date();
-	console.log(d);
+	//console.log(d);
 	var yearCurrent = d.getFullYear();
 	var monthCurrent = dateFun.calculateMonth(d.getMonth());
 	var dayCurrent = dateFun.dayTwoDigits(d.getDate());
