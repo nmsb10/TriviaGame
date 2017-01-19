@@ -44,59 +44,34 @@ var dateFun = {
 //offer "activate bonus" where is eg streak of 5 questions, bonus points received.
 
 function begin(){
-	document.getElementById('start-button').addEventListener('click', function(event){
+	document.getElementById('start-button-div').addEventListener('click', function(event){
 		event.preventDefault();
-		document.getElementById('user-area').innerHTML = '<div id = "question"></div>';
-		console.log('success');
-		generateQuestion();
+		//document.getElementById('countdown').id = 'enhanced';
+		timer.interval();
 	});
 }
 
-var betTypes =
-[
-	'passline',
-	'dontpassline',
-	'come',
-	'dontcome',
-	'place',
-	'buy',
-	'lay',
-	'field'
-];
 
-function Bet(type, odds, number, amount){
-	this.type = type;
-	this.odds = 
-	[
-		{'placeodds': 0},
-		{'layodds': 0}
-	];
-	this.number = number;
-	this.amount = amount;
-}
-
-function generateQuestion(){
-	var problem = new Bet();
-	problem.type = betTypes[Math.floor(Math.random()*betTypes.length)];
-	switch(problem.type){
-		case 'passline':
-			break;
-	}
-	if(problem.type === 'passline'){
-		if(Math.random()>=0.5){
-			problem.odds[0] = Math.floor(Math.random()*100);
+var timer =
+{
+	valueStart: 500,
+	interval: function(){
+		//every second, decrease 1/10 of 500 = 50
+		counter = setInterval(timer.updatePossWin, 20);
+	},
+	updatePossWin: function(){
+		if(timer.valueStart === 0){
+			document.getElementById('countdown').innerText = '$-0-';
+			timer.stop();
+			return;
 		}
+		document.getElementById('countdown').innerText = '$' + timer.valueStart;
+		timer.valueStart --;
+	},
+	stop: function(){
+		clearInterval(counter);
 	}
-
-}
-
-// var timer =
-// {
-// 	interval: function(action){
-// 		if(action === '')
-// 	}
-
-// };
+};
 
 
 //ALTERNATIVE FOR NEW 'MATH TESTS':
