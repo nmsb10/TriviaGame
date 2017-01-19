@@ -31,14 +31,16 @@
 	font-size:0;
 }
 
+.mp-item{
+	display: inline-block;
+	/*border: 1px solid black;*/
+	vertical-align: top;
+}
+
 #start-button-div{
 	width: 130px;
 	height:40px;
 	margin: 15px;
-	display: inline-block;
-	/*border: 1px solid black;*/
-	vertical-align: top;
-
 }
 
 #sb-rectangle{
@@ -73,9 +75,11 @@
 	top: -30px;
 }
 
+#topic{
+	font-size: 15px;
+}
+
 #difficulty-buttons{
-	display: inline-block;
-	vertical-align: top;
 }
 
 .dif-button{
@@ -103,12 +107,10 @@
 
 #streak-section{
 	font-size: 15px;
-	display: inline-block;
 }
 
 #bank-section{
 	font-size: 15px;
-	display: inline-block;
 }
 
 .player-main-info{
@@ -128,9 +130,23 @@
 	vertical-align: top;
 	width: 65%;
 	min-width: 250px;
-	/*border: 2px solid purple;*/
 	border-radius: 5px;
 	float: left;
+}
+
+#right-panel{
+	display: inline-block;
+	vertical-align: top;
+	width: 30%;
+	min-width: 220px;
+	float: right;
+	border: 2px solid purple;
+}
+
+.user-panel{
+	min-width: 200px;
+	height:220px;
+	border: 2px solid rgba(175, 175, 175, 1);
 }
 
 #exam-content-header{
@@ -165,28 +181,39 @@
 	background-color: rgba(48, 28, 48, 0.7);
 	padding: 10px;
 	display: inline-block;
-	width: 30px;
-	height: 20px;
+	width: 65px;
+	height: 35px;
 	margin:5px;
-	line-height: 20px;
+	line-height: 35px;
 	vertical-align:top;
-	font-size: 15px;
+	font-size: 25px;
 	color: white;
+	text-align: center;
 }
 
-#enhanced{
+.enhanced{
 	-webkit-animation: enhanceBankable 10s linear forwards;
     animation: enhanceBankable 10s linear forwards;
 }
 
-@-webkit-keyframes enhanceBankable {
-  0%,100% { font-size: 15/*, color: white*/;}
-  33%, 67% { font-size: 23/*, color: purple*/;}
+/*@-webkit-keyframes enhanceBankable {
+  0%, 30%, 50%, 70%, 100% { font-size: 15px; color: white;}
+  20%, 40%, 60%, 80% { font-size: 23px; color: red;}
 }
 
 @keyframes enhanceBankable {
 	0%, 30%, 50%, 70%, 100% { font-size: 15px; color: white;}
-	20%, 40%, 60%, 80% { font-size: 23px; color: purple;}
+	20%, 40%, 60%, 80% { font-size: 23px; color: red;}
+}*/
+
+@-webkit-keyframes enhanceBankable {
+	0% { font-size: 25px; color: white;}
+	100%{ font-size: 15px; color: red;}
+}
+
+@keyframes enhanceBankable {
+	0% { font-size: 25px; color: white;}
+	100%{ font-size: 15px; color: red;}
 }
 
 

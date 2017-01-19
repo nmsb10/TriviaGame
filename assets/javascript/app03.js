@@ -46,7 +46,6 @@ var dateFun = {
 function begin(){
 	document.getElementById('start-button-div').addEventListener('click', function(event){
 		event.preventDefault();
-		//document.getElementById('countdown').id = 'enhanced';
 		timer.interval();
 	});
 }
@@ -57,6 +56,7 @@ var timer =
 	valueStart: 500,
 	interval: function(){
 		//every second, decrease 1/10 of 500 = 50
+		document.getElementById('countdown').className = ' enhanced';
 		counter = setInterval(timer.updatePossWin, 20);
 	},
 	updatePossWin: function(){
