@@ -1,12 +1,15 @@
 body{
 	z-index: 0;
 	/*http://sixrevisions.com/css/responsive-background-image/*/
+	/* Set a background color that will be displayed
+    while the background image is loading */
+    background-color: rgba(255, 255, 255, 1);
+
 	/* Location of the image */
 	background-image: url(../images/01.JPG);
 
 	/* Background image is centered vertically and horizontally at all times */
-	/*background-position: center center;*/
-	background-position: 50% 60%;
+	background-position: center center;
 
 	/* Background image doesn't tile */
 	background-repeat: no-repeat;
@@ -18,14 +21,9 @@ body{
     /* This is what makes the background image rescale based
     on the container's size */
     background-size: cover;
-    /*background-size: auto 100%;*/
 
     /*can also write all the above like this:
     background: url(background-photo.jpg) center center cover no-repeat fixed;*/
-
-    /* Set a background color that will be displayed
-    while the background image is loading */
-    /*background-color: #464646;*/
 }
 
 header{
