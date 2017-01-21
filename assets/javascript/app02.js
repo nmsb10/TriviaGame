@@ -20,7 +20,7 @@ function showDate(){
 	' <a class="footer-link" href="https://www.linkedin.com/in/jonathonnagatani" target="_blank"' + 
 	' title="Jonathon on LinkedIn">Jonathon Nagatani</a>. All Rights Reserved.</div>';
 	// $('#footer-content').replaceWith(updatedFooter);
-	document.getElementById('beet').innerHTML = updatedFooter;
+	document.getElementById('footer').innerHTML = updatedFooter;
 }
 
 var dateFun = {
@@ -137,8 +137,8 @@ var BettingProfile = function(){
 function displayExtraPlayers(players){
 	for(var i = 0; i < players.length; i++){
 		var stuff = '<div class = "bet-summary" id="bet-summary-'+ players[i].name + '"><div class = "player-heading"><div class = "player-name">'+ players[i].name + ':</div><div class = '+
-		'"player-balance" id = "balance-' + players[i].name + '">$' + players[i].balance + '</div></div><div class = "lacinato"><div class = '+
-		'"lacinato-header">don\'t pass b12 (1 to 1)</div><div class = "lacinato-content">good job on this important task completion</div></div>';
+		'"player-balance" id = "balance-' + players[i].name + '">$' + players[i].balance + '</div></div><div class = "bet-container"><div class = '+
+		'"bet-container-header">don\'t pass b12 (1 to 1)</div><div class = "bet-container-content">good job on this important task completion</div></div>';
 		document.getElementById('player-bets').innerHTML += stuff;
 	}
 }
@@ -212,7 +212,7 @@ var Bet = function(player, type, amount, odds, active, number, rollnumber){
 function displayBet(player, type, amount){
 	switch(type){
 		case 'passline':
-			var passlinebet = '<div class = "lacinato passline"><div class = "lacinato-header">pass line (1 to 1)</div><div class = "lacinato-content">'+
+			var passlinebet = '<div class = "bet-container passline"><div class = "bet-container-header">pass line (1 to 1)</div><div class = "bet-container-content">'+
 				'pass line bet: $' + amount + '</div></div>';
 			var whichBetSummary = 'bet-summary-' + player;
 			document.getElementById(whichBetSummary).innerHTML += passlinebet;
@@ -373,7 +373,7 @@ function submitBet(bet){
 	var betAmount = '$' + bet.amount;
 	switch(bet.type){
 		case 'passline':
-			var betDisplay = "<div class = 'lacinato'><div class = 'lacinato-header' id = 'passline-bet'>pass line (1 to 1)</div><div class = 'lacinato-content'>"+
+			var betDisplay = "<div class = 'bet-container'><div class = 'bet-container-header' id = 'passline-bet'>pass line (1 to 1)</div><div class = 'bet-container-content'>"+
 				"pass line bet: " + betAmount + "</div></div>";
 			document.getElementById('bet-summary-primary').innerHTML += betDisplay;
 			break;

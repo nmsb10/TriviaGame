@@ -14,7 +14,7 @@ function showDate(){
 	' <a class="footer-link" href="https://www.linkedin.com/in/jonathonnagatani" target="_blank"' + 
 	' title="Jonathon on LinkedIn">Jonathon Nagatani</a>. All Rights Reserved.</div>';
 	// $('#footer-content').replaceWith(updatedFooter);
-	document.getElementById('ginger').innerHTML = updatedFooter;
+	document.getElementById('footer').innerHTML = updatedFooter;
 }
 
 var thoughts =

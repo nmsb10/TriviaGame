@@ -17,29 +17,8 @@ function showDate(){
 	' <a class="footer-link" href="https://www.linkedin.com/in/jonathonnagatani" target="_blank"' + 
 	' title="Jonathon on LinkedIn">Jonathon Nagatani</a>. All Rights Reserved.</div>';
 	// $('#footer-content').replaceWith(updatedFooter);
-	document.getElementById('bilberry').innerHTML = updatedFooter;
+	document.getElementById('footer').innerHTML = updatedFooter;
 }
-
-// var dateData = function(front, back){
-// 	this.
-// 	this.front = front;
-// 	this.back = back;
-// 	this.showFront = function(){
-// 		console.log(this.front);
-// 	};
-// 	this.showBack = function(){
-// 		console.log(this.back);
-// 	};
-// 	this.printCards = function(){
-// 		this.showFront();
-// 		this.showBack();
-// 		fs.appendFile('basic-cards.txt',this.front + ',' + this.back + '\n**', function(err){
-// 			if(err){
-// 				console.log(err);
-// 			}
-// 		});
-// 	};
-// };
 
 var dateFun = {
 	calculateMonth: function(monthNumber){
@@ -58,7 +37,3 @@ var dateFun = {
 		}
 	}
 };
-
-// module.exports = {
-// 	displayDate: showDate
-// };

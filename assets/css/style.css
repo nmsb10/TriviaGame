@@ -87,11 +87,12 @@ header:hover{
 	letter-spacing: 5px;
 	padding-left: 5px;
 	padding-right: 10px;
+	display:inline-block;
 }
 
-/*#header-links{
+#header-links{
 	display: inline-block;
-}*/
+}
 
 .hlink{
 	padding: 5px;
@@ -101,6 +102,7 @@ header:hover{
 	border-style: solid;
 	-webkit-transition: border-color 1s, box-shadow 1s; /* For Safari 3.1 to 6.0 */
     transition: border-color 1s, box-shadow 1s;
+    display: inline-block;
 }
 
 .hlink:hover{
@@ -114,10 +116,6 @@ header:hover{
 .hlink-a{
 	color: #f2f2f2;
 	text-decoration: none;
-}
-
-.kale{
-	display: inline-block;
 }
 
 
@@ -233,6 +231,11 @@ footer:hover{
 
 
 /*==============================================================*/
+
+.homelink{
+	display: inline-block;
+}
+
 .homelink:link, .homelink:visited, .homelink:active{
 	text-decoration: none;
 	color: #f2f2f2;

@@ -156,22 +156,22 @@
 	margin-left: 5px;
 }
 
-.lacinato{
+.bet-container{
 	width: 90%;
 	margin: 0 auto;
 	/*background-color: lime;*/
 	margin-top: 15px;
 }
 
-.lacinato:nth-child(2){
+.bet-container:nth-child(2){
 	margin-top: 0;
 }
 
-.lacinato:last-child{
+.bet-container:last-child{
 	margin-bottom: 5%;
 }
 
-.lacinato-header{
+.bet-container-header{
 	border-radius: 11px 11px 0px 0px;
 	border: 5px solid white;
 	border-bottom:none;
@@ -184,7 +184,7 @@
 	padding: 3px 5px;
 }
 
-.lacinato-content{
+.bet-container-content{
 	border-radius: 0px 0px 11px 11px;
 	border: 5px solid lime;
 	border-top: none;

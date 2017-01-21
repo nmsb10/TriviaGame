@@ -18,7 +18,7 @@ function showDate(){
 	' <a class="footer-link" href="https://www.linkedin.com/in/jonathonnagatani" target="_blank"' + 
 	' title="Jonathon on LinkedIn">Jonathon Nagatani</a>. All Rights Reserved.</div>';
 	// $('#footer-content').replaceWith(updatedFooter);
-	document.getElementById('romaine').innerHTML = updatedFooter;
+	document.getElementById('footer').innerHTML = updatedFooter;
 }
 
 var dateFun = {
@@ -42,6 +42,7 @@ var dateFun = {
 
 //NOTE: the current streak counts correct consecutive answers. ends if a question has bank = 0, OR if an answer is wrong.
 //offer "activate bonus" where is eg streak of 5 questions, bonus points received.
+//ALTERNATIVE: once a streak occurs, beginning amount of winnings for each question increases
 
 function begin(){
 	document.getElementById('start-button-div').addEventListener('click', function(event){
@@ -72,12 +73,3 @@ var timer =
 		clearInterval(counter);
 	}
 };
-
-
-//ALTERNATIVE FOR NEW 'MATH TESTS':
-//GAME: GOAL IS MAXIMIZE POINTS OR $
-//1. PRESENT POSSIBLE SITUATION EG PLACE BET ON 9 $70
-//2. MAX POSSIBLE POINTS / $ IS EG 200
-//THEN FOR EACH SECOND THAT PASSES, POSSIBLE POINTS EARNED DECREASES BY 20
-//THEREFORE ONE POINT PER 50 MILLISECONDS
-//ONCE CORRECT ANSWER ENTERED, 'WINNINGS' INCREASES BY CURRENT POINT LEVEL FOR THE QUESTION
