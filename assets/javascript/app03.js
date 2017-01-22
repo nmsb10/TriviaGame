@@ -56,9 +56,9 @@ var timer =
 {
 	valueStart: 500,
 	interval: function(){
-		//every second, decrease 1/10 of 500 = 50
-		document.getElementById('countdown').className = ' enhanced';
-		counter = setInterval(timer.updatePossWin, 20);
+		//every second, decrease 1/15 of 500 = 33 1/3
+		document.getElementById('countdown').className += ' enhanced';
+		counter = setInterval(timer.updatePossWin, 30);
 	},
 	updatePossWin: function(){
 		if(timer.valueStart === 0){

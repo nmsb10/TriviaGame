@@ -33,14 +33,13 @@
 		<div class = 'good-fit-90'>
 			<div id = 'main-content'>
 				<div id = 'main-panel'>
-					<div class = 'mp-item' id = 'start-button-div'>
+					<div class = 'mp-item' id = 'start-button-div' title='click to begin'>
 						<div id = 'sb-rectangle'>
 						</div>
-						<div id = 'sb-center'>
-					<!-- 	begin<br/>test -->
+						<div id = 'sb-center'>start
 						</div>
 					</div>
-					<div class = 'mp-item panel-title'>game topic:
+					<div class = 'mp-item panel-title'>select topic:
 					</div>
 					<div class = 'mp-item' id = 'topic-selection'>
 						<select>
@@ -74,17 +73,29 @@
 				</div>
 				<div id = 'center-content'>
 					<div id = 'left-panel'>
-						<div id = 'exam-content-header'>welcome
-							<div id = 'countdown'>$500
-							</div>
+						<div class = 'content-header' id='countdown'>welcome
 						</div>
-						<div id = 'exam-content-question'>question provided here
+						<div class = 'content-center' id='exam-question'>Instructions:<br>1. Click the start button above.<br>2. select difficulty.<br>3. enjoy!
 						</div>
-						<div id = 'exam-content-answer-form'>enter your answer here
+						<div class = 'content-bottom' id = 'exam-answer-form'>$
+							<form id = "form-input-answer">
+								<input type = "number" id="input-answer" placeholder='your answer' title='please type your numerical answer here'>
+								<input id = "answer-button" type = "submit" value = "submit" title='after typing your answer, click this button (or press the enter key on your keyboard) to submit your answer'>
+							</form>
 						</div>
 					</div>
 					<div id = 'right-panel'>
-						<div class = 'user-panel' id = 'user-statistics'>
+						<div class = 'content-header' id='stats-header'>YOUR PERFORMANCE STATISTICS
+						</div>
+						<div class = 'content-center' id='statistics-content'>mean winnings per question: $<div class='user-statistics' id='mean-winnings'>323</div><br>median winnings per question: $<div class='user-statistics' id='median-winnings'>355</div><br>maximum bank possible: $<div class='user-statistics' id='max-bank'>2500</div>
+						<hr>
+						accuracy: <div class='user-statistics' id='accuracy'>60%</div><br>answers correct: <div class='user-statistics' id='answers-correct'>3</div><br>answers incorrect: <div class='user-statistics' id='answers-incorrect'>2</div><br>total questions: <div class='user-statistics' id='total-questions'>5</div><br>
+						<hr>
+						bonus count: <div class='user-statistics' id='bonus-count'>0</div><br>bonus total: $<div class='user-statistics' id='bonus-count'>0</div><br>
+						<hr>
+						*maximum bank possible does not include bonus total. mean and median winnings per question do account for bonuses earned.
+						</div>
+						<!-- <div class = 'user-panel' id = 'user-statistics'>
 							<div class = 'stats-title'>GAME PERFORMANCE STATISTICS:
 							</div>
 							<div class = 'stats-title'>Maximum Bank Possible:
@@ -110,11 +121,11 @@
 							<div class = 'stats-title'>Total Questions:
 								<div class = 'stats-content' id = 'answers-questions'>5</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				
-				
+			<!-- 	
 				<div class = 'user-panel' id = 'current-prize'>
 					<div class = 'prize-info'>$
 					</div>
@@ -147,7 +158,7 @@
 					<div class = 'stats-title'>Mean Winnings Per Question
 						<div class = 'stats-content' id = 'answers-meanbank'>$52</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<!-- <div id = 'user-statistics'>
 				<div class = 'player-stats' id = 'player-name'>your points: 
