@@ -265,79 +265,12 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-/*
-
-
-
-
-
-
-
-.player-stats{
-	display: inline-block;
-	line-height:35px;
-}
-
-#start-button{
-	width: 50px;
-	height: 50px;
-	text-align:center;
-	color: rgba(48, 28, 48, 1);
-	background-color: lime;
-	border: 1px solid rgba(48, 28, 48, 1);
-	border-radius: 25px;
-	margin:7px auto;
-	cursor: pointer;
-	-webkit-transition: -webkit-transform 1s, font-style 1s; /* For Safari 3.1 to 6.0 */
-    transition: transform 1s, font-style 1s;
-}
-
-#start-button:hover{
-	cursor: pointer;
-	-webkit-transform: rotate(720deg); /* Safari */
-    transform: rotate(720deg);
-    font-style: italic;
-}
-
-#start-button:active{
-	background-color: purple;
-}
-
-#start-word{
-	height: 25px;
-	width: 100%;
-	font-size: 19px;
-	line-height:50px;
-	font-weight: 700;
-	text-align: center;
-}
-
 #form-input-answer{
 	text-align:center;
 	font-size: 15px;
-}
-
-#user-response{
-	text-align: center;
-	width: 150px;
-	height:30px;
-	font-size:22px;
-	line-height: 30px;
 }
 
 #answer-button{
 	height:36px;
 	vertical-align: top;
 }
-
-
-*/
