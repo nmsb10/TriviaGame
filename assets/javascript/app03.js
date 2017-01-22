@@ -43,15 +43,112 @@ var dateFun = {
 //NOTE: the current streak counts correct consecutive answers. ends if a question has bank = 0, OR if an answer is wrong.
 //offer "activate bonus" where is eg streak of 5 questions, bonus points received.
 //ALTERNATIVE: once a streak occurs, beginning amount of winnings for each question increases
+//http://www.w3schools.com/jsref/met_document_addeventlistener.asp
+// document.addEventListener("mouseover", myFunction);
+// document.addEventListener("click", someOtherFunction);
+// document.addEventListener("mouseout", someOtherFunction);
+var stats = {
+	streak: 0,
+	bank:0,
+	meanWin:0,
+	medianWin:0,
+	maxbank:0,
+	accuracy:0,
+	correct:0,
+	incorrect:0,
+	questions:0,
+	bonusCount:0,
+	bonusTotal:0
+};
 
 function begin(){
 	document.getElementById('start-button-div').addEventListener('click', function(event){
 		event.preventDefault();
-		timer.interval();
+		document.getElementById('sb-center').style.color = "lime";
+		clearBoard();
+		allowDifficultySelection();
 	});
 }
 
+function clearBoard(){
+	document.getElementById('streak-count').innerText = 0;
+	document.getElementById('player-bank').innerText = '-0-';
+	document.getElementById('mean-winnings').innerText = 0;
+	document.getElementById('median-winnings').innerText = 0;
+	document.getElementById('max-bank').innerText = 0;
+	document.getElementById('accuracy').innerText = 0.00;
+	document.getElementById('answers-correct').innerText = 0;
+	document.getElementById('answers-incorrect').innerText = 0;
+	document.getElementById('total-questions').innerText = 0;
+	document.getElementById('bonus-count').innerText = 0;
+	document.getElementById('bonus-total').innerText = 0;
+}
 
+function allowDifficultySelection(){
+	//this didn't work:
+	//document.getElementsByClassName('dif-button').className += ' full-opacity';
+	//http://stackoverflow.com/questions/18294759/use-javascript-to-add-a-css-class-to-all-elements-with-another-class-name
+	var buttons = document.getElementsByClassName('dif-button');
+	var length = buttons !== null ? buttons.length : 0;
+	for(var i = 0; i < length; i++) {
+		//rename the class for each button, in case the user has re-selected the start button
+		//and need to clear the 'selected-difficulty' class
+		buttons[i].className = "dif-button full-opacity";
+		buttons[i].addEventListener('click', selectDifficulty, false);
+	}
+}
+
+function selectDifficulty(){
+	console.log(this.id);
+	var difficulty = this.id;
+	var buttons = document.getElementsByClassName('dif-button');
+	var length = buttons !== null ? buttons.length : 0;
+	for(var i = 0; i < length; i++) {
+		buttons[i].className = 'dif-button';
+		buttons[i].removeEventListener('click', selectDifficulty, false);
+	}
+	this.className += ' selected-difficulty';
+	startGame(difficulty);
+}
+
+function startGame(difficulty){
+	switch(difficulty){
+		case 'deasy':
+			//function
+			break;
+		case 'dmedium':
+			//function
+			break;
+		case 'dhard':
+			//function
+			break;
+		default:
+			console.log('unknown difficulty');
+			break;
+	}
+}
+
+function generateQuestion(){
+	//1 decide on roll based on dice probability
+	//2 decide on type of bet (come, dc, pass, odds, place)
+	//3 calculate answer
+	//4. populate dom with question & start winnings timer
+	//5. on answer submission, log current winnings timer value
+	//6. compare answer to calculated answer
+	//6.5 update dom with answer and explanation.
+	//6.6 update stats accordingly
+	//6.75 replace answer form with button for "next"
+	var call = 0;
+}
+
+function enterRequest(){
+	document.getElementById('answer-button').addEventListener('click', function(event){
+		event.preventDefault();
+		var answer = document.getElementById('input-answer').value;
+		document.getElementById('input-bet').value = '';
+		//evaluate the request
+	});
+}
 var timer =
 {
 	valueStart: 500,
