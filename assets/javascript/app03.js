@@ -71,17 +71,32 @@ function begin(){
 }
 
 function clearBoard(){
-	document.getElementById('streak-count').innerText = 0;
-	document.getElementById('player-bank').innerText = '-0-';
-	document.getElementById('mean-winnings').innerText = 0;
-	document.getElementById('median-winnings').innerText = 0;
-	document.getElementById('max-bank').innerText = 0;
-	document.getElementById('accuracy').innerText = 0.00;
-	document.getElementById('answers-correct').innerText = 0;
-	document.getElementById('answers-incorrect').innerText = 0;
-	document.getElementById('total-questions').innerText = 0;
-	document.getElementById('bonus-count').innerText = 0;
-	document.getElementById('bonus-total').innerText = 0;
+	stats.streak = 0;
+	stats.bank = 0;
+	stats.meanWin = 0;
+	stats.medianWin = 0;
+	stats.maxbank = 0;
+	stats.accuracy = 0.00;
+	stats.correct = 0;
+	stats.incorrect = 0;
+	stats.questions = 0;
+	stats.bonusCount = 0;
+	stats.bonusTotal = 0;
+	updateAllStats();
+}
+
+function updateAllStats(){
+	document.getElementById('streak-count').innerText = stats.streak;
+	document.getElementById('player-bank').innerText = stats.bank;
+	document.getElementById('mean-winnings').innerText = stats.meanWin;
+	document.getElementById('median-winnings').innerText = stats.medianWin;
+	document.getElementById('max-bank').innerText = stats.maxbank;
+	document.getElementById('accuracy').innerText = stats.accuracy;
+	document.getElementById('answers-correct').innerText = stats.correct;
+	document.getElementById('answers-incorrect').innerText = stats.incorrect;
+	document.getElementById('total-questions').innerText = stats.questions;
+	document.getElementById('bonus-count').innerText = stats.bonusCount;
+	document.getElementById('bonus-total').innerText = stats.bonusTotal;
 }
 
 function allowDifficultySelection(){
@@ -99,7 +114,6 @@ function allowDifficultySelection(){
 }
 
 function selectDifficulty(){
-	console.log(this.id);
 	var difficulty = this.id;
 	var buttons = document.getElementsByClassName('dif-button');
 	var length = buttons !== null ? buttons.length : 0;
@@ -114,13 +128,13 @@ function selectDifficulty(){
 function startGame(difficulty){
 	switch(difficulty){
 		case 'deasy':
-			//function
+			generateQuestion('easy');
 			break;
 		case 'dmedium':
-			//function
+			generateQuestion('medium');
 			break;
 		case 'dhard':
-			//function
+			generateQuestion('hard');
 			break;
 		default:
 			console.log('unknown difficulty');
@@ -128,43 +142,176 @@ function startGame(difficulty){
 	}
 }
 
-function generateQuestion(){
+function generateQuestion(difficulty){
 	//1 decide on roll based on dice probability
+	var call = diceRoll();
+	var question = 'Call: ' + call + '<br>The point is: ' + call;
+	//this particular bet will be a multiple of 5 between 5 and 25
+	//also, for all future bets, ensure the bet is ONLY AN INTEGER!!
+	var betAmount = parseInt(Math.floor((Math.random()*5) + 1) * 5);
+	question += '<br>Pass line: $' + betAmount;
+	question += '<br>Pass line odds: $' + parseInt(Math.floor((Math.random()*5) + 1) * 10);
+	question += '<br><br>Winnings paid = ?';
+	document.getElementById('exam-question').innerHTML = question;
 	//2 decide on type of bet (come, dc, pass, odds, place)
 	//3 calculate answer
 	//4. populate dom with question & start winnings timer
+	timer.interval();
 	//5. on answer submission, log current winnings timer value
 	//6. compare answer to calculated answer
 	//6.5 update dom with answer and explanation.
 	//6.6 update stats accordingly
 	//6.75 replace answer form with button for "next"
-	var call = 0;
+	
+	enterAnswer();
 }
 
-function enterRequest(){
+function diceRoll(){
+	var num = Math.random();
+	//2 = 1/36
+	//3 = 2/36
+	//4 = 3/36
+	//5 = 4/36
+	//6 = 5/36
+	//7 = 6/36
+	//8 = 5/36
+	//9 = 4/36
+	//10 = 3/36
+	//11 = 2/36
+	//12 = 1/36
+	// switch(num){
+	// 	case num<(1/36):
+	// 		roll = 2;
+	// 		break;
+	// 	case num<(3/36):
+	// 		roll = 3;
+	// 		break;
+	// 	case num<(6/36):
+	// 		roll = 4;
+	// 		break;
+	// 	case num<(10/36):
+	// 		roll = 5;
+	// 		break;
+	// 	case num<(15/36):
+	// 		roll = 6;
+	// 		break;
+	// 	case num<(21/36):
+	// 		roll = 7;
+	// 		break;
+	// 	case num<(13/18):
+	// 		roll = 8;
+	// 		break;
+	// 	case num<(5/6):
+	// 		roll = 9;
+	// 		break;
+	// 	case num<(11/13):
+	// 		roll = 10;
+	// 		break;
+	// 	case num<(35/36):
+	// 		roll = 11;
+	// 		break;
+	// 	case num<1:
+	// 		roll = 12;
+	// 		break;
+	// 	default:
+	// 		console.log('unknown roll');
+	// 		break;
+	// }
+	//return roll;
+	if(num<(1/36)){
+		return 2;
+	}else if(num<(3/36)){
+		return 3;
+	}else if(num<(6/36)){
+		return 4;
+	}else if(num<(10/36)){
+		return 5;
+	}else if(num<(15/36)){
+		return 6;
+	}else if(num<(21/36)){
+		return 7;
+	}else if(num<(13/18)){
+		return 8;
+	}else if(num<(5/6)){
+		return 9;
+	}else if(num<(11/13)){
+		return 10;
+	}else if(num<(35/36)){
+		return 11;
+	}else if(num<1){
+		return 12;
+	}else{
+		console.log('unknown roll');
+	}
+}
+
+function betType(roll){
+	switch(roll){
+		case 2:
+			//
+			break;
+	}
+
+}
+
+function enterAnswer(){
 	document.getElementById('answer-button').addEventListener('click', function(event){
 		event.preventDefault();
+		timer.answer = true;
+		var potentialWin = timer.win;
+		document.getElementById('answer-button').removeEventListener('click', enterAnswer, false);
 		var answer = document.getElementById('input-answer').value;
-		document.getElementById('input-bet').value = '';
-		//evaluate the request
+		console.log('answer provided: ' + answer);
+		document.getElementById('input-answer').value = '';
+		document.getElementById('input-answer').placeholder = 'next';
+		document.getElementById('input-answer').title = 'please press enter for the next question.';
+		document.getElementById('answer-button').value = 'next question';
+		document.getElementById('answer-button').title = 'press enter or click here for the next question.';
+		//document.getElementById('answer-button').id = 'next-button';
+		// document.getElementById('next-button').addEventListener('click', function(event){
+		// 	event.preventDefault();
+		// 	document.getElementById('exam-answer-form').innerHTML = '<form id = "form-input-answer">'+
+		// 		'$<input type = "number" id="input-answer" placeholder="your answer" title="please type your numerical answer here">'+
+		// 		' <input id = "answer-button" type = "submit" value = "submit" title="after typing your answer, '+
+		// 		'click this button (or press the enter key on your keyboard) to submit your answer"></form>';
+		// 	document.getElementById('next-button').removeEventListener('click', false);
+		// 	generateQuestion();
+		// });
+		//showAnswer() and explanation;
+
+		//document.getElementById('form-input-answer').innerHTML = '<input id = "next-button" type = "submit" value = "next question" title = "press enter or click here for the next question.">';
+		// document.getElementById('next-button').addEventListener('click', function(event){
+		// 	event.preventDefault();
+		// 	document.getElementById('exam-answer-form').innerHTML = '<form id = "form-input-answer">'+
+		// 		'$<input type = "number" id="input-answer" placeholder="your answer" title="please type your numerical answer here">'+
+		// 		' <input id = "answer-button" type = "submit" value = "submit" title="after typing your answer, '+
+		// 		'click this button (or press the enter key on your keyboard) to submit your answer"></form>';
+		// 	generateQuestion();
+		// });
 	});
 }
 var timer =
 {
-	valueStart: 500,
+	win: 500,
+	answer: false,
 	interval: function(){
 		//every second, decrease 1/15 of 500 = 33 1/3
 		document.getElementById('countdown').className += ' enhanced';
 		counter = setInterval(timer.updatePossWin, 30);
 	},
 	updatePossWin: function(){
-		if(timer.valueStart === 0){
+		if(timer.answer){
+			timer.stop();
+			document.getElementById('countdown').className = 'content-header';
+			return;
+		}else if(timer.win === 0){
 			document.getElementById('countdown').innerText = '$-0-';
 			timer.stop();
 			return;
+		}else{
+			document.getElementById('countdown').innerText = '$' + timer.win;
+			timer.win --;
 		}
-		document.getElementById('countdown').innerText = '$' + timer.valueStart;
-		timer.valueStart --;
 	},
 	stop: function(){
 		clearInterval(counter);

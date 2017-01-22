@@ -205,7 +205,10 @@
 	background-color: rgba(242, 242, 242, 1);
 	color: black;
 	text-align: center;
-	min-height:280px;
+	min-height:250px;
+	padding:8px;
+	font-size:18px;
+	line-height:20px;
 }
 
 .content-bottom{
@@ -266,6 +269,7 @@
 	min-height:120px;
 	padding:10px;
 	line-height:20px;
+	font-size:15px;
 	text-align: left;
 	text-align: justify;
 }
@@ -277,10 +281,20 @@
 
 #form-input-answer{
 	text-align:center;
-	font-size: 15px;
+	font-size: 23px;
+	margin-top:14px;
+}
+
+#input-answer{
+	width: 150px;
+    text-align: center;
+    font-size: 1em;
 }
 
 #answer-button{
-	height:36px;
-	vertical-align: top;
+	font-size: 1em;
+}
+
+#next-button{
+	font-size: 1em;
 }
