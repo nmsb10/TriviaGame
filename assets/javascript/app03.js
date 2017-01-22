@@ -50,6 +50,7 @@ var dateFun = {
 var stats = {
 	streak: 0,
 	bank:0,
+	wins:[],
 	meanWin:0,
 	medianWin:0,
 	maxbank:0,
@@ -64,6 +65,11 @@ var stats = {
 function begin(){
 	document.getElementById('start-button-div').addEventListener('click', function(event){
 		event.preventDefault();
+		timer.answer = true;
+		document.getElementById('exam-answer-form').innerHTML = '<form id = "form-input-answer">'+
+			'$<input type = "number" id="input-answer" placeholder="your answer" title="please type your numerical answer here">'+
+			' <input id = "answer-button" type = "submit" value = "submit" title="after typing your answer, '+
+			'click this button (or press the enter key on your keyboard) to submit your answer"></form>';
 		document.getElementById('sb-center').style.color = "lime";
 		clearBoard();
 		allowDifficultySelection();
@@ -73,6 +79,7 @@ function begin(){
 function clearBoard(){
 	stats.streak = 0;
 	stats.bank = 0;
+	stats.wins = [];
 	stats.meanWin = 0;
 	stats.medianWin = 0;
 	stats.maxbank = 0;
@@ -143,6 +150,11 @@ function startGame(difficulty){
 }
 
 function generateQuestion(difficulty){
+	var diffChoice = difficulty;
+	//reset timer.win
+	timer.win = 500;
+	stats.maxbank += timer.win;
+	timer.answer = false;
 	//1 decide on roll based on dice probability
 	var call = diceRoll();
 	var question = 'Call: ' + call + '<br>The point is: ' + call;
@@ -258,38 +270,52 @@ function enterAnswer(){
 	document.getElementById('answer-button').addEventListener('click', function(event){
 		event.preventDefault();
 		timer.answer = true;
-		var potentialWin = timer.win;
-		document.getElementById('answer-button').removeEventListener('click', enterAnswer, false);
-		var answer = document.getElementById('input-answer').value;
-		console.log('answer provided: ' + answer);
-		document.getElementById('input-answer').value = '';
-		document.getElementById('input-answer').placeholder = 'next';
-		document.getElementById('input-answer').title = 'please press enter for the next question.';
-		document.getElementById('answer-button').value = 'next question';
-		document.getElementById('answer-button').title = 'press enter or click here for the next question.';
-		//document.getElementById('answer-button').id = 'next-button';
-		// document.getElementById('next-button').addEventListener('click', function(event){
-		// 	event.preventDefault();
-		// 	document.getElementById('exam-answer-form').innerHTML = '<form id = "form-input-answer">'+
-		// 		'$<input type = "number" id="input-answer" placeholder="your answer" title="please type your numerical answer here">'+
-		// 		' <input id = "answer-button" type = "submit" value = "submit" title="after typing your answer, '+
-		// 		'click this button (or press the enter key on your keyboard) to submit your answer"></form>';
-		// 	document.getElementById('next-button').removeEventListener('click', false);
-		// 	generateQuestion();
-		// });
-		//showAnswer() and explanation;
-
-		//document.getElementById('form-input-answer').innerHTML = '<input id = "next-button" type = "submit" value = "next question" title = "press enter or click here for the next question.">';
-		// document.getElementById('next-button').addEventListener('click', function(event){
-		// 	event.preventDefault();
-		// 	document.getElementById('exam-answer-form').innerHTML = '<form id = "form-input-answer">'+
-		// 		'$<input type = "number" id="input-answer" placeholder="your answer" title="please type your numerical answer here">'+
-		// 		' <input id = "answer-button" type = "submit" value = "submit" title="after typing your answer, '+
-		// 		'click this button (or press the enter key on your keyboard) to submit your answer"></form>';
-		// 	generateQuestion();
-		// });
+		displayAnswer();
 	});
 }
+
+function displayAnswer(){
+	var currentWin = timer.win;
+	console.log(currentWin);
+	stats.questions ++;
+	//remember: updateMedian will automatically add the currentWin to the stats.wins array, in ascending order.
+	stats.medianWin = updateMedian(stats.wins, currentWin).toFixed(2);
+	stats.meanWin = calculateMean(stats.wins, stats.questions,2);
+	//document.getElementById('answer-button').removeEventListener('click', enterAnswer, false);
+	var answer = document.getElementById('input-answer').value;
+	console.log('answer provided: ' + answer);
+	console.log(stats);
+	updateAllStats();
+	//document.getElementById('input-answer').value = '';
+	//document.getElementById('input-answer').placeholder = 'next';
+	//document.getElementById('input-answer').title = 'please press enter for the next question.';
+	//document.getElementById('answer-button').value = 'next question';
+	//document.getElementById('answer-button').title = 'press enter or click here for the next question.';
+	//document.getElementById('answer-button').id = 'next-button';
+	// document.getElementById('next-button').addEventListener('click', function(event){
+	// 	event.preventDefault();
+	// 	document.getElementById('exam-answer-form').innerHTML = '<form id = "form-input-answer">'+
+	// 		'$<input type = "number" id="input-answer" placeholder="your answer" title="please type your numerical answer here">'+
+	// 		' <input id = "answer-button" type = "submit" value = "submit" title="after typing your answer, '+
+	// 		'click this button (or press the enter key on your keyboard) to submit your answer"></form>';
+	// 	document.getElementById('next-button').removeEventListener('click', false);
+	// 	generateQuestion();
+	// });
+	//showAnswer() and explanation;
+
+	document.getElementById('form-input-answer').innerHTML = '<input id = "next-button" type = "submit" value = "next question" title = "press enter or click here for the next question.">';
+	document.getElementById('next-button').addEventListener('click', function(event){
+		event.preventDefault();
+		document.getElementById('countdown').className = 'content-header';
+		document.getElementById('exam-answer-form').innerHTML = '<form id = "form-input-answer">'+
+			'$<input type = "number" id="input-answer" placeholder="your answer" title="please type your numerical answer here">'+
+			' <input id = "answer-button" type = "submit" value = "submit" title="after typing your answer, '+
+			'click this button (or press the enter key on your keyboard) to submit your answer"></form>';
+		generateQuestion();
+	});
+
+}
+
 var timer =
 {
 	win: 500,
@@ -300,6 +326,8 @@ var timer =
 		counter = setInterval(timer.updatePossWin, 30);
 	},
 	updatePossWin: function(){
+		document.getElementById('countdown').innerText = '$' + timer.win;
+		timer.win --;
 		if(timer.answer){
 			timer.stop();
 			document.getElementById('countdown').className = 'content-header';
@@ -308,12 +336,71 @@ var timer =
 			document.getElementById('countdown').innerText = '$-0-';
 			timer.stop();
 			return;
-		}else{
-			document.getElementById('countdown').innerText = '$' + timer.win;
-			timer.win --;
 		}
 	},
 	stop: function(){
 		clearInterval(counter);
 	}
 };
+
+function calculateMean(array, entries, decimalPlaces){
+	//forEach? reduce?
+	var sum = 0;
+	for(var i = 0; i<array.length; i++){
+		sum += array[i];
+	}
+	return (sum / entries).toFixed(decimalPlaces);
+}
+
+function updateMedian(array, newEntry){
+	//first correctly add newEntry to the (already sorted) array
+	// if(array.length === 0){
+	// 	array.push(newEntry);
+	// 	return array[0];
+	// }else if(array.length === 1){
+	// 	if(array[0]<newEntry){
+	// 		array.push(newEntry);
+	// 	}else{
+	// 		//splice: at position 0: Add newEntry and Remove 0 items
+	// 		array.splice(0,0,newEntry);
+	// 	}
+	// 	return calculateMean(array, array.length, 2);
+	// }else if(array.length === 2){
+	// 	var added = false;
+	// 	for(var i = 0; i < 2; i++){
+	// 		if(array[i]>newEntry){
+	// 			array.splice(i,0,newEntry);
+	// 			added = true;
+	// 		}
+	// 	}
+	// 	if(!added){
+	// 		array.push(newEntry);
+	// 	}
+	// 	return array[Math.floor(array.length/2)];
+	// }else{
+	// 	//array has 3 or more entries
+	// 	//correctly add newEntry, then return the median
+	// 	//first check if array has even or odd number of items
+	// 	var middle;
+	// 	if(array.length%2 !== 0){//odd number
+	// 		middle = array[Math.floor(array.length/2)];
+	// 	}else{//even number
+	// 		middle = (array[Math.floor(array.length/2)]+array[Math.floor(array.length/2)-1])/2;
+	// 	}
+	// 	if(newEntry === middle){
+	// 		array.splice(middle,0,newEntry);
+	// 	}else if(newEntry > middle){
+
+	// 	}
+
+	// }
+
+	array.push(newEntry);
+	//same way to sort an unsorted array:
+	array.sort(function(a, b){return a-b;});
+	if(array.length%2 !== 0){//odd number
+		return array[Math.floor(array.length/2)];
+	}else{
+		return (array[Math.floor(array.length/2)]+array[Math.floor(array.length/2)-1])/2;
+	}
+}
