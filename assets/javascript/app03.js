@@ -60,9 +60,8 @@ function begin(){
 }
 
 function prepareForQuestion(){
-	//reset timer variables:
-	timer.win = 500;
-	timer.answer = false;
+	//setting timer.answer = true stops the timer counter if you click the start button during a countdown
+	timer.answer = true;
 	document.getElementById('countdown').className = 'content-header';
 	document.getElementById('exam-answer-form').innerHTML = '<form id = "form-input-answer">'+
 		'$<input type = "number" id="input-answer" placeholder="your answer" title="please type your numerical answer here">'+
@@ -144,6 +143,8 @@ function startGame(difficulty){
 }
 
 function generateQuestion(difficulty){
+	timer.answer = false;
+	timer.win = 500;
 	var diffChoice = difficulty;
 	stats.maxbank += timer.win;
 	stats.questions ++;
