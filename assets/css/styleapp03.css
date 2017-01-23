@@ -165,10 +165,6 @@
 	padding: 0 8px;
 }
 
-#player-bank{
-	padding-left: 2px;
-}
-
 #center-content{
 	margin-top: 10px;
 }
@@ -303,4 +299,26 @@
 #next-button{
 	font-size: 1em;
 	cursor: pointer;
+}
+
+#explanation-header{
+	margin-top:11px;
+	font-size:19px;
+	text-align:center;
+	line-height:initial;
+}
+
+#explanation-content{
+	border-radius: 0 0 5px 5px;
+	min-height:70px;
+	padding:10px;
+	line-height:20px;
+	font-size:15px;
+	text-align: left;
+	text-align: justify;
+}
+
+.answer-div{
+	font-size: 19px;
+	font-weight: 700;
 }

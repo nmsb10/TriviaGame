@@ -148,6 +148,7 @@ function generateQuestion(difficulty){
 	stats.maxbank += timer.win;
 	stats.questions ++;
 	var generatedQ = developQuestion(diceRoll());
+	console.log(generatedQ);
 	var generatedA = developAnswer(generatedQ);
 	populateDomWithQuestion(generatedQ);
 	timer.interval();
@@ -281,6 +282,13 @@ function developQuestion(roll){
 		//this particular bet will be a multiple of 1 between 1 and 10
 		easywayHop: parseInt(Math.floor((Math.random()*10) + 1) * 1)
 	};
+
+	//betAmountsMedium:
+	//user "presses" eg 3 units.
+	//betamountshard:
+	//user takes down a bet? use odd values for odds on 5 and 9
+	//larger values
+	//player wins a come bet w/odds, has a new come bet on the table
 	switch(roll){
 		case 2:
 			if(pick<0.5){
@@ -733,7 +741,15 @@ function developQuestion(roll){
 
 function developAnswer(question){
 	//remember: here the input question = betQ object from developQuestion
+	//analyze the bet to calculate the solution and explanation
 	//return an answer object
+	var betA = {
+		answer: 55,//have numerical answer total amount here
+		flatBetExplanation: 'The pass line bet pays even money.',
+		otherBetExplanation: 'Odds on 8 pay the fair 6 to 5 because there are six ways to roll a 7 and five ways to roll the 8.',
+		showMath:'pass line of $10: 1 to 1 = $10<br>Odds taken on 8 of $20: (6/5) * $20 = $24<br>TOTAL = $34'
+	};
+	return betA;
 }
 
 function populateDomWithQuestion(question){
@@ -744,13 +760,15 @@ function populateDomWithQuestion(question){
 	show += '<br>' + question.other + question.otherAmount;
 	show += '<br><br>' + question.end;
 	document.getElementById('exam-question').innerHTML = show;
+	document.getElementById('explanation-content').innerHTML = 'good luck!';
 }
 
 function enableAnswer(answer){
 	document.getElementById('answer-button').addEventListener('click', function(event){
 		event.preventDefault();
 		timer.answer = true;
-		displayAnswer(answer);
+		//populate DOM with answer explanation
+		displayAnswerOnDOM(answer);
 	});
 }
 
@@ -762,26 +780,40 @@ function arrayElements(array){
 	}
 }
 
-function displayAnswer(correctAnswer){
+function displayAnswerOnDOM(correctAnswer){
+	var comments = {
+		correct:['That\'s right!', 'Good job.', 'You got it.', 'Correct.', 'Excellent.'],
+		incorrect:['Are you sure? Check the explanation.','Sorry, review the explanation.','Does this number look more accurate?']
+	};
 	var currentWin = timer.win;
 	var userAnswer = parseInt(document.getElementById('input-answer').value);
-	var answer = correctAnswer;
-	answer = 55;
-	//offer "activate bonus" where is eg streak of 5 questions, bonus points received.
-	//ALTERNATIVE: once a streak occurs, beginning amount of winnings for each question increases
-	//http://www.w3schools.com/jsref/met_document_addeventlistener.asp
-	// document.addEventListener("mouseover", myFunction);
-	// document.addEventListener("click", someOtherFunction);
-	// document.addEventListener("mouseout", someOtherFunction);
-	if(answer === userAnswer){
+	if(!userAnswer){
+		userAnswer = 'nothing';
+	}
+	document.getElementById('exam-question').innerHTML += '<br><br><div class = "answer-div">You entered: $' + userAnswer + '</div>';
+	//develop answer explanation
+	var solution = 'ANSWER: $' + correctAnswer.answer;
+	solution += '<br>' + correctAnswer.flatBetExplanation;
+	solution += '<br>' + correctAnswer.otherBetExplanation;
+	solution += '<hr>Calculation:<br>' + correctAnswer.showMath;
+	if(correctAnswer.answer === userAnswer){
 		stats.streak ++;
+		//now, analyze stats.streak value
+		//offer "activate bonus" where is eg streak of 5 questions, bonus points received.
+		//ALTERNATIVE: once a streak occurs, beginning amount of winnings for each question increases
+		//http://www.w3schools.com/jsref/met_document_addeventlistener.asp
+		// document.addEventListener("mouseover", myFunction);
+		// document.addEventListener("click", someOtherFunction);
+		// document.addEventListener("mouseout", someOtherFunction);
 		stats.bank += currentWin;
 		addToArrayAsc(stats.wins, currentWin, 0, arrayElements(stats.wins));
 		stats.correct ++;
-	}else if(userAnswer !== answer){
+		document.getElementById('exam-question').innerHTML += comments.correct[Math.floor(Math.random()*comments.correct.length)];
+	}else if(userAnswer !== correctAnswer.answer){
 		stats.streak = 0;
 		addToArrayAsc(stats.wins, 0, 0, 0);
 		stats.incorrect ++;
+		document.getElementById('exam-question').innerHTML += comments.incorrect[Math.floor(Math.random()*comments.incorrect.length)];
 	}
 	if(currentWin === 0){
 		stats.streak = 0;
@@ -791,6 +823,9 @@ function displayAnswer(correctAnswer){
 	stats.accuracy = (stats.correct * 100 / stats.questions).toFixed(2);
 	updateAllStats();
 	//show answer with explanation on DOM
+	document.getElementById('exam-question').innerHTML += '<br><div class = "answer-div">ANSWER: $' + correctAnswer.answer + '</div>';
+	document.getElementById('explanation-content').innerHTML = solution;
+	
 
 
 
@@ -819,14 +854,14 @@ var timer =
 		counter = setInterval(timer.updatePossWin, 30);
 	},
 	updatePossWin: function(){
-		document.getElementById('countdown').innerText = '$' + timer.win;
+		document.getElementById('countdown').innerText = timer.win;
 		timer.win --;
 		if(timer.answer){
 			timer.stop();
 			document.getElementById('countdown').className = 'content-header';
 			return;
 		}else if(timer.win === 0){
-			document.getElementById('countdown').innerText = '$-0-';
+			document.getElementById('countdown').innerText = '-0-';
 			timer.stop();
 			return;
 		}
