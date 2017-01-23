@@ -162,7 +162,11 @@
 	vertical-align: top;
 	font-size: 18px;
 	line-height: 40px;
-	padding: 0 7px;
+	padding: 0 8px;
+}
+
+#player-bank{
+	padding-left: 2px;
 }
 
 #center-content{
