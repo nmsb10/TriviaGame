@@ -67,8 +67,8 @@ var tableBets = {
 };
 
 function begin(){
-	console.log('come out roll!!!!! Let\'s play.');
 	updateRollButton();
+	//input number of extra players desired:
 	var extraPlayers = 	generateAdditionalPlayers(2);
 	// extraPlayers.map(displaybalance);
 	// function displaybalance(item, index){
@@ -89,6 +89,7 @@ function generateAdditionalPlayers(newPlayers){
 		console.log(player.name + " balance = " + player.balance);
 		player.currentBets = new PlayerBets();
 		player.bettingProfile = new BettingProfile();
+		//reevaluate player betting profile here to assign their desired bets based on the roll status and/or other criteria
 		more.push(player);
 	}
 	return more;
@@ -96,10 +97,13 @@ function generateAdditionalPlayers(newPlayers){
 
 //store all bets, balance, betting patterns and preferences by an individual player
 var Player = function(){
-	this.name = name;
+	this.name = 'name';
 	this.balance = 0;
 	this.currentBets = {};//equal to PlayerBets
+	//betting profile defines whether or not player makes certain actions
 	this.bettingProfile = {};//equal to Betting Profile
+	//betAmountProfile defines how the player executes what they want to do based on their betting profile
+	this.betAmountProfile = {};
 };
 
 //stores all bets (and active or off status) made by all players
@@ -241,10 +245,39 @@ function activateRoll(xtraplayers){
 		resolveBets(dice.one, dice.two, xtraplayers);
 		updateRollStatus(dice.one, dice.two);
 		updateRollButton();
+		//NOW THAT ROLL STATUS IS UPDATED, RE-EVALUTE PLAYER BETTINGPROFILE
+		//reevaluateBettingProfiles(xtraplayers);
 		acceptBets(xtraplayers);
 		// event.preventDefault();
 	});
 }
+
+// function reevalueBettingProfiles(players){
+// 	for (var i = 0; i < players.length; i ++){
+// 		switch(players[i].name){
+// 			//have case for each player
+// 			case 'player2':
+// 				//define probabilities for likelihood of a certain bet being made
+// 				if(Math.random() < 0.65){
+// 					a certain bet in players[i].bettingProfile = true;
+// 				}
+// 				if(Math.random() < 0.9){
+// 					a certain bet in players[i].bettingProfile = true;
+// 				}
+// 				if(Math.random() < 0){//an example of if a certain player will never make, in this case, a dc bet:
+// 					player[i].bettingProfile.dc = false;
+// 				}
+//				if(Math.random() < 0.25 && rollStatus.streak > 5){//an example of how a certain player will decide to make a place bet on 8. In case, a streak must be 5 or greater, and then this player will make the bet with 25% probability
+// 					player[i].bettingProfile.place8 = true;
+//					define amount of this place8 bet based on other criteria
+// 				}
+// 				//also define what would make a players' bet in bettingProfile false (a bet previously true)
+// 				break;
+// 			default: console.log('player not known for reevaluating betting profile');
+// 				break;
+// 		}
+// 	}
+// }
 
 function updateRollButton(){
 	if(rollStatus.comeOut){
@@ -282,6 +315,12 @@ function updateRollStatus(dieOne, dieTwo){
 function resolveBets(one, two, players){
 	var total = one + two;
 	if(rollStatus.comeOut){
+		//pay bets in the correct order:
+		//1. remove losing bets
+		//2. pay come, place, hardways, hops
+		//3. make comes and DC travel
+		//4. player updates if they want to add odds to any bets
+		//5. update individual playerBets profiles, table bets array, DOM
 		if(total === 7 || total === 11){
 			console.log(tableBets);
 			for(var i = 0; i < tableBets.passline.length; i++){

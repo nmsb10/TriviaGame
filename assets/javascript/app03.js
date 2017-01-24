@@ -882,27 +882,30 @@ function calculateMean(array, entries, decimalPlaces){
 }
 
 function addToArrayAsc(array, newEntry, low, high){
-	// var difference = high-low;
-	// var middleIndex = Math.floor((low + high)/2);
-	// if(difference < 2){
-	// 	if(newEntry <= array[low]){
-	// 		array.splice(low, 0, newEntry);
-	// 		return;
-	// 	}else{
-	// 		array.splice(high, 0, newEntry);
-	// 		return;
-	// 	}
-	// }else if(newEntry === array[middleIndex]){
-	// 	array.splice(middleIndex, 0, newEntry);
-	// 	return;
-	// }else if(newEntry > array[middleIndex]){
-	// 	addToArrayAsc(array, newEntry, middleIndex, high);
-	// }else{
-	// 	addToArrayAsc(array, newEntry, low, middleIndex);
-	// }
+	var difference = high-low;
+	//for an array with an even number of elements, this middleIndex will be the element just below the middle
+	var middleIndex = Math.floor((low + high)/2);
+	if(difference < 2){
+		if(newEntry <= array[low]){
+			array.splice(low, 0, newEntry);
+			return;
+		}else{
+			//use middleIndex here instead of high
+			//could also just use low + 1
+			array.splice(middleIndex + 1, 0, newEntry);
+			return;
+		}
+	}else if(newEntry === array[middleIndex]){
+		array.splice(middleIndex, 0, newEntry);
+		return;
+	}else if(newEntry > array[middleIndex]){
+		addToArrayAsc(array, newEntry, middleIndex, high);
+	}else{
+		addToArrayAsc(array, newEntry, low, middleIndex);
+	}
 	//can also do this to sort an unsorted array:
-	array.push(newEntry);
-	array.sort(function(a, b){return a-b;});
+	// array.push(newEntry);
+	// array.sort(function(a, b){return a-b;});
 }
 
 function calculateMedian(array){

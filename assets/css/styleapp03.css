@@ -132,13 +132,13 @@
     opacity:0.3;
 }
 
-.dif-button:hover{
-	box-shadow: 5px 5px 8px 1px rgba(0,0,0,0.7);
-	color: lime;
-}
-
 .full-opacity{
 	opacity: 1;
+}
+
+.full-opacity:hover{
+	box-shadow: 5px 5px 8px 1px rgba(0,0,0,0.7);
+	color: lime;
 	cursor: pointer;
 }
 
