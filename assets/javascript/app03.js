@@ -236,7 +236,7 @@ function diceRoll(){
 }
 
 function developQuestion(roll){
-	//function to generate question object and answer object
+	//function to generate question object
 	var betQ = {
 		call: roll,
 		point:0,
@@ -292,7 +292,7 @@ function developQuestion(roll){
 	//player wins a come bet w/odds, has a new come bet on the table
 	switch(roll){
 		case 2:
-			if(pick<0.5){
+			if(pick<0.4){
 				betQ.type = 'don\'t pass';
 				betQ.comment = 'Take the line.';
 				betQ.comment2 = 'Pay the don\'ts.';
@@ -302,7 +302,7 @@ function developQuestion(roll){
 				betQ.other = '';
 				betQ.otherAmount = '';
 				betQ.end = 'Winnings paid = ?';
-			}else if(pick<1){
+			}else if(pick<0.8){
 				//dont come flat
 				betQ.type = 'don\'t come';
 				betQ.comment = '2 craps 2.';
@@ -313,10 +313,19 @@ function developQuestion(roll){
 				betQ.other = '';
 				betQ.otherAmount = '';
 				betQ.end = 'Winnings paid = ?';
+			}else if(pick<1){
+				betQ.type = 'hard way hop';
+				betQ.comment = 'Aces. 2 craps 2. ';
+				betQ.comment2 = '';
+				betQ.flatBetName = 'Aces: $';
+				betQ.flatAmount = betAmountsEasy.hardwayHop;
+				betQ.other = '';
+				betQ.otherAmount = '';
+				betQ.end = 'Winnings paid = ?';
 			}
 			break;
 		case 3:
-			if(pick<0.5){
+			if(pick<0.45){
 				betQ.type = 'don\'t pass';
 				betQ.comment = 'Take the line.';
 				betQ.comment2 = 'Pay the don\'ts.';
@@ -326,7 +335,7 @@ function developQuestion(roll){
 				betQ.other = '';
 				betQ.otherAmount = '';
 				betQ.end = 'Winnings paid = ?';
-			}else if(pick<1){
+			}else if(pick<0.9){
 				//dont come flat
 				betQ.type = 'don\'t come';
 				betQ.comment = '3 craps 3.';
@@ -334,6 +343,15 @@ function developQuestion(roll){
 				betQ.flatBetName = 'Don\'t come: $';
 				//this particular bet will be a multiple of 5 between 5 and 25
 				betQ.flatAmount = parseInt(Math.floor((Math.random()*5) + 1) * 5);
+				betQ.other = '';
+				betQ.otherAmount = '';
+				betQ.end = 'Winnings paid = ?';
+			}else if(pick<1){
+				betQ.type = 'easy way hop';
+				betQ.comment = '3. Ace - deuce.';
+				betQ.comment2 = '';
+				betQ.flatBetName = 'Ace-deuce: $';
+				betQ.flatAmount = betAmountsEasy.easywayHop;
 				betQ.other = '';
 				betQ.otherAmount = '';
 				betQ.end = 'Winnings paid = ?';
@@ -707,6 +725,36 @@ function developQuestion(roll){
 				betQ.end = 'Winnings paid = ?';
 			}
 			break;
+		case 11:
+			if(pick<0.4){
+				betQ.type = 'passline';
+				betQ.comment = 'Eleven. Front line winner.';
+				betQ.comment2 = '';
+				betQ.flatBetName = 'Pass line: $';
+				betQ.flatAmount = betAmountsEasy.passAndComeFlat;
+				betQ.other = '';
+				betQ.otherAmount = '';
+				betQ.end = 'Winnings paid = ?';
+			}else if(pick<0.8){
+				betQ.type = 'come bet';
+				betQ.comment = '11. Yo-leven.';
+				betQ.comment2 = '';
+				betQ.flatBetName = 'Come bet: $';
+				betQ.flatAmount = betAmountsEasy.passAndComeFlat;
+				betQ.other = '';
+				betQ.otherAmount = '';
+				betQ.end = 'Winnings paid = ?';
+			}else if(pick<1){
+				betQ.type = 'easy way hop';
+				betQ.comment = 'Yo-leven.';
+				betQ.comment2 = '';
+				betQ.flatBetName = 'Eleven: $';
+				betQ.flatAmount = betAmountsEasy.easywayHop;
+				betQ.other = '';
+				betQ.otherAmount = '';
+				betQ.end = 'Winnings paid = ?';
+			}
+			break;
 		case 12:
 			if(pick<1){
 				betQ.type = 'don\'t pass';
@@ -720,7 +768,7 @@ function developQuestion(roll){
 				betQ.end = 'Winnings paid = ?';
 			}
 			break;
-		case 7 || 11:
+		case 7:
 			if(pick<1){
 				betQ.type = 'don\'t pass';
 				betQ.comment = rollResponses.seven[Math.floor(Math.random()*rollResponses.seven.length)];
