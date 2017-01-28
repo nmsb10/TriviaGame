@@ -148,6 +148,23 @@ function generateQuestion(difficulty){
 	var diffChoice = difficulty;
 	stats.maxbank += timer.win;
 	stats.questions ++;
+	//create new rollStatus object to track rolls
+	//ie start with come out, then subsequent rolls status depends on prior roll/ whether there is a point, etc
+	//var button = document.getElementById('buttonID')
+	//button.addEventListener('click', function(){});
+	//button.classList.add('show');
+	//button.classList.remove('hide');
+	//appendchild??
+// 	**http://www.w3schools.com/js/js_datatypes.asp
+// **http://www.w3schools.com/jsref/jsref_map.asp
+// **http://www.w3schools.com/jsref/jsref_forEach.asp
+// **http://www.w3schools.com/jsref/jsref_reduce.asp
+// **http://www.w3schools.com/jsref/jsref_join.asp
+// **filter
+// **slice
+// **http://www.w3schools.com/js/js_comparisons.asp
+// **http://www.w3schools.com/js/js_bitwise.asp
+//event.which and event.key
 	var generatedQ = developQuestion(diceRoll());
 	console.log(generatedQ);
 	var generatedA = developAnswer(generatedQ);
@@ -445,16 +462,16 @@ function developQuestion(roll){
 				betQ.other = 'Odds on the five: $';
 				betQ.otherAmount = betAmountsEasy.passAndComeOdds59;
 				betQ.end = 'Winnings paid = ?';
-			}else if(pick <0.55){
-				//buy bet
-				betQ.type = 'buy bet';
-				betQ.comment = rollResponses.five[Math.floor(Math.random()*rollResponses.five.length)];
-				betQ.comment2 = '';
-				betQ.flatBetName = 'Buy the five: $';
-				betQ.flatAmount = betAmountsEasy.buyFiveAndNine;
-				betQ.other = 'Same bet!';
-				betQ.otherAmount = '';
-				betQ.end = 'Winnings paid = ?';
+			// }else if(pick <0.55){
+			// 	//buy bet
+			// 	betQ.type = 'buy bet';
+			// 	betQ.comment = rollResponses.five[Math.floor(Math.random()*rollResponses.five.length)];
+			// 	betQ.comment2 = '';
+			// 	betQ.flatBetName = 'Buy the five: $';
+			// 	betQ.flatAmount = betAmountsEasy.buyFiveAndNine;
+			// 	betQ.other = 'Same bet!';
+			// 	betQ.otherAmount = '';
+			// 	betQ.end = 'Winnings paid = ?';
 			}else if(pick <0.9){
 				//place bet
 				betQ.type = 'place bet';
@@ -625,16 +642,16 @@ function developQuestion(roll){
 				betQ.other = 'Odds on the nine: $';
 				betQ.otherAmount = betAmountsEasy.passAndComeOdds59;
 				betQ.end = 'Winnings paid = ?';
-			}else if(pick <0.55){
-				//buy bet
-				betQ.type = 'buy bet';
-				betQ.comment = rollResponses.nine[Math.floor(Math.random()*rollResponses.nine.length)];
-				betQ.comment2 = '';
-				betQ.flatBetName = 'Buy the nine: $';
-				betQ.flatAmount = betAmountsEasy.buyFiveAndNine;
-				betQ.other = 'Same bet!';
-				betQ.otherAmount = '';
-				betQ.end = 'Winnings paid = ?';
+			// }else if(pick <0.55){
+			// 	//buy bet
+			// 	betQ.type = 'buy bet';
+			// 	betQ.comment = rollResponses.nine[Math.floor(Math.random()*rollResponses.nine.length)];
+			// 	betQ.comment2 = '';
+			// 	betQ.flatBetName = 'Buy the nine: $';
+			// 	betQ.flatAmount = betAmountsEasy.buyFiveAndNine;
+			// 	betQ.other = 'Same bet!';
+			// 	betQ.otherAmount = '';
+			// 	betQ.end = 'Winnings paid = ?';
 			}else if(pick <0.9){
 				//place bet
 				betQ.type = 'place bet';
@@ -773,11 +790,13 @@ function developQuestion(roll){
 				betQ.type = 'don\'t pass';
 				betQ.comment = rollResponses.seven[Math.floor(Math.random()*rollResponses.seven.length)];
 				betQ.comment2 = 'Pay the don\'ts.';
+				//10 combined ways to roll 6 or 8, 8 combined ways to roll 5 or 9, 6 combined ways to roll 4 or 10; 24 total combinations
+				betQ.point = 8;//must change this so point number changes with same frequency as numbers would actually be made
 				betQ.flatBetName = 'Don\'t come: $';
 				//this particular bet will be a multiple of 5 between 5 and 25
 				betQ.flatAmount = parseInt(Math.floor((Math.random()*5) + 1) * 5);
 				betQ.other = 'don\'t come laying the odds: $';
-				betQ.otherAmount = '';
+				betQ.otherAmount = '';//laying the odds amount depends on the point so here, "easy" amounts will be laid against the point
 				betQ.end = 'Winnings paid = ?';
 			}
 			break;

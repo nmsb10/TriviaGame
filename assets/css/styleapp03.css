@@ -322,3 +322,14 @@
 	font-size: 19px;
 	font-weight: 700;
 }
+
+/*CONSIDER???:
+for centering quotes:
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}*/
