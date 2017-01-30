@@ -42,6 +42,31 @@ var dateFun = {
 	}
 };
 
+//MORE SUGGESTIONS FOR THE FUTURE:
+//after a roll, losing bets change to a red color and remain eg for 2 seconds.
+//then winning bets change to a green color with shadow with eg 2 seconds, in the actual order in which
+//bets are resolved (eg first pay come bets, then place bets, then hardways, etc)
+
+
+//player may also select "real casino mode"
+//select the level of "attitude" and "unfriendliness" or apathy of the dealer comments.
+//"dealer" may randomly (eg probability 2 - 5%) not pay wins correctly, or lock up a winning player bet "by mistake."
+//Player may press button to "call supervisor" who will "review the prior play" and correct any mis-dealings if
+//necessary. Provide justification and show calculations for decisions.
+
+//nextshooter.com/sevenexcuses
+
+//FOR INDIVIDUAL BET SECTIONS:
+//if bets = none, display: none?
+//for place bets: offer options for each number to change amount, delete, make working
+//for come bets: offer options for each bet to add or subtract odds, make odds work or off
+//if certain selections are made, change the background-color, font-color, border, etc
+
+//PRESSING KEYS:
+//eg press [certain keyboard key] to rebet last bet, save a bet combo, leave winning bets up, odds working
+//offer option to press a winning place or buy bet X units, maximum units relative to win amount, etc
+//
+
 var rollStatus = {
 	rollNumber:0,
 	comeOut: true,
@@ -625,57 +650,6 @@ function updatePlayerBalance(player){
 // 		console.log(currentBet);
 // 	});
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//to copy an array: arrayCopy = originalArray.slice(0);
-
-//answer for keeping the chat thing scrolled to bottom unless user scrolls otherwise
-	//http://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up
-
-//document.getElementsByClassName("example");
-//.value, .innerHTML
-//document.queryselector??
-//use a switch statement??
-//functions that return values??
-
-//add class to an element:
-// var d = document.getElementById("div1");
-// d.className += " otherclass"; NB the space before the otherclass name
-
-
-//http://www.w3schools.com/howto/howto_css_modals.asp
-//http://www.w3schools.com/jsref/dom_obj_document.asp
-//http://www.w3schools.com/jsref/jsref_statements.asp
-//http://www.w3schools.com/jsref/dom_obj_event.asp
 
 //https://rush.uber.com/enterprise*/
 //https://www.chase.com/*/

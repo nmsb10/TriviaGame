@@ -39,6 +39,33 @@ function showDate(){
 		// document.addEventListener("mouseout", someOtherFunction);
 
 
+//modals???
+
+
+
+//to copy an array: arrayCopy = originalArray.slice(0);
+
+//answer for keeping the chat thing scrolled to bottom unless user scrolls otherwise
+	//http://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up
+
+//document.getElementsByClassName("example");
+//.value, .innerHTML
+//document.queryselector??
+//use a switch statement??
+//functions that return values??
+
+//add class to an element:
+// var d = document.getElementById("div1");
+// d.className += " otherclass"; NB the space before the otherclass name
+
+
+//http://www.w3schools.com/howto/howto_css_modals.asp
+//http://www.w3schools.com/jsref/dom_obj_document.asp
+//http://www.w3schools.com/jsref/jsref_statements.asp
+//http://www.w3schools.com/jsref/dom_obj_event.asp
+
+
+
 
 
 
