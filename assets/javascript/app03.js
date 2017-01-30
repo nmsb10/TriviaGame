@@ -112,6 +112,7 @@ function updateAllStats(){
 	document.getElementById('total-questions').innerText = stats.questions;
 	document.getElementById('bonus-count').innerText = stats.bonusCount;
 	document.getElementById('bonus-total').innerText = stats.bonusTotal;
+	console.log(stats.wins);
 }
 
 function allowDifficultySelection(){
@@ -201,11 +202,12 @@ function diceRoll(){
 
 function developQuestion(roll){
 	//function to generate question object
-	var onlyThese = [2, 3, 4, 7, 11, 12];
-	specialRoll = onlyThese[Math.floor(Math.random()*onlyThese.length)];
+	var testNumbers = [5,9];
+	var testNumber = testNumbers[Math.floor(Math.random()*testNumbers.length)];
+	updateRollStatus(testNumber);
 	var betQ = {
 		// call: roll,
-		call: specialRoll,
+		call: testNumber,
 		type1: '',
 		type2: false,
 		comment1: '',
@@ -266,7 +268,7 @@ function developQuestion(roll){
 	//larger values
 	//player wins a come bet w/odds, has a new come bet on the table
 	var pick = Math.random();
-	switch(specialRoll){
+	switch(testNumber){
 		case 7:
 			if(rollStatus.comeOut || rollStatus.point === 0){
 				//initially set question to come out win (or if there is NO point)
@@ -304,10 +306,6 @@ function developQuestion(roll){
 				betQ.type1 = 'dontcome';
 				betQ.flatBetName = 'Don\'t come: $';
 				betQ.other = 'Don\'t come laying the odds: $';
-			}
-			//if seven is rolled on a non comeout roll, then next roll will be a comeout roll
-			if(!rollStatus.comeOut){
-				rollStatus.comeOut = true;
 			}
 			break;
 		case 11:
@@ -431,9 +429,8 @@ function developQuestion(roll){
 					betQ.flatBetName = 'four hard: $';
 					betQ.flatAmount = betAmountsEasy.hardway;
 				}
+				//options for hardway hop and easy way hop
 			}
-
-	
 	// 		}else if(pick<0.95){
 	// 			betQ.type = 'hard way hop';
 	// 			betQ.comment = rollResponses.four[0];
@@ -455,18 +452,122 @@ function developQuestion(roll){
 	// 			betQ.end = 'Winnings paid = ?';
 	// 		}
 	 		break;
+	 	case 10:
+	 		betQ.comment1 = rollResponses.ten[Math.floor(Math.random()*rollResponses.ten.length)];
+			if(pick < 0.25){
+				betQ.type1 = 'passline';
+				betQ.type2 = 'passodds';
+				betQ.comment2 = 'The point is ' + betQ.call + '. Front line winner.';
+				betQ.flatBetName = 'Pass line: $';
+				betQ.flatAmount = betAmountsEasy.passAndComeFlat;
+				betQ.other = 'Pass line odds: $';
+				betQ.otherAmount = betAmountsEasy.passAndComeOdds;
+			}else{
+				betQ.type1 = 'comebet';
+				betQ.type2 = 'comeodds';
+				betQ.comment2 = false;
+				betQ.flatBetName = 'Come bet on the ten: $';
+				betQ.flatAmount = betAmountsEasy.passAndComeFlat;
+				betQ.other = 'Odds on the ten: $';
+				betQ.otherAmount = betAmountsEasy.passAndComeOdds;
+				if(pick > 0.5){
+					betQ.type1 = 'buybet';
+					betQ.type2 = false;
+					betQ.flatBetName = 'Buy the ten: $';
+					betQ.flatAmount = betAmountsEasy.buyFourAndTen;
+					betQ.other = 'Same bet!';
+					betQ.commission = 0.05;
+					betQ.otherAmount = 0;
+				}
+				if(pick > 0.75){
+					betQ.type1 = 'placebet';
+					betQ.flatBetName = 'Place bet: $';
+					betQ.flatAmount = betAmountsEasy.placeFourAndTen;
+					betQ.commission = false;
+				}
+				if(pick > 0.92){
+					betQ.type1 = 'hardway';
+					betQ.comment1 = rollResponses.four[0];
+					betQ.flatBetName = 'ten hard: $';
+					betQ.flatAmount = betAmountsEasy.hardway;
+				}
+				//options for hardway hop and easy way hop
+			}
+			break;
 		case 5:
+			betQ.comment1 = rollResponses.five[Math.floor(Math.random()*rollResponses.five.length)];
+			if(pick < 0.25){
+				betQ.type1 = 'passline';
+				betQ.type2 = 'passodds';
+				betQ.comment2 = 'The point is ' + betQ.call + '. Front line winner.';
+				betQ.flatBetName = 'Pass line: $';
+				betQ.flatAmount = betAmountsEasy.passAndComeFlat;
+				betQ.other = 'Pass line odds: $';
+				betQ.otherAmount = betAmountsEasy.passAndComeOdds59;
+			}else{
+				betQ.type1 = 'comebet';
+				betQ.type2 = 'comeodds';
+				betQ.comment2 = false;
+				betQ.flatBetName = 'Come bet on the five: $';
+				betQ.flatAmount = betAmountsEasy.passAndComeFlat;
+				betQ.other = 'Odds on the five: $';
+				betQ.otherAmount = betAmountsEasy.passAndComeOdds59;
+				if(pick > 0.5){
+					betQ.type1 = 'buybet';
+					betQ.type2 = false;
+					betQ.flatBetName = 'Buy the five: $';
+					betQ.flatAmount = betAmountsEasy.buyFiveAndNine;
+					betQ.other = 'Same bet!';
+					betQ.commission = 0.05;
+					betQ.otherAmount = 0;
+				}
+				if(pick > 0.55){
+					betQ.type1 = 'placebet';
+					betQ.flatBetName = 'Place bet: $';
+					betQ.flatAmount = betAmountsEasy.placeFiveAndNine;
+					betQ.commission = false;
+				}
+				//options for easy way hop
+			}
+			break;
+		case 9:
+			betQ.comment1 = rollResponses.nine[Math.floor(Math.random()*rollResponses.nine.length)];
+			if(pick < 0.25){
+				betQ.type1 = 'passline';
+				betQ.type2 = 'passodds';
+				betQ.comment2 = 'The point is ' + betQ.call + '. Front line winner.';
+				betQ.flatBetName = 'Pass line: $';
+				betQ.flatAmount = betAmountsEasy.passAndComeFlat;
+				betQ.other = 'Pass line odds: $';
+				betQ.otherAmount = betAmountsEasy.passAndComeOdds59;
+			}else{
+				betQ.type1 = 'comebet';
+				betQ.type2 = 'comeodds';
+				betQ.comment2 = false;
+				betQ.flatBetName = 'Come bet on the nine: $';
+				betQ.flatAmount = betAmountsEasy.passAndComeFlat;
+				betQ.other = 'Odds on the nine: $';
+				betQ.otherAmount = betAmountsEasy.passAndComeOdds59;
+				if(pick > 0.5){
+					betQ.type1 = 'buybet';
+					betQ.type2 = false;
+					betQ.flatBetName = 'Buy the nine: $';
+					betQ.flatAmount = betAmountsEasy.buyFiveAndNine;
+					betQ.other = 'Same bet!';
+					betQ.commission = 0.05;
+					betQ.otherAmount = 0;
+				}
+				if(pick > 0.55){
+					betQ.type1 = 'placebet';
+					betQ.flatBetName = 'Place bet: $';
+					betQ.flatAmount = betAmountsEasy.placeFiveAndNine;
+					betQ.commission = false;
+				}
+				//options for easy way hop
+			}
+			break;
 		case 6:
 		case 8:
-		case 9:
-		case 10:
-			if(rollStatus.comeOut){
-				rollStatus.point = roll;
-				rollStatus.comeOut = false;
-			}
-			if(roll === rollStatus.point){
-				rollStatus.comeOut = true;
-			}
 			break;
 		default:
 			console.log('unknown roll in generateQA');
@@ -489,71 +590,10 @@ function developQuestion(roll){
 
 
 	betQ.end = 'Winnings paid = ?';
-	rollStatus.rollNumber ++;
-	rollStatus.history.push(roll);
-	console.log('bet question object from developQuestion function:');
-	console.log(betQ);
-	console.log(rollStatus);
 	return betQ;
 
 
 
-	
-	// switch(roll){
-
-	// 	case 4:
-	// 		
-	// 	case 5:
-	// 		if(pick<0.25){
-	// 			betQ.type = 'passline';
-	// 			betQ.comment = 'Front line winner.';
-	// 			betQ.comment2 = 'The point is ' + betQ.call + '.';
-	// 			betQ.flatBetName = 'Pass line: $';
-	// 			betQ.flatAmount = betAmountsEasy.passAndComeFlat;
-	// 			betQ.other = 'Pass line odds: $';
-	// 			betQ.otherAmount = betAmountsEasy.passAndComeOdds59;
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		}else if(pick <0.5){
-	// 			betQ.type = 'come bet';
-	// 			betQ.comment = rollResponses.five[Math.floor(Math.random()*rollResponses.five.length)];
-	// 			betQ.comment2 = '';
-	// 			betQ.flatBetName = 'Come bet on the five: $';
-	// 			betQ.flatAmount = betAmountsEasy.passAndComeFlat;
-	// 			betQ.other = 'Odds on the five: $';
-	// 			betQ.otherAmount = betAmountsEasy.passAndComeOdds59;
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		// }else if(pick <0.55){
-	// 		// 	//buy bet
-	// 		// 	betQ.type = 'buy bet';
-	// 		// 	betQ.comment = rollResponses.five[Math.floor(Math.random()*rollResponses.five.length)];
-	// 		// 	betQ.comment2 = '';
-	// 		// 	betQ.flatBetName = 'Buy the five: $';
-	// 		// 	betQ.flatAmount = betAmountsEasy.buyFiveAndNine;
-	// 		// 	betQ.other = 'Same bet!';
-	// 		// 	betQ.otherAmount = '';
-	// 		// 	betQ.end = 'Winnings paid = ?';
-	// 		}else if(pick <0.9){
-	// 			//place bet
-	// 			betQ.type = 'place bet';
-	// 			betQ.comment = rollResponses.five[Math.floor(Math.random()*rollResponses.five.length)];
-	// 			betQ.comment2 = '';
-	// 			betQ.flatBetName = 'Place five: $';
-	// 			betQ.flatAmount = betAmountsEasy.placeFiveAndNine;
-	// 			betQ.other = 'Same bet.';
-	// 			betQ.otherAmount = '';
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		}else{
-	// 			betQ.type = 'easy way hop';
-	// 			//only select one of the 2 last possible responses from the rollResponses.four array
-	// 			betQ.comment = rollResponses.five[Math.floor(Math.random()*rollResponses.five.length)];
-	// 			betQ.comment2 = '';
-	// 			betQ.flatBetName = 'HOPPING five: $';
-	// 			betQ.flatAmount = betAmountsEasy.easywayHop;
-	// 			betQ.other = 'Five easy.';
-	// 			betQ.otherAmount = '';
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		}
-	// 		break;
 	// 	case 6:
 	// 		if(pick<0.25){
 	// 			betQ.type = 'passline';
@@ -683,125 +723,6 @@ function developQuestion(roll){
 	// 			betQ.end = 'Winnings paid = ?';
 	// 		}
 	// 		break;
-	// 	case 9:
-	// 		if(pick<0.25){
-	// 			betQ.type = 'passline';
-	// 			betQ.comment = 'Front line winner.';
-	// 			betQ.comment2 = 'The point is ' + betQ.call + '.';
-	// 			betQ.flatBetName = 'Pass line: $';
-	// 			betQ.flatAmount = betAmountsEasy.passAndComeFlat;
-	// 			betQ.other = 'Pass line odds: $';
-	// 			betQ.otherAmount = betAmountsEasy.passAndComeOdds59;
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		}else if(pick <0.5){
-	// 			betQ.type = 'come bet';
-	// 			betQ.comment = rollResponses.nine[Math.floor(Math.random()*rollResponses.nine.length)];
-	// 			betQ.comment2 = '';
-	// 			betQ.flatBetName = 'Come bet on the nine: $';
-	// 			betQ.flatAmount = betAmountsEasy.passAndComeFlat;
-	// 			betQ.other = 'Odds on the nine: $';
-	// 			betQ.otherAmount = betAmountsEasy.passAndComeOdds59;
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		// }else if(pick <0.55){
-	// 		// 	//buy bet
-	// 		// 	betQ.type = 'buy bet';
-	// 		// 	betQ.comment = rollResponses.nine[Math.floor(Math.random()*rollResponses.nine.length)];
-	// 		// 	betQ.comment2 = '';
-	// 		// 	betQ.flatBetName = 'Buy the nine: $';
-	// 		// 	betQ.flatAmount = betAmountsEasy.buyFiveAndNine;
-	// 		// 	betQ.other = 'Same bet!';
-	// 		// 	betQ.otherAmount = '';
-	// 		// 	betQ.end = 'Winnings paid = ?';
-	// 		}else if(pick <0.9){
-	// 			//place bet
-	// 			betQ.type = 'place bet';
-	// 			betQ.comment = rollResponses.nine[Math.floor(Math.random()*rollResponses.nine.length)];
-	// 			betQ.comment2 = '';
-	// 			betQ.flatBetName = 'Place nine: $';
-	// 			betQ.flatAmount = betAmountsEasy.placeFiveAndNine;
-	// 			betQ.other = 'Same bet.';
-	// 			betQ.otherAmount = '';
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		}else{
-	// 			betQ.type = 'easy way hop';
-	// 			betQ.comment = rollResponses.nine[Math.floor(Math.random()*rollResponses.nine.length)];
-	// 			betQ.comment2 = '';
-	// 			betQ.flatBetName = 'HOPPING nine: $';
-	// 			betQ.flatAmount = betAmountsEasy.easywayHop;
-	// 			betQ.other = 'Nine easy.';
-	// 			betQ.otherAmount = '';
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		}
-	// 		break;
-	// 	case 10:
-	// 		if(pick<0.25){
-	// 			betQ.type = 'passline';
-	// 			betQ.comment = 'Front line winner.';
-	// 			betQ.comment2 = 'The point is ' + betQ.call + '.';
-	// 			betQ.flatBetName = 'Pass line: $';
-	// 			betQ.flatAmount = betAmountsEasy.passAndComeFlat;
-	// 			betQ.other = 'Pass line odds: $';
-	// 			betQ.otherAmount = betAmountsEasy.passAndComeOdds;
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		}else if(pick <0.45){
-	// 			betQ.type = 'come bet';
-	// 			betQ.comment = rollResponses.ten[Math.floor(Math.random()*rollResponses.ten.length)];
-	// 			betQ.comment2 = '';
-	// 			betQ.flatBetName = 'Come bet on the ten: $';
-	// 			betQ.flatAmount = betAmountsEasy.passAndComeFlat;
-	// 			betQ.other = 'Odds on the ten: $';
-	// 			betQ.otherAmount = betAmountsEasy.passAndComeOdds;
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		}else if(pick <0.7){
-	// 			//buy bet
-	// 			betQ.type = 'buy bet';
-	// 			betQ.comment = rollResponses.ten[Math.floor(Math.random()*rollResponses.ten.length)];
-	// 			betQ.comment2 = '';
-	// 			betQ.flatBetName = 'Buy the ten: $';
-	// 			betQ.flatAmount = betAmountsEasy.buyFourAndTen;
-	// 			betQ.other = 'Same bet!';
-	// 			betQ.otherAmount = '';
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		}else if(pick <0.75){
-	// 			//place bet
-	// 			betQ.type = 'place bet';
-	// 			betQ.comment = rollResponses.ten[Math.floor(Math.random()*rollResponses.ten.length)];
-	// 			betQ.comment2 = '';
-	// 			betQ.flatBetName = 'Place ten: $';
-	// 			betQ.flatAmount = betAmountsEasy.placeFourAndTen;
-	// 			betQ.other = 'Same bet.';
-	// 			betQ.otherAmount = '';
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		}else if(pick <0.85){
-	// 			betQ.type = 'hard way bet';
-	// 			betQ.comment = rollResponses.ten[0];
-	// 			betQ.comment2 = '';
-	// 			betQ.flatBetName = 'ten hard: $';
-	// 			betQ.flatAmount = betAmountsEasy.hardway;
-	// 			betQ.other = '';
-	// 			betQ.otherAmount = '';
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		}else if(pick<0.95){
-	// 			betQ.type = 'hard way hop';
-	// 			betQ.comment = rollResponses.ten[0];
-	// 			betQ.comment2 = '';
-	// 			betQ.flatBetName = 'HOPPING hard ten: $';
-	// 			betQ.flatAmount = betAmountsEasy.hardwayHop;
-	// 			betQ.other = '';
-	// 			betQ.otherAmount = '';
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		}else{
-	// 			betQ.type = 'easy way hop';
-	// 			//only select one of the 2 last possible responses from the rollResponses.ten array
-	// 			betQ.comment = rollResponses.ten[Math.floor(Math.random()*(rollResponses.ten.length-1))+1];
-	// 			betQ.comment2 = '';
-	// 			betQ.flatBetName = 'HOPPING easy ten: $';
-	// 			betQ.flatAmount = betAmountsEasy.easywayHop;
-	// 			betQ.other = '';
-	// 			betQ.otherAmount = '';
-	// 			betQ.end = 'Winnings paid = ?';
-	// 		}
-	// 		break;
 
 }
 
@@ -815,24 +736,10 @@ function developAnswer(question){
 		oddsMultiple:0,
 		commission:0,
 		commissionString:false,
+		placeString:false,
 		answer:0,
 		showMath:''
 	};
-
-	// var betQ = {
-// 		call: roll,
-// 		type1: '',
-// 		type2: false,
-// 		comment1: '',
-// 		comment2: false,
-// 		flatBetName: '',
-// 		flatAmount: 0,
-// 		other: false,
-// 		otherAmount: 0,
-//		commission:false,
-// 		end:''
-// 	};
-
 	switch(question.type1){
 		case 'passline':
 			betA.flatBetExplanation = 'Pass line bets pay even money.';
@@ -853,6 +760,9 @@ function developAnswer(question){
 			break;
 		case 'hardway':
 			betA = hardwayAnswer(betA, question);
+			break;
+		case 'placebet':
+			betA = placeBetAnswer(betA, question);
 			break;
 		case 'easywayhop':
 			betA.flatBetExplanation = 'Easy way hop bets pay 15 to 1.';
@@ -945,11 +855,18 @@ function developAnswer(question){
 			break;
 	}
 	//this initially sets the showMath string to the basic bet
-	betA.showMath = question.flatBetName + question.flatAmount + ' * ' + betA.flatMultiple + ' = $' + question.flatAmount * betA.flatMultiple;
+	betA.showMath = question.flatBetName + question.flatAmount + ' * ' + betA.flatMultiple + ' = $' + parseInt(question.flatAmount * betA.flatMultiple);
+	//for a bet with NO commission involved:
 	if(!question.commission){
-		betA.answer = question.flatAmount * betA.flatMultiple + question.otherAmount * betA.oddsMultiple;
-		if(betA.odds){
-			betA.showMath += '<br>' + betA.odds + question.call + ': $' + question.otherAmount + ' * ' + betA.oddsString + ' = $' + question.otherAmount * betA.oddsMultiple;
+		//if a place bet, replace the showMath with the string version for the winnings multiple
+		if(betA.placeString){
+			betA.showMath = question.flatBetName + question.flatAmount + ' * ' + betA.placeString + ' = $' + parseInt(question.flatAmount * betA.flatMultiple);
+			betA.answer = parseInt(question.flatAmount * betA.flatMultiple);
+		}else{
+			betA.answer = question.flatAmount * betA.flatMultiple + question.otherAmount * betA.oddsMultiple;
+			if(betA.odds){//replace question.call with rollStatus.point??
+				betA.showMath += '<br>' + betA.odds + question.call + ': $' + question.otherAmount + ' * ' + betA.oddsString + ' = $' + question.otherAmount * betA.oddsMultiple;
+			}
 		}
 	}else{//if a buy bet or lay bet (meaning a commission is involved)
 		var vig = question.flatAmount*betA.commission;
@@ -1029,6 +946,39 @@ function buyBetAnswer(answer, point){
 	return answer;
 }
 
+function placeBetAnswer(answer, question){
+	var number = '';
+	if(question.call === 4 || question.call === 10){
+		if(question.call === 4){
+			number = 'four';
+		}else{
+			number = 'ten';
+		}
+		answer.flatBetExplanation = 'A place bet on ' + number + ' pays 9 to 5.';
+		answer.flatMultiple = 9/5;
+		answer.placeString = '9/5';
+	}else if(question.call === 5 || question.call === 9){
+		if(question.call === 5){
+			number = 'five';
+		}else{
+			number = 'nine';
+		}
+		answer.flatBetExplanation = 'A place bet on ' + number + ' pays 7 to 5.';
+		answer.flatMultiple = 7/5;
+		answer.placeString = '7/5';
+	}else if(question.call === 6 || question.call === 8){
+		if(question.call === 6){
+			number = 'six';
+		}else{
+			number = 'eight';
+		}
+		answer.flatBetExplanation = 'A place bet on ' + number + ' pays 7 to 6.';
+		answer.flatMultiple = 7/6;
+		answer.placeString = '7/6';
+	}
+	return answer;
+}
+
 function hardwayAnswer(answer, question){
 	var number = '';
 	if(question.call === 4 || question.call === 10){
@@ -1038,7 +988,7 @@ function hardwayAnswer(answer, question){
 		}else{
 			number = 'ten';
 		}
-		answer.flatBetExplanation = 'Hard way bets on ' + number + ' pay 7 to 1. There are 8 combined ways to roll a 7 or ' + question.call + ' easy, and only 1 way to roll the ' + question.call + ' hard.';
+		answer.flatBetExplanation = 'Hard way bets on ' + number + ' pay 7 to 1. There are 8 combined ways to roll a ' + question.call + ' easy or a 7, and only 1 way to roll the ' + question.call + ' hard.';
 	}else if(question.call === 6 || question.call === 8){
 		answer.flatMultiple = 9;
 		if(question.call === 6){
@@ -1046,7 +996,7 @@ function hardwayAnswer(answer, question){
 		}else{
 			number = 'eight';
 		}
-		answer.flatBetExplanation = 'Hard way bets on ' + number + ' pay 9 to 1. There are 10 combined ways to roll a 7 or ' + question.call + ' easy, and only 1 way to roll the ' + question.call + ' hard.';
+		answer.flatBetExplanation = 'Hard way bets on ' + number + ' pay 9 to 1. There are 10 combined ways to roll a ' + question.call + ' easy or a 7, and only 1 way to roll the ' + question.call + ' hard.';
 	}
 	return answer;
 }
@@ -1105,16 +1055,17 @@ function displayAnswerOnDOM(correctAnswer){
 		solution += '<br>' + correctAnswer.otherBetExplanation;
 	}
 	solution += '<hr>Calculation:<br>' + correctAnswer.showMath;
+	var bonus = {
+		message: false,
+		amount: 0
+	};
 	if(correctAnswer.answer === userAnswer){
 		stats.streak ++;
-		//now, analyze stats.streak value
-		//offer "activate bonus" where is eg streak of 5 questions, bonus points received.
-		//ALTERNATIVE: once a streak occurs, beginning amount of winnings for each question increases
-		//http://www.w3schools.com/jsref/met_document_addeventlistener.asp
-		// document.addEventListener("mouseover", myFunction);
-		// document.addEventListener("click", someOtherFunction);
-		// document.addEventListener("mouseout", someOtherFunction);
+		//analyze stats.streak value
+		bonus = evaluateStreak(stats.streak, bonus);
+		currentWin += bonus.amount;
 		stats.bank += currentWin;
+		//note the arrayElements function returns 0 if array length is 0, otherwise reqturns array.length-1
 		addToArrayAsc(stats.wins, currentWin, 0, arrayElements(stats.wins));
 		stats.correct ++;
 		document.getElementById('exam-question').innerHTML += comments.correct[Math.floor(Math.random()*comments.correct.length)];
@@ -1133,11 +1084,10 @@ function displayAnswerOnDOM(correctAnswer){
 	updateAllStats();
 	//show answer with explanation on DOM
 	document.getElementById('exam-question').innerHTML += '<br><div class = "answer-div">ANSWER: $' + correctAnswer.answer + '</div>';
+	if(bonus.message){
+		document.getElementById('exam-question').innerHTML += '<br>' + bonus.message;
+	}
 	document.getElementById('explanation-content').innerHTML = solution;
-	
-
-
-
 	//document.getElementById('input-answer').value = '';
 	//document.getElementById('input-answer').placeholder = 'next';
 	//document.getElementById('input-answer').title = 'please press enter for the next question.';
@@ -1150,6 +1100,77 @@ function displayAnswerOnDOM(correctAnswer){
 		prepareForQuestion();
 		generateQuestion();
 	});
+}
+
+function evaluateStreak(streak, bonus){
+	//SPECIAL NOTE ABOUT STREAKS:
+	//on a streak eligible question, if the user gets the question correct, but time runs out, as bonus points are awarded to the win, the
+	//streak count will continue as in this case the currentWin was 0, but became >0 with the bonus points added.
+	//this means a user has unlimited time to submit an answer on a streak eligible question.
+	//ALTERNATIVE: once a streak occurs, beginning amount of winnings for each question increases
+	if(streak === 5){
+		stats.bonusCount ++;
+		stats.bonusTotal += 200;
+		bonus.message = 'Congratulations! Streak of 5 correct answers! You win 200 bonus points on this question.';
+		bonus.amount = 200;
+	}else if(streak === 10){
+		stats.bonusCount ++;
+		stats.bonusTotal += 700;
+		bonus.message = 'Congratulations! Streak of 10 correct answers! You win 700 bonus points on this question.';
+		bonus.amount = 700;
+	}else if(streak === 20){
+		stats.bonusCount ++;
+		stats.bonusTotal += 1000;
+		bonus.message = 'Congratulations! Streak of 20 correct answers! You win 1,000 bonus points on this question.';
+		bonus.amount = 1000;
+	}else if(streak === 30){
+		stats.bonusCount ++;
+		stats.bonusTotal += 2500;
+		bonus.message = 'Congratulations! Streak of 30 correct answers! You win 2,500 bonus points on this question.';
+		bonus.amount = 2500;
+	}else if(streak === 50){
+		stats.bonusCount ++;
+		stats.bonusTotal += 50000;
+		bonus.message = 'Congratulations! Streak of 50 correct answers! You win 50,000 bonus points on this question.';
+		bonus.amount = 50000;
+	}else if(streak === 75){
+		stats.bonusCount ++;
+		stats.bonusTotal += 1000000;
+		bonus.message = 'You are a CRAPS MASTER DEALER. Here is your 1,000,000 point award for your extraordinary efforts and knowledge.';
+		bonus.amount = 1000000;
+	}else if(streak === 100){
+		stats.bonusCount ++;
+		stats.bonusTotal += 250000;
+		bonus.message = 'You win 250,000 bonus points and your own title. Take a look. Enjoy!';
+		bonus.amount = 250000;
+		document.getElementById('stats-header').innerHTML = 'CRAPS MASTER<br>PERFORMANCE STATISTICS';
+	}
+	return bonus;
+}
+
+function updateRollStatus(roll){
+	if(rollStatus.comeOut){
+		if(roll === 7 || roll === 11){
+			//console.log('front line winner');
+		}else if (roll === 2 || roll === 3 || roll === 12){
+			//console.log('front line loses');
+		}else{
+			rollStatus.point = roll;
+			rollStatus.comeOut = false;
+		}
+	}else{
+		if(roll === 7){
+			rollStatus.comeOut = true;
+		}else if(roll === rollStatus.point){
+			rollStatus.comeOut = true;
+		}
+	}
+	//this ensures rollStatus will always have a point number (so don't come and don't pass questions populate with odds)...
+	var points = [4, 5, 6, 8, 9, 10];
+	var point = points[Math.floor(Math.random()*points.length)];
+	rollStatus.point = point;
+	rollStatus.rollNumber ++;
+	rollStatus.history.push(roll);
 }
 
 var timer =
@@ -1190,30 +1211,30 @@ function calculateMean(array, entries, decimalPlaces){
 }
 
 function addToArrayAsc(array, newEntry, low, high){
-	var difference = high-low;
-	//for an array with an even number of elements, this middleIndex will be the element just below the middle
-	var middleIndex = Math.floor((low + high)/2);
-	if(difference < 2){
-		if(newEntry <= array[low]){
-			array.splice(low, 0, newEntry);
-			return;
-		}else{
-			//use middleIndex here instead of high
-			//could also just use low + 1
-			array.splice(middleIndex + 1, 0, newEntry);
-			return;
-		}
-	}else if(newEntry === array[middleIndex]){
-		array.splice(middleIndex, 0, newEntry);
-		return;
-	}else if(newEntry > array[middleIndex]){
-		addToArrayAsc(array, newEntry, middleIndex, high);
-	}else{
-		addToArrayAsc(array, newEntry, low, middleIndex);
-	}
+	// var difference = high-low;
+	// //for an array with an even number of elements, this middleIndex will be the element just below the middle
+	// var middleIndex = Math.floor((low + high)/2);
+	// if(difference < 2){
+	// 	if(newEntry <= array[low]){
+	// 		array.splice(low, 0, newEntry);
+	// 		return;
+	// 	}else{
+	// 		//use middleIndex here instead of high
+	// 		//could also just use low + 1
+	// 		array.splice(middleIndex + 1, 0, newEntry);
+	// 		return;
+	// 	}
+	// }else if(newEntry === array[middleIndex]){
+	// 	array.splice(middleIndex, 0, newEntry);
+	// 	return;
+	// }else if(newEntry > array[middleIndex]){
+	// 	addToArrayAsc(array, newEntry, middleIndex, high);
+	// }else{
+	// 	addToArrayAsc(array, newEntry, low, middleIndex);
+	// }
 	//can also do this to sort an unsorted array:
-	// array.push(newEntry);
-	// array.sort(function(a, b){return a-b;});
+	array.push(newEntry);
+	array.sort(function(a, b){return a-b;});
 }
 
 function calculateMedian(array){

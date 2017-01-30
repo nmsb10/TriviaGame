@@ -33,3 +33,8 @@ function showDate(){
 // **http://www.w3schools.com/js/js_comparisons.asp
 // **http://www.w3schools.com/js/js_bitwise.asp
 //event.which and event.key
+
+//http://www.w3schools.com/jsref/met_document_addeventlistener.asp
+		// document.addEventListener("mouseover", myFunction);
+		// document.addEventListener("click", someOtherFunction);
+		// document.addEventListener("mouseout", someOtherFunction);
