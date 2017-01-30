@@ -15,26 +15,3 @@ function showDate(){
 	// $('#footer-content').replaceWith(updatedFooter);
 	document.getElementById('footer').innerHTML = updatedFooter;
 }
-
-
-
-	//var button = document.getElementById('buttonID')
-	//button.addEventListener('click', function(){});
-	//button.classList.add('show');
-	//button.classList.remove('hide');
-	//appendchild??
-// 	**http://www.w3schools.com/js/js_datatypes.asp
-// **http://www.w3schools.com/jsref/jsref_map.asp
-// **http://www.w3schools.com/jsref/jsref_forEach.asp
-// **http://www.w3schools.com/jsref/jsref_reduce.asp
-// **http://www.w3schools.com/jsref/jsref_join.asp
-// **filter
-// **slice
-// **http://www.w3schools.com/js/js_comparisons.asp
-// **http://www.w3schools.com/js/js_bitwise.asp
-//event.which and event.key
-
-//http://www.w3schools.com/jsref/met_document_addeventlistener.asp
-		// document.addEventListener("mouseover", myFunction);
-		// document.addEventListener("click", someOtherFunction);
-		// document.addEventListener("mouseout", someOtherFunction);

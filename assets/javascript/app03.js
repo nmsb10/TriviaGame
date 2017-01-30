@@ -112,7 +112,6 @@ function updateAllStats(){
 	document.getElementById('total-questions').innerText = stats.questions;
 	document.getElementById('bonus-count').innerText = stats.bonusCount;
 	document.getElementById('bonus-total').innerText = stats.bonusTotal;
-	console.log(stats.wins);
 }
 
 function allowDifficultySelection(){
