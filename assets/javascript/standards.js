@@ -44,12 +44,6 @@ function showThoughts(array){
 	timer.interval();
 }
 
-//add one letter at a time
-//for(var i= 0; i<quote.length; i++){
-//timer function (eg every 250 milliseconds) for the following:
-//document.getElementById('wherequotewillbe').innerText +=quote[i];
-//}
-
 var timer =
 {
 	shownThoughts: 0,
@@ -73,14 +67,10 @@ var timer =
 		newThought.id = "one-thought";
 		container.appendChild(newThought);
 		if(timer.shownThoughts < timer.currentArray.length-1){
-			// setTimeout(function(){
-			//if there were multiple classes, must have a space before show ie ' show'
-			// 	newThought.className = newThought.className + 'show';
-			// });
 			timer.shownThoughts ++;
 		}else{
 			//must display the final quote in the array here. Otherwise if the quote is displayed in  the
-			//about if statement, then for this interval, the last quote will display for double the quantity of the time
+			//above if statement, then for this interval, the last quote will display for double the quantity of the time
 			//the following one line of code was the only code here prior to adding the css 'show' animation
 			//document.getElementById('thoughts-container').innerText = timer.currentArray[timer.shownThoughts].q;
 			// setTimeout(function(){
@@ -109,6 +99,7 @@ function genRandomOrderArray(input){
 	return orderArray;
 }
 
+//THE ORIGINAL CONVOLUTED METHOD OF PICKING A RANDOM QUOTE FROM THE QUOTES ARRAY:
 // function pickOne(silver){
 // 	if(shown<silver.length){
 // 		var whichPick = Math.floor(Math.random()*silver.length);
@@ -138,18 +129,6 @@ function genRandomOrderArray(input){
 // function resetArray(item, index){
 // 	return item.p = false;
 // }
-
-
-
-//TO COPY AN ARRAY:
-//var copyOfArray = thoughts.slice(0);
-
-
-
-//to iterate through an array to search for an element:
-//var found = thoughts.find(function (item){
-	//return item.item_id === answer.item_id;
-//});
 
 
 //=================================================================
