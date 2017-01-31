@@ -51,7 +51,12 @@
 	border: 2px solid purple;
 	border-radius: 10px;
 	margin-bottom:5px;
-	transition: background-color 0.5s, box-shadow 0.5s;
+	transition: background-color 0.35s, box-shadow 0.35s, opacity 3s, height 3s;
+	opacity: 0;
+}
+
+#homeworks-index li.show {
+  opacity: 1;
 }
 
 #homeworks-index > li:hover{

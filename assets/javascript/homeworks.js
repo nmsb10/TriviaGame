@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	//http://stackoverflow.com/questions/799981/document-ready-equivalent-without-jquery
 	showDate();
 	changeBackgroundColor('summary-content');
-	displayHWIndex(homeworks);
+	//https://cssanimation.rocks/list-items/
+	displayHWIndex.interval(homeworks);
 });
 
 function showDate(){
@@ -23,14 +24,62 @@ function changeBackgroundColor(element){
 	timer.interval(element);
 }
 
+// function displayHWIndex(arr){
+// 	var container = document.getElementById('homeworks-index');
+// 	for(var i = 0; i < arr.length; i ++){
+// 		var li = document.createElement('li');
+// 		var a = document.createElement('a');
+// 		a.innerText = arr[i].number;
+// 		a.className = 'index-a';
+// 		//to properly create the href, add a #, then replace the space with a dash
+// 		a.setAttribute('href', '#' + arr[i].number.split(' ').join('-'));
+// 		a.setAttribute('title', arr[i].number);
+// 		li.appendChild(a);
+// 		container.appendChild(li);
+// 	}
+// }
+var displayHWIndex = {
+	hwcount: 0,
+	displayed: 0,
+	counter:'',
+	interval: function(array){
+		displayHWIndex.hwcount = array.length;
+		displayHWIndex.counter = setInterval(function(){displayHWIndex.display();}, 300);
+	},
+	display: function(){
+		if(displayHWIndex.displayed < displayHWIndex.hwcount){
+			var li = document.createElement('li');
+			var a = document.createElement('a');
+			a.innerText = homeworks[displayHWIndex.displayed].number;
+			a.className = 'index-a';
+			//to properly create the href, add a #, then replace the space with a dash
+			a.setAttribute('href', '#' + homeworks[displayHWIndex.displayed].number.split(' ').join('-'));
+			a.setAttribute('title', homeworks[displayHWIndex.displayed].number);
+			li.appendChild(a);
+			document.getElementById('homeworks-index').appendChild(li);
+			setTimeout(function(){
+			//if there were multiple classes, must have a space before show ie ' show'
+				li.className = 'show';
+			});
+			displayHWIndex.displayed ++;
+		}else{
+			displayHWIndex.stop();
+		}
+	},
+	stop: function(){
+		clearInterval(displayHWIndex.counter);
+	}
+};
+
 var timer =
 {
 	element: '',
 	//set timer.bc initial background-color to near white
 	bc: [250, 250, 250, 1],
+	counter: '',
 	interval: function(element){
 		timer.element = element;
-		counter = setInterval(timer.changeColor, 1500);
+		timer.counter = setInterval(timer.changeColor, 1500);
 	},
 	changeColor: function(){
 		//obtain the element's current rgba
@@ -59,7 +108,7 @@ var timer =
 		return value;
 	},
 	stop: function(){
-		clearInterval(counter);
+		clearInterval(timer.counter);
 	}
 };
 
@@ -107,10 +156,6 @@ var homeworks = [
 		tech: 'technologies and concepts used'
 	},
 ];
-
-function displayHWIndex(array){
-
-}
 
 
 	//var button = document.getElementById('buttonID')
@@ -180,24 +225,6 @@ function displayHWIndex(array){
 //}
 
 
-
-
-
-
-
-
-//document.getElementById('thoughts-container').innerText = '';
-		var container = document.getElementById('thoughts-container');
-		var newThought = document.createElement('div');
-		//newThought.innerText = timer.currentArray[timer.shownThoughts].q;
-		//newThought.id = "one-thought";
-		//container.appendChild(newThought);
-		//if(timer.shownThoughts < timer.currentArray.length-1){
-		//}
-			// setTimeout(function(){
-			//if there were multiple classes, must have a space before show ie ' show'
-			// 	newThought.className = newThought.className + 'show';
-			// });
 
 
 
