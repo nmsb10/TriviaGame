@@ -4,10 +4,6 @@
 	font-size:0;
 }
 
-.border{
-	border:5px solid rgba(48, 28, 48, 1);
-}
-
 #summary{
 	width:25%;
 	min-width: 150px;
@@ -99,7 +95,8 @@
 #main-content-header{
 	background: rgba(250, 250, 250, 1);
 	padding: 10px;
-	border:2px solid rgba(48, 28, 48, 1);
+	border: 1px solid rgba(48, 28, 48, 0.15);
+	border-radius: 10px 10px 0 0;
 	font-size: 20px;
 	text-transform: uppercase;
 	/*put all borders inside the elements so width percentages can total 100%*/
@@ -109,11 +106,10 @@
 }
 
 #main-content-content{
-	/*text-align:center;*/
-	/*padding: 20px auto;*/
 	background: rgba(240, 240, 240, 1);
 	padding: 10px;
-	border:2px solid rgba(48, 28, 48, 1);
+	border: 1px solid rgba(48, 28, 48, 0.15);
+	border-radius: 0 0 10px 10px;
 	border-top:none;
 	font-size:15px;
 	box-sizing: border-box;
@@ -122,22 +118,30 @@
 }
 
 .homework-header{
-	background-color: rgba(255, 255, 255, 0.8);
+	background-color: rgba(255, 255, 255, 1);
 	padding:10px;
-	border: 2px solid purple;
+	border: 1.5px solid rgba(48, 28, 48, 0.75);
 	border-radius: 10px;
 	margin-bottom:5px;
+	transition: all 0.3s;
 	/*-webkit-animation: fadein 3s linear forwards;
     animation: fadein 3s linear forwards;*/
 }
 
-.homework-description{
+.homework-header:hover{
+	background-color: rgba(50, 30, 50, 1);
+	color: white;
+	cursor: pointer;
+}
+
+#homework-description{
 	background-color: rgba(255, 255, 255, 0.8);
 	padding:10px;
-	border: 2px solid purple;
+	border: 1.5px solid rgba(48, 28, 48, 0.75);
 	border-radius: 0 0 10px 10px;
 	border-top: none;
 	margin-bottom:5px;
+	text-align: justify;
 }
 
 .hh-open{
@@ -147,8 +151,16 @@
 
 .hw-link{
 	display: inline-block;
+	padding:5px;
+	background-color: rgba(235, 235, 235, 1);
+	color: purple;
+	text-decoration: none;
+	border: 1px solid rgba(48, 28, 48, 0.55);
 }
 
+.hw-link:hover{
+	background-color: rgba(215, 215, 215, 1);
+}
 
 .question-outside{
 	padding:20px;

@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	//background-color change
 	bcChange.interval('summary-content', [250, 250, 250, 1], 13, 3000);
 	displayHWIndex.interval(homeworks);
-	displayHWContent(homeworks);
+	displayHWHeaders(homeworks);
+	enableHWdisplay();
 });
 
 function showDate(){
@@ -63,7 +64,7 @@ var bcChange =
 	}
 };
 
-function displayHWContent(arr){
+function displayHWHeaders(arr){
 	for(var i = 0; i < arr.length; i ++){
 		var li = document.createElement('li');
 		var div = document.createElement('div');
@@ -71,24 +72,95 @@ function displayHWContent(arr){
 		div.setAttribute('hw', i);
 		div.id = arr[i].number.split(' ').join('-');
 		div.innerText = arr[i].number;
-		var div2 = document.createElement('div');
-		div2.className = 'homework-description';
-		div2.innerHTML = arr[i].desc + '<br>' + 'technologies used:' + '<br>';
-		var ul = document.createElement('ul');
-		for(var j = 0; j < arr[i].tech.length; j ++){
-			var techli = document.createElement('li');
-			techli.innerText = arr[i].tech[j];
-			ul.appendChild(techli);
-		}
-		div2.appendChild(ul);
-		divBottomLinks = document.createElement('div');
-		divBottomLinks.innerHTML = '<div class="ind-hw-links"><div class="hw-link">linktogotothishomeworkpage</div><div class="hw-link" id="gototop"><a href = "#main-content">top of page</a></div><div class="hw-link">thesebuttonsarerectangleswithnomarginbetweeneachother</div></div>';
-		div2.appendChild(divBottomLinks);
 		li.appendChild(div);
-		li.appendChild(div2);
 		document.getElementById('homeworks-content').appendChild(li);
 	}
 }
+
+function enableHWdisplay(){
+	var indexElems = document.getElementsByClassName('ind-homework-header');
+	var homeworkHElems = document.getElementsByClassName('homework-header');
+	//http://www.w3schools.com/jsref/dom_obj_event.asp
+	for (var j = 0; j < homeworkHElems.length; j++) {
+		homeworkHElems[j].addEventListener('click', displayDescription, false);
+	}
+	//need to set timeout so we ensure all the indexElems load on the dom first, before attaching the event listener!
+	setTimeout(function(){
+		for (var i = 0; i < indexElems.length; i++) {
+			indexElems[i].addEventListener('click', displayDescriptionFromIndexClick, false);
+		}
+	}, homeworks.length * 300);
+}
+
+function displayDescription(){
+	removehwd();
+	var whichHW = this.getAttribute('hw');
+	var description = displayHWContent(whichHW);
+	this.className += ' hh-open';
+	this.parentNode.appendChild(description);
+}
+
+function displayDescriptionFromIndexClick(){
+	var whichHW = this.getAttribute('hw');
+	var specificHWHeader = '';
+	var homeworkHElems = document.getElementsByClassName('homework-header');
+	for (var i = 0; i < homeworkHElems.length; i++) {
+		var hw = homeworkHElems[i].getAttribute('hw');
+		console.log(homeworkHElems[i]);
+		if(whichHW === hw){
+			removehwd();
+			var description = displayHWContent(whichHW);
+			homeworkHElems[i].className += ' hh-open';
+			homeworkHElems[i].parentNode.appendChild(description);
+			return;
+		}
+	}
+}
+
+//remove any currently openhomework-description element currently in dom
+function removehwd(){
+	var openDesc = document.getElementById('homework-description');
+	if(openDesc){
+		openDesc.parentNode.firstChild.className = 'homework-header';
+		openDesc.parentNode.removeChild(openDesc);
+	}else{
+		return;
+	}
+}
+
+function displayHWContent(hw){
+	var div = document.createElement('div');
+	div.id = 'homework-description';
+	div.innerHTML = homeworks[hw].desc + '<br>' + 'technologies used:' + '<br>';
+	var ul = document.createElement('ul');
+	for(var i = 0; i < homeworks[hw].tech.length; i ++){
+		var techli = document.createElement('li');
+		techli.innerText = homeworks[hw].tech[i];
+		ul.appendChild(techli);
+	}
+	div.appendChild(ul);
+	divBottomLinks = document.createElement('div');
+	var hwlink = document.createElement('a');
+	hwlink.className = 'hw-link';
+	hwlink.setAttribute('href', homeworks[hw].staticlink);
+	hwlink.innerText = 'see ' + homeworks[hw].number;
+	var gototop = document.createElement('a');
+	gototop.className = 'hw-link';
+	gototop.setAttribute('href', '#main-content');
+	gototop.setAttribute('title', 'back to page top');
+	gototop.className = 'hw-link close-desc';
+	gototop.innerText = 'top of page';
+	var thirdlink = document.createElement('a');
+	thirdlink.className = 'hw-link';
+	thirdlink.setAttribute('href', '#');
+	thirdlink.innerText = 'third link';
+	divBottomLinks.appendChild(hwlink);
+	divBottomLinks.appendChild(gototop);
+	divBottomLinks.appendChild(thirdlink);
+	div.appendChild(divBottomLinks);
+	return div;
+}
+
 var displayHWIndex = {
 	hwcount: 0,
 	displayed: 0,
@@ -125,42 +197,49 @@ var homeworks = [
 	{
 		id: 3,
 		number: "homework three",
+		staticlink: 'homeworks/hw3.html',
 		desc: "description of homework three here",
 		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
 	{
 		id: 4,
 		number: "homework four",
-		desc: "description of homework four here.",
+		staticlink: 'homeworks/hw4.html',
+		desc: "first read a description of this homework. what it does, how it does it, how to use it. how it was made. explain the homework; summary and technologies used; text-align justify line height more than 100%? explain the homework here. USE THE TRANSFORM AND PERSPECTIVE CSS PROPERTIES?? ",
 		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
 	{
 		id: 5,
 		number: "homework five",
+		staticlink: 'homeworks/hw5.html',
 		desc: "description of homework five here.",
 		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
 	{
 		id: 6,
 		number: "homework six",
+		staticlink: 'homeworks/hw6.html',
 		desc: "description of homework six here.",
 		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
 	{
 		id: 7,
 		number: "homework seven",
+		staticlink: 'homeworks/hw7.html',
 		desc: "description of homework seven here.",
 		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
 	{
 		id: 10,
 		number: "homework ten",
+		staticlink: 'https://youtu.be/M3w1Te47G5o',
 		desc: "description of homework ten here.",
 		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
 	{
 		id: 12,
 		number: "homework twelve",
+		staticlink: 'https://jn1.herokuapp.com/',
 		desc: "description of homework twelve here.",
 		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
