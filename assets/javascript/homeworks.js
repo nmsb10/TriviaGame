@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	//http://stackoverflow.com/questions/799981/document-ready-equivalent-without-jquery
 	showDate();
 	changeBackgroundColor('summary-content');
-	//https://cssanimation.rocks/list-items/
 	displayHWIndex.interval(homeworks);
 });
 
@@ -15,7 +14,6 @@ function showDate(){
 	var updatedFooter = '<div id="footer-content">Copyright &copy; 2016 - ' + yearCurrent +
 	' <a class="footer-link" href="https://www.linkedin.com/in/jonathonnagatani" target="_blank"' + 
 	' title="Jonathon on LinkedIn">Jonathon Nagatani</a>. All Rights Reserved.</div>';
-	// $('#footer-content').replaceWith(updatedFooter);
 	document.getElementById('footer').innerHTML = updatedFooter;
 }
 
@@ -52,15 +50,11 @@ var displayHWIndex = {
 			var a = document.createElement('a');
 			a.innerText = homeworks[displayHWIndex.displayed].number;
 			a.className = 'index-a';
-			//to properly create the href, add a #, then replace the space with a dash
+			//to properly create the href for an id, add a #, then replace the space with a dash
 			a.setAttribute('href', '#' + homeworks[displayHWIndex.displayed].number.split(' ').join('-'));
 			a.setAttribute('title', homeworks[displayHWIndex.displayed].number);
 			li.appendChild(a);
 			document.getElementById('homeworks-index').appendChild(li);
-			setTimeout(function(){
-			//if there were multiple classes, must have a space before show ie ' show'
-				li.className = 'show';
-			});
 			displayHWIndex.displayed ++;
 		}else{
 			displayHWIndex.stop();
@@ -84,7 +78,7 @@ var timer =
 	changeColor: function(){
 		//obtain the element's current rgba
 		for(var i = 0; i < timer.bc.length; i ++){
-			timer.bc[i] = timer.changeValue(timer.bc[i], 21);
+			timer.bc[i] = timer.changeValue(timer.bc[i], 13);
 		}
 		//for now, set a (opacity) to 1
 		timer.bc[3] = 1;
@@ -117,43 +111,43 @@ var homeworks = [
 		id: 3,
 		number: "homework three",
 		desc: "description of homework three here",
-		tech: 'technologies and concepts used'
+		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
 	{
 		id: 4,
 		number: "homework four",
 		desc: "description of homework four here.",
-		tech: 'technologies and concepts used'
+		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
 	{
 		id: 5,
 		number: "homework five",
 		desc: "description of homework five here.",
-		tech: 'technologies and concepts used'
+		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
 	{
 		id: 6,
 		number: "homework six",
 		desc: "description of homework six here.",
-		tech: 'technologies and concepts used'
+		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
 	{
 		id: 7,
 		number: "homework seven",
 		desc: "description of homework seven here.",
-		tech: 'technologies and concepts used'
+		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
 	{
 		id: 10,
 		number: "homework ten",
 		desc: "description of homework ten here.",
-		tech: 'technologies and concepts used'
+		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
 	{
 		id: 12,
 		number: "homework twelve",
 		desc: "description of homework twelve here.",
-		tech: 'technologies and concepts used'
+		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
 	},
 ];
 
@@ -162,6 +156,8 @@ var homeworks = [
 	//button.addEventListener('click', function(){});
 	//button.classList.add('show');
 	//button.classList.remove('hide');
+	// //if there were multiple classes, must have a space before show ie ' show'
+	// 	li.className = 'show';
 	//appendchild??
 // 	**http://www.w3schools.com/js/js_datatypes.asp
 // **http://www.w3schools.com/jsref/jsref_map.asp

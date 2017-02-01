@@ -47,12 +47,18 @@
 	border: 2px solid purple;
 	border-radius: 10px;
 	margin-bottom:5px;
-	transition: background-color 0.35s, box-shadow 0.35s, opacity 3s, height 3s;
-	opacity: 0;
+	-webkit-animation: fadein 3s linear forwards;
+    animation: fadein 3s linear forwards;
 }
 
-#homeworks-index li.show {
-  opacity: 1;
+@-webkit-keyframes fadein {
+  0%{ opacity: 0;}
+  100% { opacity: 1;}
+}
+
+@keyframes fadein {
+  0%{ opacity: 0;}
+  100% { opacity: 1;}
 }
 
 #homeworks-index > li:hover{
@@ -98,7 +104,7 @@
 #main-content-content{
 	/*text-align:center;*/
 	/*padding: 20px auto;*/
-	background: rgba(0, 0, 0, 0.13);
+	background: rgba(240, 240, 240, 1);
 	padding: 10px;
 	border:2px solid rgba(48, 28, 48, 1);
 	border-top:none;
@@ -108,8 +114,80 @@
     -webkit-box-sizing: border-box;
 }
 
+.homework-header{
+	background-color: rgba(255, 255, 255, 0.8);
+	padding:10px;
+	border: 2px solid purple;
+	border-radius: 10px;
+	margin-bottom:5px;
+	/*-webkit-animation: fadein 3s linear forwards;
+    animation: fadein 3s linear forwards;*/
+}
+
+#homework-description{
+	background-color: rgba(255, 255, 255, 0.8);
+	padding:10px;
+	border: 2px solid purple;
+	border-radius: 0 0 10px 10px;
+	border-top: none;
+	margin-bottom:5px;
+}
+
+.hh-open{
+	border-radius: 10px 10px 0 0;
+	margin-bottom: 0;
+}
+
+.hw-link{
+	display: inline-block;
+}
 
 
+.question-outside{
+	padding:20px;
+	border-radius:7px 7px 0px 0px;
+	background: rgba(235,235,235,1);
+    background: -webkit-linear-gradient(left top, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, rgba(0,0,0,1), rgba(255,255,255,0))); /* Standard syntax (must be last) */
+}
+
+.question-inside{
+	margin:20px;
+	padding:15px;
+	font-size:18px;
+	color:white;
+	border-radius:7px;
+    background: -webkit-linear-gradient(right bottom, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to top left, rgba(150,150,150,1), rgba(255,255,255,0))); /* Standard syntax (must be last) */
+	/*background:lime;*/
+}
+
+.answer-outside{
+	padding:20px;
+	border-radius:0px 0px 7px 7px;
+	background: rgba(235,235,235,1);
+    background: -webkit-linear-gradient(left top, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, rgba(0,0,0,1), rgba(255,255,255,0))); /* Standard syntax (must be last) */
+}
+
+.answer-inside{
+	margin:20px;
+	padding:15px;
+	font-size:18px;
+	color:white;
+	border-radius:7px;
+    background: -webkit-linear-gradient(right bottom, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to top left, rgba(150,150,150,1), rgba(255,255,255,0))); /* Standard syntax (must be last) */
+	/*background:lime;*/
+}
 
 /*===========================================*/
 /*used when utilizing the setTimeout for adding the 'show' class to the the thoughts*/
@@ -164,122 +242,3 @@
 }*/
 
 /*===========================================*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#main-content-summary{
-	width: 20%;
-	/*want the total max width to be 200px. left plus right padding plus borders is 14px*/
-	/*therefore the max content width is 200px - 14px*/
-	max-width: 186px;
-	min-height: 150px;
-	background: rgba(0, 0, 0, 0.45);
-	padding: 15px 10px;
-	/* border: width style color; */
-	border:2px solid rgba(78, 42, 132,1);
-	border-radius:7px;
-}
-
-
-#content-summary-text, #content-summary-text-2{
-	text-align: justify;
-	padding: 10px 0px 0px 0px;
-	line-height: 125%;
-}
-
-
-
-
-
-h1{
-	font-family: 'Georgia', Times, "Times New Roman", serif;
-	font-size: 20px;
-	font-weight: 600;
-	color: rgba(255,255,255,1);
-	text-align: center;
-}
-
-h2, h3{
-	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
-	font-size: 17px;
-	color: rgba(255,255,255,1);
-	text-align: center;
-}
-
-#content-name{
-	line-height: 125%;
-	text-align: center;
-	padding: 0px 0px 10px 0px;
-}
-
-
-.question-outside{
-	padding:20px;
-	border-radius:7px 7px 0px 0px;
-	background: rgba(235,235,235,1);
-    background: -webkit-linear-gradient(left top, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom right, rgba(0,0,0,1), rgba(255,255,255,0))); /* Standard syntax (must be last) */
-}
-
-.question-inside{
-	margin:20px;
-	padding:15px;
-	font-size:18px;
-	color:white;
-	border-radius:7px;
-    background: -webkit-linear-gradient(right bottom, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to top left, rgba(150,150,150,1), rgba(255,255,255,0))); /* Standard syntax (must be last) */
-	/*background:lime;*/
-}
-
-.answer-outside{
-	padding:20px;
-	border-radius:0px 0px 7px 7px;
-	background: rgba(235,235,235,1);
-    background: -webkit-linear-gradient(left top, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom right, rgba(0,0,0,1), rgba(255,255,255,0))); /* Standard syntax (must be last) */
-}
-
-.answer-inside{
-	margin:20px;
-	padding:15px;
-	font-size:18px;
-	color:white;
-	border-radius:7px;
-    background: -webkit-linear-gradient(right bottom, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to top left, rgba(150,150,150,1), rgba(255,255,255,0))); /* Standard syntax (must be last) */
-	/*background:lime;*/
-}
-
-	/*use overflow auto if you want a scrollbar only if the content
-	is clipped. use overflow scroll if you always want to see the
-	scrollbars, which are disabled if no content is clipped.
-	overflow:auto;*/
