@@ -3,8 +3,10 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 	//http://stackoverflow.com/questions/799981/document-ready-equivalent-without-jquery
 	showDate();
-	changeBackgroundColor('summary-content');
+	//background-color change
+	bcChange.interval('summary-content', [250, 250, 250, 1], 13, 3000);
 	displayHWIndex.interval(homeworks);
+	displayHWContent(homeworks);
 });
 
 function showDate(){
@@ -17,25 +19,76 @@ function showDate(){
 	document.getElementById('footer').innerHTML = updatedFooter;
 }
 
-//http://www.w3schools.com/jsref/dom_obj_style.asp
-function changeBackgroundColor(element){
-	timer.interval(element);
-}
+var bcChange =
+{
+	element: '',
+	bc: [],
+	mag: 0,
+	counter: '',
+	interval: function(element, initialRGBA, mag, interval){
+		bcChange.element = element;
+		bcChange.bc = initialRGBA;
+		bcChange.mag = mag;
+		bcChange.counter = setInterval(bcChange.changeColor, interval);
+	},
+	changeColor: function(){
+		//obtain the element's current rgba
+		for(var i = 0; i < bcChange.bc.length; i ++){
+			bcChange.bc[i] = bcChange.changeValue(bcChange.bc[i], bcChange.mag);
+		}
+		//for now, set a (opacity) to 1
+		bcChange.bc[3] = 1;
+		//set background color to new values
+		// document.getElementById(element).style.backgroundColor = 'rgba(' + [255,0,0, 0.5].join(',') + ')';
+		//http://www.w3schools.com/jsref/dom_obj_style.asp
+		document.getElementById(bcChange.element).style.backgroundColor = 'rgba(' + bcChange.bc + ')';
+	},
+	changeValue: function(value, mag){
+		//with equal probability, increase or decrease each of the 3 values by mag
+		if(Math.random() < 0.5){
+			value = value - mag;
+		}else{
+			value = value + mag;
+		}
+		if(value < 0){
+			value = Math.floor(Math.random()*mag);
+		}
+		if(value > 255){
+			value = 255 - Math.floor(Math.random()*mag);
+		}
+		return value;
+	},
+	stop: function(){
+		clearInterval(bcChange.counter);
+	}
+};
 
-// function displayHWIndex(arr){
-// 	var container = document.getElementById('homeworks-index');
-// 	for(var i = 0; i < arr.length; i ++){
-// 		var li = document.createElement('li');
-// 		var a = document.createElement('a');
-// 		a.innerText = arr[i].number;
-// 		a.className = 'index-a';
-// 		//to properly create the href, add a #, then replace the space with a dash
-// 		a.setAttribute('href', '#' + arr[i].number.split(' ').join('-'));
-// 		a.setAttribute('title', arr[i].number);
-// 		li.appendChild(a);
-// 		container.appendChild(li);
-// 	}
-// }
+function displayHWContent(arr){
+	for(var i = 0; i < arr.length; i ++){
+		var li = document.createElement('li');
+		var div = document.createElement('div');
+		div.className = 'homework-header';
+		div.setAttribute('hw', i);
+		div.id = arr[i].number.split(' ').join('-');
+		div.innerText = arr[i].number;
+		var div2 = document.createElement('div');
+		div2.className = 'homework-description';
+		div2.innerHTML = arr[i].desc + '<br>' + 'technologies used:' + '<br>';
+		var ul = document.createElement('ul');
+		for(var j = 0; j < arr[i].tech.length; j ++){
+			var techli = document.createElement('li');
+			techli.innerText = arr[i].tech[j];
+			ul.appendChild(techli);
+		}
+		div2.appendChild(ul);
+		divBottomLinks = document.createElement('div');
+		divBottomLinks.innerHTML = '<div class="ind-hw-links"><div class="hw-link">linktogotothishomeworkpage</div><div class="hw-link" id="gototop"><a href = "#main-content">top of page</a></div><div class="hw-link">thesebuttonsarerectangleswithnomarginbetweeneachother</div></div>';
+		div2.appendChild(divBottomLinks);
+		li.appendChild(div);
+		li.appendChild(div2);
+		document.getElementById('homeworks-content').appendChild(li);
+	}
+}
 var displayHWIndex = {
 	hwcount: 0,
 	displayed: 0,
@@ -48,6 +101,9 @@ var displayHWIndex = {
 		if(displayHWIndex.displayed < displayHWIndex.hwcount){
 			var li = document.createElement('li');
 			var a = document.createElement('a');
+			li.className = 'ind-homework-header';
+			//set a 'hw' attribute to the homeworks array index of this particular homework
+			li.setAttribute('hw', displayHWIndex.displayed);
 			a.innerText = homeworks[displayHWIndex.displayed].number;
 			a.className = 'index-a';
 			//to properly create the href for an id, add a #, then replace the space with a dash
@@ -62,47 +118,6 @@ var displayHWIndex = {
 	},
 	stop: function(){
 		clearInterval(displayHWIndex.counter);
-	}
-};
-
-var timer =
-{
-	element: '',
-	//set timer.bc initial background-color to near white
-	bc: [250, 250, 250, 1],
-	counter: '',
-	interval: function(element){
-		timer.element = element;
-		timer.counter = setInterval(timer.changeColor, 1500);
-	},
-	changeColor: function(){
-		//obtain the element's current rgba
-		for(var i = 0; i < timer.bc.length; i ++){
-			timer.bc[i] = timer.changeValue(timer.bc[i], 13);
-		}
-		//for now, set a (opacity) to 1
-		timer.bc[3] = 1;
-		//set background color to new values
-		// document.getElementById(element).style.backgroundColor = 'rgba(' + [255,0,0, 0.5].join(',') + ')';
-		document.getElementById(timer.element).style.backgroundColor = 'rgba(' + timer.bc + ')';
-	},
-	changeValue: function(value, mag){
-		//with equal probability, increase or decrease each of the 3 values by mag
-		if(Math.random() < 0.5){
-			value = value - mag;
-		}else{
-			value = value + mag;
-		}
-		if(value < 0){
-			value = 0;
-		}
-		if(value > 255){
-			value = 255;
-		}
-		return value;
-	},
-	stop: function(){
-		clearInterval(timer.counter);
 	}
 };
 
@@ -219,213 +234,3 @@ var homeworks = [
 //timer function (eg every 250 milliseconds) for the following:
 //document.getElementById('wherequotewillbe').innerText +=quote[i];
 //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//populate the DOM with the questions from topics.
-//generateTopics();
-
-//take the questions in the topics array, and create divs in the HTML
-function generateTopics(){
-	for(var i = 0; i<topics.length; i++){
-		//create a newQuestion. Can make all these divs be in the same class.
-		//jQuery will automatically create the ending </div> tag.
-		var newQuestion = $('<div class="question question-inside">');
-		//add a data-attribute equal to the topic
-		newQuestion.attr('data-questionID', topics[i].id);
-		//make the content of the div equal to the topic's question
-		newQuestion.text(topics[i].question);
-		//append div to the inside of the main-content section
-		$("#main-content").append(newQuestion);
-	}
-}
-
-//when user clicks on a question div, the page show the corresponding answer
-//but first hide all currently displayed answers
-// $(document).on('click','.question', function(){
-// 	//first hide the main-content section of any answers
-// 	$(".answer").fadeOut();
-// 	$(".answer").hide();
-// 	//create a newAnswer. Can make all these divs be in the same class.
-// 	//jQuery will automatically create the ending </div> tag.
-// 	var newAnswer = $('<div class="answer answer-inside">');
-// 	var answerID = $(this).attr("data-questionID");
-// 	//make the content of the div equal to the topic's question
-// 	newAnswer.text(topics[answerID].answer);
-// 	//append div to the inside of the main-content section
-// 	//have the newAnswer div fadeIn???
-// 	$(this).append(newAnswer);
-// 	return false;
-// });
-
-
-// 	//take the data-name attribute from the button, make the variable
-// 	//topic equal to the data-name attribute
-// 	var topic = $(this).data("name");
-// 	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic +
-// 	"&api_key=dc6zaTOxFJmzC&limit=10";
-
-// 	//create an AJAX call
-// 	$.ajax({url: queryURL, method: 'GET'}).done(function(response){
-// 	//or could use eg response.data.morecriteriahere
-// 	var results = response.data;
-// 		for(var i = 0; i<results.length; i++){
-// 			//make a div to hold the gif and rating
-// 			var happyDiv = $('<div class="gif-div">');
-// 			happyDiv.attr('data-name', topic);
-// 			happyDiv.attr("data-id", results[i].id);
-// 			happyDiv.attr("data-animated", "still");
-// 			//make a p element to hold the rating of the gif
-// 			var rating = $('<p>').text("Rating: " + results[i].rating);
-// 			//create an image to contain the gif
-// 			var gifImage = $('<img>');
-// 			gifImage.attr('src', results[i].images.fixed_height_still.url);
-
-// 			//append the gif image and rating to the happyDiv
-// 			happyDiv.append(gifImage);
-// 			happyDiv.append(rating);
-
-// 			//append each happyDiv to div with id animals
-// 			$("#animals").append(happyDiv);
-// 		}
-// 	});
-// 	return false;
-// });
-
-//just using this does NOT work. Must have this function within $(document).on...
-// $(".special-button").on('click', function(){
-// });
-
-//just using this does NOT work. Must have this function within $(document).on...
-// $('.gif-div').on('click', function(){
-// });
-
-//when the user clicks one of still GIPHY images, the gif should animate
-//if an animated gif image is clicked again, it should stop playing	
-// $(document).on("click",".gif-div", function(){
-// 	var id = $(this).attr("data-id");
-// 	//create a variable animated equal to the data-animated attribute
-// 	var animated = $(this).attr("data-animated");
-// 	var queryURL = "https://api.giphy.com/v1/gifs/" + id +"?api_key=dc6zaTOxFJmzC";
-// 	//give the selected gif-div the id of picked.
-// 	$(this).attr("id", "picked");
-// 	console.log(this);
-// 	if(animated==="still"){
-// 		console.log(this);
-// 		$.ajax({url: queryURL, method: 'GET'}).done(function(response){
-// 			console.log(this);
-// 			var result = response.data;
-// 			//create a new div just like the original, except with the animated src
-// 			var happyDiv = $('<div class="gif-div">');
-// 			happyDiv.attr("data-id", result.id);
-// 			happyDiv.attr("data-animated", "animated");
-// 			//make a p element to hold the rating of the gif
-// 			var rating = $('<p>').text("Rating: " + result.rating);
-// 			//create an image to contain the gif
-// 			var gifImage = $('<img>');
-// 			//give the gifImage the animated link to the same gif
-// 			gifImage.attr('src', result.images.fixed_height.url);
-// 			//append the gif image and rating to the happyDiv
-// 			happyDiv.append(gifImage);
-// 			happyDiv.append(rating);
-
-// 			//replace the clicked gif-div with the new animated happyDiv
-// 			var divID = "#"+id;
-// 			console.log(divID);
-// 			console.log(this);
-// 			console.log(happyDiv);
-
-// 			$("#picked").replaceWith(happyDiv);
-// 			//reset the id to empty (so no longer has id picked)
-// 			$("#picked").attr("id", "");
-// 		});
-// 	}
-// 	else if(animated==="animated"){
-// 		console.log("it's animated!");
-// 		$.ajax({url: queryURL, method: 'GET'}).done(function(response){
-// 			console.log(this);
-// 			var result = response.data;
-// 			//create a new div just like the original, except with the non-animated src
-// 			var happyDiv = $('<div class="gif-div">');
-// 			happyDiv.attr("data-id", result.id);
-// 			happyDiv.attr("data-animated", "still");
-// 			//make a p element to hold the rating of the gif
-// 			var rating = $('<p>').text("Rating: " + result.rating);
-// 			//create an image to contain the gif
-// 			var gifImage = $('<img>');
-// 			//give the gifImage the non-animated (still) link to the same gif
-// 			gifImage.attr('src', result.images.fixed_height_still.url);
-// 			//append the gif image and rating to the happyDiv
-// 			happyDiv.append(gifImage);
-// 			happyDiv.append(rating);
-
-// 			//replace the clicked gif-div with the new animated happyDiv
-// 			var divID = "#"+id;
-// 			console.log(divID);
-// 			console.log(this);
-// 			console.log(happyDiv);
-
-// 			$("#picked").replaceWith(happyDiv);
-// 			$("#picked").attr("id", "");
-// 		});
-// 	}
-// });
-
-//finally, add a form that takes the value from the user input box, and pushes it
-//into the topics array.
-//then make a function call that takes all the topics in the array and remakes
-//the buttons on the page.
-// $("#add-animal").on("click", function() {
-// 	if($("#animal-input").val()===""){
-// 		alert("you forgot to add something.");
-// 		// IMPORTANT! We have this line so that users can hit "enter" instead
-// 		//of clicking on the button AND it won't move to the next page
-// 		return false;
-// 	}
-// 	else{
-// 		var newAnimal = $("#animal-input").val().trim();
-// 		topics.push(newAnimal);
-// 		var newButton = $('<button class="special-button">');
-// 		//add a data-attribute equal to the topic
-// 		newButton.attr('data-name', newAnimal);
-// 		//make the content of the button equal to the topic
-// 		newButton.text(newAnimal);
-// 		//append all the buttons to the inside of the animalButtons div
-// 		$("#animalButtons").append(newButton);
-// 		//clear the animal-input field
-// 		$("#animal-input").val("");
-// 		// We have this line so that users can hit "enter" instead of clicking on the
-// 		//button and it won't move to the next page
-// 		//return false;
-// 	}
-// 	return false;
-// 	//calling the makeButtons function here didn't update the buttons!!
-// 	//makeButtons();
-// });
