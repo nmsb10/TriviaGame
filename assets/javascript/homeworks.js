@@ -227,25 +227,25 @@ var homeworks = [
 		id: 7,
 		number: "homework seven",
 		staticlink: 'homeworks/hw7.html',
-		//1. a description of this homework (what does it do).
-		//2 how to use it.
-		//3. how it does it/ how it was made.
-		//4. USE THE TRANSFORM AND PERSPECTIVE CSS PROPERTIES?? ",
-		desc: 'Find a partner and play "Rock, Paper, Scissors," anywhere connected to the internet. Use the chat feature to send messages. Additional spectators may view the results of each round and add their own commentary to the messaging system. By engaging the functionality of Firebase, this homework ',
+		desc: 'Find a partner and play "Rock, Paper, Scissors," anywhere connected to the internet, on different computers and browsers. Use the chat feature to send messages. Additional spectators may view the results of each round and add their own commentary to the messaging system. This homework utilizes Firebase like a server in that each user "posts" and "gets" information to and from the Firebase database to enjoy the features of this application. The game works by assigning each user\'s DOM elements ids or data attributes unique to them, so Firebase can send them the appropriate information. Firebase understands whose turn it is, or what to display on different browsers, based on internal variables. Firebase "listens" for specific actions to send the appropriate information to the intended users. I also added timer functionality so subsequent games occur automatically rather than requiring consent from the players. This enhances the game experience.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'jQuery', 'Google Firebase']	},
 	{
 		id: 10,
 		number: "homework ten",
 		staticlink: 'https://youtu.be/M3w1Te47G5o',
 		desc: "description of homework ten here.",
-		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
+		tech: ['JavaScript', 'Node.js', 'NPM libraries/packages', 'mySQL']
 	},
 	{
 		id: 12,
 		number: "homework twelve",
 		staticlink: 'https://jn1.herokuapp.com/',
-		desc: "first read a description of this homework. what it does, how it does it, how to use it. how it was made. explain the homework; USE THE TRANSFORM AND PERSPECTIVE CSS PROPERTIES?? ",
-		tech: ['technologies and concepts used one', 'technologies and concepts used two', 'technologies and concepts used three']
+		//1. a description of this homework (what does it do).
+		//2 how to use it.
+		//3. how it does it/ how it was made.
+		//4. USE THE TRANSFORM AND PERSPECTIVE CSS PROPERTIES?? ",
+		desc: 'Add new burgers, "devour" burgers, and make burgers available for devouring again. This homework involved creating my own server.',
+		tech: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'mySQL', 'express', 'handlebars', 'heroku']
 	},
 ];
 
