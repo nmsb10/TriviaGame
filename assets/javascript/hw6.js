@@ -78,11 +78,8 @@ $(document).on("click",".gif-div", function(){
 	var queryURL = "https://api.giphy.com/v1/gifs/" + id +"?api_key=dc6zaTOxFJmzC";
 	//give the selected gif-div the id of picked.
 	$(this).attr("id", "picked");
-	console.log(this);
 	if(animated==="still"){
-		console.log(this);
 		$.ajax({url: queryURL, method: 'GET'}).done(function(response){
-			console.log(this);
 			var result = response.data;
 			//create a new div just like the original, except with the animated src
 			var happyDiv = $('<div class="gif-div">');
@@ -100,9 +97,6 @@ $(document).on("click",".gif-div", function(){
 
 			//replace the clicked gif-div with the new animated happyDiv
 			var divID = "#"+id;
-			console.log(divID);
-			console.log(this);
-			console.log(happyDiv);
 
 			$("#picked").replaceWith(happyDiv);
 			//reset the id to empty (so no longer has id picked)
@@ -110,9 +104,7 @@ $(document).on("click",".gif-div", function(){
 		});
 	}
 	else if(animated==="animated"){
-		console.log("it's animated!");
 		$.ajax({url: queryURL, method: 'GET'}).done(function(response){
-			console.log(this);
 			var result = response.data;
 			//create a new div just like the original, except with the non-animated src
 			var happyDiv = $('<div class="gif-div">');
@@ -130,9 +122,9 @@ $(document).on("click",".gif-div", function(){
 
 			//replace the clicked gif-div with the new animated happyDiv
 			var divID = "#"+id;
-			console.log(divID);
-			console.log(this);
-			console.log(happyDiv);
+			// console.log(divID);
+			// console.log(this);
+			// console.log(happyDiv);
 
 			$("#picked").replaceWith(happyDiv);
 			$("#picked").attr("id", "");

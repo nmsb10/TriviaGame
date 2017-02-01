@@ -124,8 +124,6 @@
 	border-radius: 10px;
 	margin-bottom:5px;
 	transition: all 0.3s;
-	/*-webkit-animation: fadein 3s linear forwards;
-    animation: fadein 3s linear forwards;*/
 }
 
 .homework-header:hover{
@@ -142,6 +140,9 @@
 	border-top: none;
 	margin-bottom:5px;
 	text-align: justify;
+	line-height:120%;
+	-webkit-animation: fadein 1s;
+    animation: fadein 1s;
 }
 
 .hh-open{
