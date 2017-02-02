@@ -17,7 +17,7 @@
 	padding: 10px;
 	border: 1px solid rgba(48, 28, 48, 0.15);
 	border-radius: 10px 10px 0 0;
-	font-size: 20px;
+	font-size: 23px;
 	text-transform: uppercase;
 	/*put all borders inside the elements so width percentages can total 100%*/
 	box-sizing: border-box;
@@ -27,7 +27,6 @@
 
 #summary-content{
 	background-color: rgba(250, 250, 250, 1);
-	font-size:15px;
 	border-radius: 0 0 10px 10px;
 	box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -97,7 +96,7 @@
 	padding: 10px;
 	border: 1px solid rgba(48, 28, 48, 0.15);
 	border-radius: 10px 10px 0 0;
-	font-size: 20px;
+	font-size: 23px;
 	text-transform: uppercase;
 	/*put all borders inside the elements so width percentages can total 100%*/
 	box-sizing: border-box;
@@ -111,7 +110,7 @@
 	border: 1px solid rgba(48, 28, 48, 0.15);
 	border-radius: 0 0 10px 10px;
 	border-top:none;
-	font-size:15px;
+	font-size:17px;
 	box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -140,7 +139,7 @@
 	border-top: none;
 	margin-bottom:5px;
 	text-align: justify;
-	line-height:120%;
+	line-height:125%;
 	-webkit-animation: fadein 1s;
     animation: fadein 1s;
 }
@@ -161,52 +160,6 @@
 
 .hw-link:hover{
 	background-color: rgba(215, 215, 215, 1);
-}
-
-.question-outside{
-	padding:20px;
-	border-radius:7px 7px 0px 0px;
-	background: rgba(235,235,235,1);
-    background: -webkit-linear-gradient(left top, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom right, rgba(0,0,0,1), rgba(255,255,255,0))); /* Standard syntax (must be last) */
-}
-
-.question-inside{
-	margin:20px;
-	padding:15px;
-	font-size:18px;
-	color:white;
-	border-radius:7px;
-    background: -webkit-linear-gradient(right bottom, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to top left, rgba(150,150,150,1), rgba(255,255,255,0))); /* Standard syntax (must be last) */
-	/*background:lime;*/
-}
-
-.answer-outside{
-	padding:20px;
-	border-radius:0px 0px 7px 7px;
-	background: rgba(235,235,235,1);
-    background: -webkit-linear-gradient(left top, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, rgba(0,0,0,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom right, rgba(0,0,0,1), rgba(255,255,255,0))); /* Standard syntax (must be last) */
-}
-
-.answer-inside{
-	margin:20px;
-	padding:15px;
-	font-size:18px;
-	color:white;
-	border-radius:7px;
-    background: -webkit-linear-gradient(right bottom, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(top left, rgba(150,150,150,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to top left, rgba(150,150,150,1), rgba(255,255,255,0))); /* Standard syntax (must be last) */
-	/*background:lime;*/
 }
 
 /*===========================================*/

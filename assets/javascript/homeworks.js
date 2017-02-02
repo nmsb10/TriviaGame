@@ -227,14 +227,14 @@ var homeworks = [
 		id: 7,
 		number: "homework seven",
 		staticlink: 'homeworks/hw7.html',
-		desc: 'Find a partner and play "Rock, Paper, Scissors," anywhere connected to the internet, on different computers and browsers. Use the chat feature to send messages. Additional spectators may view the results of each round and add their own commentary to the messaging system. This homework utilizes Firebase like a server in that each user "posts" and "gets" information to and from the Firebase database to enjoy the features of this application. The game works by assigning each user\'s DOM elements ids or data attributes unique to them, so Firebase can send them the appropriate information. Firebase understands whose turn it is, or what to display on different browsers, based on internal variables. Firebase "listens" for specific actions to send the appropriate information to the intended users. I also added timer functionality so subsequent games occur automatically rather than requiring consent from the players. This enhances the game experience.',
+		desc: 'Find a partner and play "Rock, Paper, Scissors," anywhere connected to the internet, on different computers and browsers. Use the chat feature to send messages. Additional spectators may view the results of each round and add their own commentary to the messaging system. This homework utilizes Firebase like a server in that each user "posts" and "gets" information to and from the Firebase database to enjoy the features of this application. The game works by assigning each user\'s DOM elements ids or data attributes unique to them, so Firebase can send them the appropriate information. Firebase understands whose turn it is, or what to display on different browsers, based on internal variables. Firebase "listens" for specific actions to send the appropriate information to the intended users. I also added timer functionality so subsequent games occur automatically rather than requiring explicit consent from the players (eg "next button") to start a new round. This enhances the game experience.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'jQuery', 'Google Firebase']	},
 	{
 		id: 10,
 		number: "homework ten",
 		staticlink: 'https://youtu.be/M3w1Te47G5o',
-		desc: "description of homework ten here.",
-		tech: ['JavaScript', 'Node.js', 'NPM libraries/packages', 'mySQL']
+		desc: 'This homework involved "creating an Amazon-like storefront with mySQL. The application takes in orders from customers and depletes stock from the store\'s inventory. The application also tracks product sales across departments and can provide a summary of the highest-grossing departments in the store." Preliminary steps included creating a package.json file and installing and saving the NPM packages (libraries) "mysql" for creating a mySQL connection, "inquirer" for the CLI interface, and "cli-table" for the "Supervisor View." I also added a .gitignore file so when pushing updates to github, the node_modules repository was not added. In MySQL Workbench, I created a database, specified using that particular database, then created a table with columns including an item_id primary key auto_incremented column, as well as product name, department name, price, and stock quantity columns. The JavaScript code first created a mySQL connection using the mysql object, then used inquirer and the mysql packages to obtain data from the products table and allow the user through the CLI to manipulate the table data in various ways, as demonstrated in the video. A second table was added to the same database which reflected total department sales and "profit," which would be updated whenever a change occured in the first products table. Success on this homework required extensive use of promises, anonymous functions, and callback functions, in addition to crafting appropriate mySQL queries and utilizing placeholders when necessary.',
+		tech: ['JavaScript', 'Node.js', 'NPM libraries/packages: inquirer, mysql, cli-table', 'mySQL']
 	},
 	{
 		id: 12,
@@ -243,77 +243,7 @@ var homeworks = [
 		//1. a description of this homework (what does it do).
 		//2 how to use it.
 		//3. how it does it/ how it was made.
-		//4. USE THE TRANSFORM AND PERSPECTIVE CSS PROPERTIES?? ",
 		desc: 'Add new burgers, "devour" burgers, and make burgers available for devouring again. This homework involved creating my own server.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'mySQL', 'express', 'handlebars', 'heroku']
 	},
 ];
-
-
-	//var button = document.getElementById('buttonID')
-	//button.addEventListener('click', function(){});
-	//button.classList.add('show');
-	//button.classList.remove('hide');
-	// //if there were multiple classes, must have a space before show ie ' show'
-	// 	li.className = 'show';
-	//appendchild??
-// 	**http://www.w3schools.com/js/js_datatypes.asp
-// **http://www.w3schools.com/jsref/jsref_map.asp
-// **http://www.w3schools.com/jsref/jsref_forEach.asp
-// **http://www.w3schools.com/jsref/jsref_reduce.asp
-// **http://www.w3schools.com/jsref/jsref_join.asp
-// **filter
-// **slice
-// **http://www.w3schools.com/js/js_comparisons.asp
-// **http://www.w3schools.com/js/js_bitwise.asp
-//event.which and event.key
-
-//http://www.w3schools.com/jsref/met_document_addeventlistener.asp
-		// document.addEventListener("mouseover", myFunction);
-		// document.addEventListener("click", someOtherFunction);
-		// document.addEventListener("mouseout", someOtherFunction);
-
-
-//modals???
-
-
-
-//to copy an array: arrayCopy = originalArray.slice(0);
-
-//answer for keeping the chat thing scrolled to bottom unless user scrolls otherwise
-	//http://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up
-
-//document.getElementsByClassName("example");
-//.value, .innerHTML
-//document.queryselector??
-//use a switch statement??
-//functions that return values??
-
-//add class to an element:
-// var d = document.getElementById("div1");
-// d.className += " otherclass"; NB the space before the otherclass name
-
-
-//http://www.w3schools.com/howto/howto_css_modals.asp
-//http://www.w3schools.com/jsref/dom_obj_document.asp
-//http://www.w3schools.com/jsref/jsref_statements.asp
-//http://www.w3schools.com/jsref/dom_obj_event.asp
-
-
-//TO COPY AN ARRAY:
-//var copyOfArray = thoughts.slice(0);
-
-
-
-//to iterate through an array to search for an element:
-//var found = thoughts.find(function (item){
-	//return item.item_id === answer.item_id;
-//});
-
-
-
-//add one letter at a time
-//for(var i= 0; i<quote.length; i++){
-//timer function (eg every 250 milliseconds) for the following:
-//document.getElementById('wherequotewillbe').innerText +=quote[i];
-//}
