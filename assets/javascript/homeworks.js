@@ -100,9 +100,27 @@ function displayDescription(){
 	this.parentNode.appendChild(description);
 }
 
-function displayDescriptionFromIndexClick(){
+// function displayDescriptionFromIndexClick(){
+// 	var whichHW = this.getAttribute('hw');
+// 	var homeworkHElems = document.querySelectorAll('.homework-header');
+// 	for (var i = 0; i < homeworkHElems.length; i++) {
+// 		var hw = homeworkHElems[i].getAttribute('hw');
+// 		if(whichHW === hw){
+// 			removehwd();
+// 			var description = displayHWContent(whichHW);
+// 			homeworkHElems[i].className += ' hh-open';
+// 			homeworkHElems[i].parentNode.appendChild(description);
+// 			return;
+// 		}
+// 	}
+// }
+function displayDescriptionFromIndexClick(event){
+	console.log('event:', event);
+	console.log('event.target: ', event.target);
+
+
 	var whichHW = this.getAttribute('hw');
-	var homeworkHElems = document.getElementsByClassName('homework-header');
+	var homeworkHElems = document.querySelectorAll('.homework-header');
 	for (var i = 0; i < homeworkHElems.length; i++) {
 		var hw = homeworkHElems[i].getAttribute('hw');
 		if(whichHW === hw){
@@ -247,3 +265,27 @@ var homeworks = [
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'mySQL', 'express', 'handlebars', 'heroku']
 	},
 ];
+
+
+//PETE'S SUGGESTION FOR TAKING THE ARRAY OF NODE ELEMENTS, AND TURNING IT INTO AN ARRAY
+//SO THEN YOU CAN RUN ARRAY FUNCTIONS ON THOSE ELEMENTS
+// Document.prototype.getAll = function(selector){
+// 	   var domElemList = document.querySelectorAll(selector);
+// 	   if(!domElemList.length){
+// 	   	console.log("could not find elements with selector: " + selector);
+// 	   	return [];
+// 	   }
+// 	   var jsArray = [];
+// 	   for(var i = 0; i < domElemList.length; i++){
+// 	   		jsArray.push(domElemList[i]);
+// 	   }
+// 	   return jsArray;
+// 	}
+
+//consider: .dataset instead of .attribute
+//can set multiple eg style with {} instead of setting one style attribute at a time?
+//how about setting multiple attributes at one time?
+
+// -webkit-transition: all 0.15s ease-out 0s;
+//     -moz-transition: all 0.15s ease-out 0s;
+//     transition: all 0.15s ease-out 0s;

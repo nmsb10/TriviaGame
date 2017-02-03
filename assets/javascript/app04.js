@@ -13,6 +13,27 @@ function showDate(){
 	document.getElementById('footer').innerHTML = updatedFooter;
 }
 
+
+
+//hello. what would you like to teach me today?
+//(evaluates the answer, compares to "known facts,", also weighs whether to accept/add the fact to "known facts" based on compatibility with already "known facts," AND credibility of the fact giver.)
+//perhaps assign "known facts" with different weights based on how "hard" they are (a measure of their "perceived truth").
+//facts have associated origins as well?
+//fact: has the 1. content of the fact; 2. source(s) of the fact; 3. (likely changing) credibility / perceived truth level of this fact (which changes relative to other facts and based on sources of this fact)
+
+//code a "seed". Design your "seed."
+//prime directives: courteous, respectful (in speech, action); how to actually define this?
+//a seed contains all the information / knowledge it needs to grow.
+//-it takes in water and nutrients.
+//-then it "grows"
+//-it becomes a plant, uses sun, understands photosynthesis
+//-has biological (and chemical? physical?) changes, in accordance with it's "rules"
+//-eg a carrot seed will not grow into a parsley plant
+//-although seeds from the same plant will grow into "that particular plant," they will not be identical to each other when they mature
+//-also, depending on other variables, mutations can occur (either due to genetic variances within the seed, or environmental differences like radioactive soil or unusual nutrients, or a combination, to create mutations)
+//being able to predict what effect a certain action will have. then chaining actions and effects with probabilities to arrive at estimation for likelihood of a certain event in the future
+
+
 //add one letter at a time (use setinterval?)
 //USE THE TRANSFORM AND PERSPECTIVE CSS PROPERTIES?? ",
 
