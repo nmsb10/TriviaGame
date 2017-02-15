@@ -100,8 +100,6 @@ function displayDescription(elem){
 	elem.parentNode.appendChild(description);
 }
 
-
-
 var homeworks = [
 	{
 		id: 3,
