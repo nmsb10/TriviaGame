@@ -92,13 +92,125 @@ function enableHWdisplay(){
 	}, homeworks.length * 300);
 }
 
-function displayDescription(elem){
+function displayDescription(){
 	removehwd();
-	var whichHW = elem.getAttribute('hw');
+	var whichHW = this.getAttribute('hw');
 	var description = displayHWContent(whichHW);
-	elem.className += ' hh-open';
-	elem.parentNode.appendChild(description);
+	this.className += ' hh-open';
+	this.parentNode.appendChild(description);
 }
+
+// function displayDescriptionFromIndexClick(){
+// 	var whichHW = this.getAttribute('hw');
+// 	var homeworkHElems = document.querySelectorAll('.homework-header');
+// 	for (var i = 0; i < homeworkHElems.length; i++) {
+// 		var hw = homeworkHElems[i].getAttribute('hw');
+// 		if(whichHW === hw){
+// 			removehwd();
+// 			var description = displayHWContent(whichHW);
+// 			homeworkHElems[i].className += ' hh-open';
+// 			homeworkHElems[i].parentNode.appendChild(description);
+// 			return;
+// 		}
+// 	}
+// }
+function displayDescriptionFromIndexClick(event){
+	console.log('event:', event);
+	console.log('event.target: ', event.target);
+
+
+	var whichHW = this.getAttribute('hw');
+	var homeworkHElems = document.querySelectorAll('.homework-header');
+	for (var i = 0; i < homeworkHElems.length; i++) {
+		var hw = homeworkHElems[i].getAttribute('hw');
+		if(whichHW === hw){
+			removehwd();
+			var description = displayHWContent(whichHW);
+			homeworkHElems[i].className += ' hh-open';
+			homeworkHElems[i].parentNode.appendChild(description);
+			return;
+		}
+	}
+}
+
+//remove any currently openhomework-description element currently in dom
+function removehwd(){
+	var openDesc = document.getElementById('homework-description');
+	if(openDesc){
+		openDesc.parentNode.firstChild.className = 'homework-header';
+		openDesc.parentNode.removeChild(openDesc);
+	}else{
+		return;
+	}
+}
+
+function displayHWContent(hw){
+	var div = document.createElement('div');
+	div.id = 'homework-description';
+	div.innerHTML = homeworks[hw].desc + '<br><br><u>' + 'Technologies used:' + '<u><br>';
+	var ul = document.createElement('ul');
+	for(var i = 0; i < homeworks[hw].tech.length; i ++){
+		var techli = document.createElement('li');
+		techli.innerText = homeworks[hw].tech[i];
+		ul.appendChild(techli);
+	}
+	div.appendChild(ul);
+	div.innerHTML += '<br>';
+	divBottomLinks = document.createElement('div');
+	var hwlink = document.createElement('a');
+	hwlink.className = 'hw-link';
+	hwlink.setAttribute('href', homeworks[hw].staticlink);
+	hwlink.setAttribute('target','_blank');
+	hwlink.setAttribute('title','opens in a new browser window');
+	hwlink.innerText = 'see ' + homeworks[hw].number;
+	var gototop = document.createElement('a');
+	gototop.className = 'hw-link';
+	gototop.setAttribute('href', '#main-content');
+	gototop.setAttribute('title', 'back to page top');
+	gototop.className = 'hw-link close-desc';
+	gototop.innerText = 'top of page';
+	var thirdlink = document.createElement('a');
+	thirdlink.className = 'hw-link';
+	thirdlink.setAttribute('href', '#');
+	thirdlink.innerText = 'third link';
+	divBottomLinks.appendChild(hwlink);
+	divBottomLinks.appendChild(gototop);
+	divBottomLinks.appendChild(thirdlink);
+	div.appendChild(divBottomLinks);
+	return div;
+}
+
+var displayHWIndex = {
+	hwcount: 0,
+	displayed: 0,
+	counter:'',
+	interval: function(array){
+		displayHWIndex.hwcount = array.length;
+		displayHWIndex.counter = setInterval(function(){displayHWIndex.display();}, 300);
+	},
+	display: function(){
+		if(displayHWIndex.displayed < displayHWIndex.hwcount){
+			var li = document.createElement('li');
+			var a = document.createElement('a');
+			li.className = 'ind-homework-header';
+			//set a 'hw' attribute to the homeworks array index of this particular homework
+			li.setAttribute('hw', displayHWIndex.displayed);
+			a.innerText = homeworks[displayHWIndex.displayed].number;
+			a.className = 'index-a';
+			//to properly create the href for an id, add a #, then replace the space with a dash
+			a.setAttribute('href', '#' + homeworks[displayHWIndex.displayed].number.split(' ').join('-'));
+			a.setAttribute('title', homeworks[displayHWIndex.displayed].number);
+			li.appendChild(a);
+			document.getElementById('homeworks-index').appendChild(li);
+			displayHWIndex.displayed ++;
+		}else{
+			displayHWIndex.stop();
+		}
+	},
+	stop: function(){
+		clearInterval(displayHWIndex.counter);
+	}
+};
 
 var homeworks = [
 	{
@@ -152,36 +264,17 @@ var homeworks = [
 		desc: 'Add new burgers, "devour" burgers, and make burgers available for devouring again. This homework involved creating my own server.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'mySQL', 'express', 'handlebars', 'heroku']
 	},
-];
-var hwObject = homeworks.reduce(function(hwOB,hw){
-   hwOB[hw.id] = { cb: function(){
-   	console.log('callback for ' + hw.number, hw);
-   }
-}
-   return hwOB;
-}, {});
-console.log('hwObject', hwObject);
-document.getElementById('homeworks-index').innerHTML = homeworks.map(function(hw, ind){
-	return '<li id="homework_'+hw.id+'" data-hw="'+hw.id+'" style="font-size:16px;">' +hw.number+'</li>';
-}).join('');
-document.getElementById('homeworks-index').onclick = function(e){
-	console.log(e.target);
-	var hwkey = e.target.dataset.hw;
-	console.log('hwkey',hwkey);
-	if(hwkey){
-		hwObject[hwkey].cb();
+	{
+		id: 13,
+		number: "group project two",
+		staticlink: 'https://enhajolist.herokuapp.com/',
+		//1. a description of this homework (what does it do).
+		//2 how to use it.
+		//3. how it does it/ how it was made.
+		desc: 'description coming soon. please feel free to visit and explore.',
+		tech: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'mySQL', 'express', 'handlebars', 'heroku']
 	}
-};
-
-
-//HOW TO CREATE AN OBJECT OF THE HOMEWORKS-INDEX LI CHILDREN ELEMENTS, SO YOU CAN REFER TO THEM BY ITM.ID
-var things = {}
-document.getElementById('homeworks-index').querySelectorAll('li').forEach((itm) => { things[itm.id] = itm})
-things["homework_3"]
-
-
-
-
+];
 
 
 //PETE'S SUGGESTION FOR TAKING THE ARRAY OF NODE ELEMENTS, AND TURNING IT INTO AN ARRAY
@@ -203,6 +296,30 @@ things["homework_3"]
 //can set multiple eg style with {} instead of setting one style attribute at a time?
 //how about setting multiple attributes at one time?
 
-// -webkit-transition: all 0.15s ease-out 0s;
-//     -moz-transition: all 0.15s ease-out 0s;
-//     transition: all 0.15s ease-out 0s;
+//===========================================================
+//MORE PETE WORK:
+// var hwObject = homeworks.reduce(function(hwOB,hw){
+//    hwOB[hw.id] = { cb: function(){
+//    	console.log('callback for ' + hw.number, hw);
+//    }
+// }
+//    return hwOB;
+// }, {});
+// console.log('hwObject', hwObject);
+// document.getElementById('homeworks-index').innerHTML = homeworks.map(function(hw, ind){
+// 	return '<li id="homework_'+hw.id+'" data-hw="'+hw.id+'" style="font-size:16px;">' +hw.number+'</li>';
+// }).join('');
+// document.getElementById('homeworks-index').onclick = function(e){
+// 	console.log(e.target);
+// 	var hwkey = e.target.dataset.hw;
+// 	console.log('hwkey',hwkey);
+// 	if(hwkey){
+// 		hwObject[hwkey].cb();
+// 	}
+// };
+
+
+// //HOW TO CREATE AN OBJECT OF THE HOMEWORKS-INDEX LI CHILDREN ELEMENTS, SO YOU CAN REFER TO THEM BY ITM.ID
+// var things = {}
+// document.getElementById('homeworks-index').querySelectorAll('li').forEach((itm) => { things[itm.id] = itm})
+// things["homework_3"]
