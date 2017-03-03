@@ -13,7 +13,8 @@ function showDate(){
 	document.getElementById('footer').innerHTML = updatedFooter;
 }
 
-
+//sequelize documentation:
+//http://docs.sequelizejs.com/en/v3/
 
 //hello. what would you like to teach me today?
 //(evaluates the answer, compares to "known facts,", also weighs whether to accept/add the fact to "known facts" based on compatibility with already "known facts," AND credibility of the fact giver.)
@@ -51,6 +52,7 @@ function showDate(){
 // **slice
 // **http://www.w3schools.com/js/js_comparisons.asp
 // **http://www.w3schools.com/js/js_bitwise.asp
+//object.assign
 //event.which and event.key
 
 //http://www.w3schools.com/jsref/met_document_addeventlistener.asp
@@ -76,3 +78,33 @@ function showDate(){
 //var found = thoughts.find(function (item){
 	//return item.item_id === answer.item_id;
 //});
+
+//========================================================================
+//pete: offeritup.com
+//all API calls should happen from the server on node NOT the front end (see image)
+//amcharts: box 2D
+//"gravity animation"
+//see the nerds test
+//"file zone" to enable drop file here to load
+//passport.js (see on github, by Jared Hanson (creator)); passport v. everyauth?
+
+//==========================================================================
+// REST APIs (Sean Callahan career presenters)
+// -only two base URLs per resource
+// --eg /dogs for collections
+// --eg /dogs/fido for individual elements
+// -prefer nouns to verbs
+// --nouns refer to resources
+// -verbs acceptable for actions or calculations not tied with a specific resource
+// --eg /login /logout /search
+// -prefer plural forms eg /dogs/234 versus /dog/234
+// -avoid confusing odd singular versus plural forms (person, people; goose, geese)
+// -relations in the URLs
+// --/dogs/fido/owners/blondelady
+// ---the owner of the dog named fido
+// --/owners/blondelady/dogs/fido
+// --- the dog fido based on the owner
+// -sweep variations after the ? in the URL
+// -verbs (HTTP methods):
+// --two important concepts: safety and idempotence
+// --get, post, put, delete
