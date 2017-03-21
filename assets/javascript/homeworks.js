@@ -283,6 +283,16 @@ var homeworks = [
 		//3. how it does it/ how it was made.
 		desc: 'description coming soon. please feel free to visit and explore.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'express', 'mongoose', 'cheerio', 'heroku']
+	},
+	{
+		id: 15,
+		number: "homework fifteen",
+		staticlink: 'https://homework15jn.herokuapp.com/',
+		//1. a description of this homework (what does it do).
+		//2 how to use it.
+		//3. how it does it/ how it was made.
+		desc: 'A Single Page Application using React with a node and express server. This application searches the New York Times API, and stores user-saved articles in a mongo database using mongoose models.',
+		tech: ['React', 'Node.js', 'express', 'JSX', 'mongodb', 'mongoose', 'axios', 'CSS3', 'JavaScript', 'heroku']
 	}
 ];
 
