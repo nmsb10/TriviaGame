@@ -291,8 +291,8 @@ var homeworks = [
 		//1. a description of this homework (what does it do).
 		//2 how to use it.
 		//3. how it does it/ how it was made.
-		desc: 'A Single Page Application using React with a node and express server. This application searches the New York Times API, and stores user-saved articles in a mongo database using mongoose models.',
-		tech: ['React', 'Node.js', 'express', 'JSX', 'mongodb', 'mongoose', 'axios', 'CSS3', 'JavaScript', 'heroku']
+		desc: 'A Single Page Application using React with a node and express server. This application searches the New York Times API, and stores user-saved articles in a mongo database using mongoose models. Front-end framework designed using Twitter Bootstrap.',
+		tech: ['React', 'Node.js', 'express', 'JSX', 'mongodb', 'mongoose', 'axios', 'Twitter Bootstrap', 'CSS3', 'JavaScript', 'heroku']
 	}
 ];
 
