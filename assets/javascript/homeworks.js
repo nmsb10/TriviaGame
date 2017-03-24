@@ -258,9 +258,6 @@ var homeworks = [
 		id: 12,
 		number: "homework twelve",
 		staticlink: 'https://jn1.herokuapp.com/',
-		//1. a description of this homework (what does it do).
-		//2 how to use it.
-		//3. how it does it/ how it was made.
 		desc: 'Add new burgers, "devour" burgers, and make burgers available for devouring again. This homework involved creating my own server.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'mySQL', 'express', 'handlebars', 'heroku']
 	},
@@ -268,9 +265,6 @@ var homeworks = [
 		id: 13,
 		number: "group project two",
 		staticlink: 'https://enhajolist.herokuapp.com/',
-		//1. a description of this homework (what does it do).
-		//2 how to use it.
-		//3. how it does it/ how it was made.
 		desc: 'description coming soon. please feel free to visit and explore.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'mySQL', 'express', 'handlebars', 'heroku']
 	},
@@ -278,9 +272,6 @@ var homeworks = [
 		id: 14,
 		number: "homework fourteen",
 		staticlink: 'https://homework14jn.herokuapp.com/',
-		//1. a description of this homework (what does it do).
-		//2 how to use it.
-		//3. how it does it/ how it was made.
 		desc: 'description coming soon. please feel free to visit and explore.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'express', 'mongoose', 'cheerio', 'heroku']
 	},
