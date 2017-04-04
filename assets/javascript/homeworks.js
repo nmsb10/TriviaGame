@@ -293,7 +293,18 @@ var homeworks = [
 		//3. how it does it/ how it was made.
 		desc: 'A Single Page Application using React.js with a node and express server. Enter a description of a property, then receive statistics related to that property in addition to a Comparative Market Analysis. Searches enabled by accessing a mongo database of mongoose schemas / models; collections are populated with documents of actual property listings. Front-end framework custom designed using CSS3.',
 		tech: ['React', 'Node.js', 'express', 'JSX', 'mongodb', 'mongoose', 'axios', 'd3', 'CSS3', 'JavaScript', 'react-router', 'babel', 'webpack', 'css-loader','heroku']
+	},
+	{
+		id: 17,
+		number: "project four",
+		staticlink: 'https://raspberryrealty.herokuapp.com/',
+		//1. a description of this homework (what does it do).
+		//2 how to use it.
+		//3. how it does it/ how it was made.
+		desc: 'test test test',
+		tech: ['React', 'Node.js', 'express', 'JSX', 'mongodb', 'mongoose', 'axios', 'd3', 'CSS3', 'JavaScript', 'react-router', 'babel', 'webpack', 'css-loader','heroku']
 	}
+
 ];
 
 
