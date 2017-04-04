@@ -278,7 +278,8 @@ var homeworks = [
 	{
 		id: 15,
 		number: "homework fifteen",
-		staticlink: 'https://homework15jn.herokuapp.com/',
+		//staticlink: 'https://homework15jn.herokuapp.com/',
+		staticlink: 'https://nyt-jn.herokuapp.com/',
 		//1. a description of this homework (what does it do).
 		//2 how to use it.
 		//3. how it does it/ how it was made.
@@ -288,7 +289,8 @@ var homeworks = [
 	{
 		id: 16,
 		number: "project three",
-		staticlink: 'https://raspberryrealty.herokuapp.com/',
+		//staticlink: 'https://raspberryrealty.herokuapp.com/',
+		staticlink: 'https://avm-jn.herokuapp.com/',
 		//1. a description of this homework (what does it do).
 		//2 how to use it.
 		//3. how it does it/ how it was made.
