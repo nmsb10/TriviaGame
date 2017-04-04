@@ -265,7 +265,7 @@ var homeworks = [
 		id: 13,
 		number: "group project two",
 		staticlink: 'https://enhajolist.herokuapp.com/',
-		desc: 'description coming soon. please feel free to visit and explore.',
+		desc: 'Application built by a three-person team; users may search local business listings for business information and current promotions; business owners may add their business and add promotions.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'mySQL', 'express', 'handlebars', 'heroku']
 	},
 	{
@@ -278,19 +278,16 @@ var homeworks = [
 	{
 		id: 15,
 		number: "homework fifteen",
-		//staticlink: 'https://homework15jn.herokuapp.com/',
 		staticlink: 'https://nyt-jn.herokuapp.com/',
-		//1. a description of this homework (what does it do).
-		//2 how to use it.
-		//3. how it does it/ how it was made.
+		//staticlink: 'https://homework15jn.herokuapp.com/',
 		desc: 'A Single Page Application using React with a node and express server. This application searches the New York Times API, and stores user-saved articles in a mongo database using mongoose models. Front-end framework designed using Twitter Bootstrap.',
 		tech: ['React', 'Node.js', 'express', 'JSX', 'mongodb', 'mongoose', 'axios', 'Twitter Bootstrap', 'CSS3', 'JavaScript', 'heroku']
 	},
 	{
 		id: 16,
 		number: "project three",
-		//staticlink: 'https://raspberryrealty.herokuapp.com/',
 		staticlink: 'https://avm-jn.herokuapp.com/',
+		//staticlink: 'https://raspberryrealty.herokuapp.com/',
 		//1. a description of this homework (what does it do).
 		//2 how to use it.
 		//3. how it does it/ how it was made.
