@@ -272,7 +272,7 @@ var homeworks = [
 		id: 14,
 		number: "homework fourteen",
 		staticlink: 'https://homework14jn.herokuapp.com/',
-		desc: 'description coming soon. please feel free to visit and explore.',
+		desc: 'Application using a web scraper. Get the current and most recent headlines from Democracy Now. Save articles and delete articles.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'express', 'mongoose', 'cheerio', 'heroku']
 	},
 	{
