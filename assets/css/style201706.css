@@ -1,0 +1,95 @@
+body{
+	z-index: 0;
+	/*http://sixrevisions.com/css/responsive-background-image/*/
+	/* Set a background color that will be displayed
+    while the background image is loading */
+    background-color: rgba(255, 255, 255, 1);
+
+	/* Location of the image */
+	background-image: url(../images/002.jpg);
+
+	/* Background image is centered vertically and horizontally at all times */
+	background-position: center center;
+
+	/* Background image doesn't tile */
+	background-repeat: no-repeat;
+
+	/* Background image is fixed in the viewport so that it doesn't move when 
+    the content's height is greater than the image's height */
+    background-attachment: fixed;
+
+    /* This is what makes the background image rescale based
+    on the container's size */
+    background-size: cover;
+
+    /*can also write all the above like this:
+    background: url(background-photo.jpg) center center cover no-repeat fixed;*/
+    font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
+}
+
+#name-primary{
+	font-family: 'Georgia', Times, "Times New Roman", serif;
+	letter-spacing: 5px;
+	display: inline-block;
+	padding: 5px;
+	cursor: default;
+}
+
+.header-letter{
+	color: rgba(35, 35, 35, 0.9);
+	text-shadow: 0 0 2px rgba(235, 235, 235, 0.8), 0 0 3.5px rgba(190, 190, 190, 0.8);
+	-webkit-transition: all 0.2s ease 0s; /* For Safari 3.1 to 6.0 */
+	-moz-transition: all 0.2s ease 0s;
+	transition: all 0.2s ease 0s;
+	-webkit-animation: fadein 2s linear 0s;
+	animation: fadein 2s linear 0s;
+}
+
+.header-letter:hover{
+	color: rgba(255, 255, 255, 1);
+	text-shadow: 0 0 1px rgba(35, 35, 35, 0.95);
+}
+
+@-webkit-keyframes fadein {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@keyframes fadein {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+header nav{
+	display: inline-block;
+}
+
+
+footer{
+	text-align: center;
+	position:fixed;
+	/*need to define width because position is fixed*/
+	width: 100%;
+	top: 100%;
+	margin-top: -29.333px;
+    -webkit-transition: all 1s ease 0s;/* For Safari 3.1 to 6.0 */
+	-moz-transition: all 1s ease 0s;
+	transition: all 1s ease 0s;
+}
+
+#footer-content{
+	font-size: 10px;
+	color: rgba(235, 235, 235, 0.75);
+	padding: 9px 0;
+	-webkit-transition: all 1s ease 0s;/* For Safari 3.1 to 6.0 */
+	-moz-transition: all 1s ease 0s;
+	transition: all 1s ease 0s;
+}
+
+footer:hover{
+	background: rgba(250, 250, 250, 0.5);
+}
+
+footer:hover #footer-content{
+	color: rgba(0, 0, 0, 0.75);
+}
