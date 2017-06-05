@@ -216,35 +216,35 @@ var homeworks = [
 	{
 		id: 3,
 		number: "homework three",
-		staticlink: 'homeworks/hw3.html',
+		staticlink: 'applications/hw3.html',
 		desc: 'A "hangman" style game. Homework three represents an exercise in javascript basics, as well as requiring continued advancement in html and css. This assignment involved organizing the game code as an object. While playing, users enter letters from their keyboard as they guess which letters are contained in the current word. Guesses are validated against prior guesses, so the letters guessed count does not decrement with repeat guesses on the same word. As correct letters are entered, the word replaces the placeholders with the correctly guessed letters in the appropriate locations within the current word. Once all letters for the current word are entered within the allotted guess limit, the user "wins" the word and the next word begins.',
 		tech: ['HTML5', 'CSS3', 'JavaScript']
 	},
 	{
 		id: 4,
 		number: "homework four",
-		staticlink: 'homeworks/hw4.html',
+		staticlink: 'applications/hw4.html',
 		desc: 'The player wins with both skill and luck, by correctly calculating how many "crystals" of random values, will give them a total score equal to a randomly generated "goal score." This assignment further refines and explores my capabilities with JavaScript, while introducing the use of jQuery. jQuery enabled DOM manipulation (rendering, appending, updating, etc) through "simpler" code. Also had to properly include the jQuery CDN to enable the jQuery functionality.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'jQuery']
 	},
 	{
 		id: 5,
 		number: "homework five",
-		staticlink: 'homeworks/hw5.html',
+		staticlink: 'applications/hw5.html',
 		desc: 'This "trivia" application navigates the user through a series of timed questions. Once a user selects an answer (or if time remaining reaches 0), their answer is compared to the correct answer. After time is provided for the user to read the answer and explanation, the next timed question begins automatically. Once the user exhausts all questions and answers, the user\'s score is presented, and the user may select the option to try the quiz again. This assignment required more advanced JavaScript programming and continued the use of jQuery. I added additional features to this homework, including questions being randomly generated every time the quiz begins, and the application displaying a corresponding answer explanation whenever an answer was displayed. To complete this homework, success required correctly applying the use of JavaScript timers and enhanced understanding of JavaScript arrays and objects.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'jQuery']
 	},
 	{
 		id: 6,
 		number: "homework six",
-		staticlink: 'homeworks/hw6.html',
+		staticlink: 'applications/hw6.html',
 		desc: 'Take a look at popular giphys of a certain topic from a predetermined list, or add your own new topic to the list. After selecting a topic, the DOM populates with giphys corresponding to the selected topic, and you may click on a particular giphy image to see the animated version of that giphy. Then click an animated giphy to return it to the still image version. This homework involved creating AJAX calls to the giphy api to get the proper images and animated images. An AJAX call required properly formulating the query URL, then filtering the returned data and using jQuery to populate the DOM with the images corresponding to the topic. This application also involved assigning custom attributes to different html elements so the animate/still functionality would work as expected.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'jQuery', 'AJAX (Asynchronous JavaScript and XML)', 'API (application programming interface)']
 	},
 	{
 		id: 7,
 		number: "homework seven",
-		staticlink: 'homeworks/hw7.html',
+		staticlink: 'applications/hw7.html',
 		desc: 'Find a partner and play "Rock, Paper, Scissors," anywhere connected to the internet, on different computers and browsers. Use the chat feature to send messages. Additional spectators may view the results of each round and add their own commentary to the messaging system. This homework utilizes Firebase like a server in that each user "posts" and "gets" information to and from the Firebase database to enjoy the features of this application. The game works by assigning each user\'s DOM elements ids or data attributes unique to them, so Firebase can send them the appropriate information. Firebase understands whose turn it is, or what to display on different browsers, based on internal variables. Firebase "listens" for specific actions to send the appropriate information to the intended users. I also added timer functionality so subsequent games occur automatically rather than requiring explicit consent from the players (eg "next button") to start a new round. This enhances the game experience.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'jQuery', 'Google Firebase']	},
 	{
@@ -270,14 +270,14 @@ var homeworks = [
 	},
 	{
 		id: 14,
-		number: "homework fourteen",
+		number: "news web scraper",
 		staticlink: 'https://homework14jn.herokuapp.com/',
 		desc: 'Application using a web scraper. Get the current and most recent headlines from Democracy Now. Save articles and delete articles.',
 		tech: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'express', 'mongoose', 'cheerio', 'heroku']
 	},
 	{
 		id: 15,
-		number: "homework fifteen",
+		number: "NYT SPA",
 		staticlink: 'https://nyt-jn.herokuapp.com/',
 		//staticlink: 'https://homework15jn.herokuapp.com/',
 		desc: 'A Single Page Application using React with a node and express server. This application searches the New York Times API, and stores user-saved articles in a mongo database using mongoose models. Front-end framework designed using Twitter Bootstrap.',
@@ -285,7 +285,14 @@ var homeworks = [
 	},
 	{
 		id: 16,
-		number: "project three",
+		number: "craps dealer trainer",
+		staticlink: 'apps/app03.html',
+		desc: 'Randomly generates deal scenarios & detailed explanations; calculates user performance statistics.',
+		tech: ['HTML5', 'CSS3', 'JavaScript']
+	},
+	{
+		id: 17,
+		number: "CMA creator",
 		staticlink: 'https://avm-jn.herokuapp.com/',
 		//staticlink: 'https://raspberryrealty.herokuapp.com/',
 		//1. a description of this homework (what does it do).

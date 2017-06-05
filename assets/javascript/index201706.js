@@ -9,14 +9,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 function showDate(){
 	//http://www.w3schools.com/jsref/jsref_obj_date.asp
 	var d = new Date();
-	//console.log(d);
 	var yearCurrent = d.getFullYear();
 	var monthCurrent = dateFun.calculateMonth(d.getMonth());
 	var dayCurrent = dateFun.dayTwoDigits(d.getDate());
 	var date = dayCurrent + ' ' + monthCurrent + ' ' + yearCurrent;
-	var updatedFooter = '<div id="footer-content">Copyright &copy; 2016 - ' + yearCurrent +
-	' <a class="footer-link" href="https://www.linkedin.com/in/jonathonnagatani" target="_blank"' + 
-	' title="Jonathon on LinkedIn">Jonathon Nagatani</a>. All Rights Reserved.</div>';
 	document.getElementById('ft-copy-year').innerHTML = '2016 - ' + yearCurrent + ' ';
 }
 
