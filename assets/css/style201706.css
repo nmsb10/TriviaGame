@@ -1,11 +1,11 @@
 body{
 	z-index: 0;
-    background-color: rgba(255, 255, 255, 1);
+	background-color: rgba(255, 255, 255, 1);
 	background-image: url(../images/002.jpg);
 	background-position: center center;
 	background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+	background-attachment: fixed;
+	background-size: cover;
     /*can also write all the above like this:
     background: url(background-photo.jpg) center center cover no-repeat fixed;*/
     font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
