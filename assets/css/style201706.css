@@ -191,6 +191,10 @@ header nav button:active{
     color: white;
 }
 
+#photo-jn{
+	width: 150px;
+}
+
 
 footer{
 	text-align: center;
