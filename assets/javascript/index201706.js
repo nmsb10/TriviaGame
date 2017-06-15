@@ -10,13 +10,13 @@ function showDate(){
 	//http://www.w3schools.com/jsref/jsref_obj_date.asp
 	var d = new Date();
 	var yearCurrent = d.getFullYear();
-	var monthCurrent = dateFun.calculateMonth(d.getMonth());
-	var dayCurrent = dateFun.dayTwoDigits(d.getDate());
+	var monthCurrent = dateFunc.calculateMonth(d.getMonth());
+	var dayCurrent = dateFunc.dayTwoDigits(d.getDate());
 	var date = dayCurrent + ' ' + monthCurrent + ' ' + yearCurrent;
 	document.getElementById('ft-copy-year').innerHTML = '2016 - ' + yearCurrent + ' ';
 }
 
-var dateFun = {
+var dateFunc = {
 	calculateMonth: function(monthNumber){
 		var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 		for(var i = 0; i<months.length; i++){
@@ -86,6 +86,7 @@ function displayLastLetters(e){
 
 // Get the modal
 var modal = document.getElementById('myModal');
+var modalAboutMe = document.getElementById('modalAboutMe');
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
@@ -96,16 +97,19 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
     modal.style.display = "block";
-}
+    modal.style.backgroundColor = 'rgba(0,0,0,0.35)';
+};
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the modal OR the X span, close the modal
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target === modal || event.target === span) {
+    	if(modalAboutMe.className === 'modal-content animate-down'){
+    		modalAboutMe.className = 'modal-content animate-up';
+    		modal.style.backgroundColor = 'rgba(0,0,0,0)';
+    		setTimeout(function(){
+    			modal.style.display = "none";
+    			modalAboutMe.className = 'modal-content animate-down';
+    		}, 350);
+    	}
     }
-}
+}; 
