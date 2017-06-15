@@ -89,7 +89,7 @@ var modal = document.getElementById('myModal');
 var modalAboutMe = document.getElementById('modalAboutMe');
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+var btn = document.getElementById("aboutMeBtn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -109,7 +109,7 @@ window.onclick = function(event) {
     		setTimeout(function(){
     			modal.style.display = "none";
     			modalAboutMe.className = 'modal-content animate-down';
-    		}, 350);
+    		}, 300);
     	}
     }
 }; 

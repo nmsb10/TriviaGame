@@ -54,11 +54,11 @@ header nav{
     margin-left: -100px;
 }
 
-header nav ul li{
+header nav ul li, .modal-footer ul li{
 	display: inline-block;
 }
 
-header nav ul li a{
+header nav ul li a, .modal-footer ul li a{
 	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
 	text-decoration: none;
 	color: rgba(59, 3, 79, 0.9);
@@ -73,7 +73,7 @@ header nav ul li a{
     transition: all 0.25s ease 0s;
 }
 
-header nav ul li a:hover{
+header nav ul li a:hover, .modal-footer ul li a:hover{
 	box-shadow: 0 5px 9px rgb(110, 95, 107);
 	background-color: rgba(255, 255, 255, 0.85);
 }
