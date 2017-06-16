@@ -58,7 +58,7 @@ header nav ul li, .modal-footer ul li{
 	display: inline-block;
 }
 
-header nav ul li a, .modal-footer ul li a{
+header nav ul li a{
 	font-family: "Helvetica", 'Helvetica Neue', Arial, sans-serif;
 	text-decoration: none;
 	color: rgba(59, 3, 79, 0.9);
@@ -73,7 +73,12 @@ header nav ul li a, .modal-footer ul li a{
     transition: all 0.25s ease 0s;
 }
 
-header nav ul li a:hover, .modal-footer ul li a:hover{
+.modal-footer ul li a{
+	text-decoration: none;
+	font-size:17px;
+}
+
+header nav ul li a:hover,{
 	box-shadow: 0 5px 9px rgb(110, 95, 107);
 	background-color: rgba(255, 255, 255, 0.85);
 }
@@ -112,7 +117,7 @@ header nav button:active{
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 75px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -146,10 +151,8 @@ header nav button:active{
 }
 
 .animate-up{
-	-webkit-animation-name: animateUp;
-    -webkit-animation-duration: 0.35s;
-    animation-name: animateUp;
-    animation-duration: 0.35s
+	-webkit-animation: animateUp 0.35s ease-in 0s;
+    animation: animateUp 0.35s ease-in 0s;
 }
 
 /* Add Animation */
@@ -164,13 +167,15 @@ header nav button:active{
 }
 
 @-webkit-keyframes animateUp {
-    from {top:0; opacity:1}
-    to {top:-500px; opacity:0;} 
+    0% {top:0; opacity:1}
+    15% {top:30px;}
+    100% {top:-500px; opacity:0;} 
 }
 
 @keyframes animateUp {
-    from {top:0; opacity:1}
-    to {top:-500px; opacity:0;} 
+    0% {top:0; opacity:1}
+    15% {top:30px;}
+    100% {top:-500px; opacity:0;} 
 }
 
 /* The Close Button */
@@ -238,7 +243,8 @@ header nav button:active{
 }
 
 .modal-footer {
-    padding: 2px 16px;
+    padding: 0 16px;
+    font-size:0;
     background-color: #5cb85c;
     color: white;
     /*clear both necessary because photo-jn is floated left*/
@@ -283,6 +289,16 @@ https://www.w3schools.com/Css/tryit.asp?filename=trycss_dropdown_text*/
 
 .dropdown{
 	position:relative;
+	font-size:17px;
+	cursor: pointer;
+	font-style: italic;
+	-webkit-transition: all 0.5s ease 0s;
+	-moz-transition: all 0.5s ease 0s;
+	transition: all 0.5s ease 0s;
+}
+
+.dropdown:hover{
+	color: black;
 }
 
 .dropdown-content{
@@ -293,17 +309,16 @@ https://www.w3schools.com/Css/tryit.asp?filename=trycss_dropdown_text*/
 	position: absolute;
 	/*left 0 so left side of dropdown-content aligns with left side of dropdown*/
 	left: 0;
-	/*top:-31px;*/
+	top: -106px;
 	opacity:0;
-	/*delay 0.75 second so admin-button can finish it's hover transition*/
-	-webkit-transition: all 0.5s ease 0.5s;
-	-moz-transition: all 0.5s ease 0.5s;
-	transition: all 0.5s ease 0.5s;
+	-webkit-transition: all 0.5s ease 0s;
+	-moz-transition: all 0.5s ease 0s;
+	transition: all 0.5s ease 0s;
 }
 
 .dropdown:hover .dropdown-content{
 /*	display: block;
-*/	opacity:1;
+*/	opacity: 0.8;
 	/*top:30px because dropdown is 30px height*/
 	/*top:30px;*/
 }
@@ -314,14 +329,14 @@ https://www.w3schools.com/Css/tryit.asp?filename=trycss_dropdown_text*/
 
 .dropdown-content a{
 	/*since dropdown-content is always display block to enable the transition, must make the a elements within only display inline-block upon dropdown hover*/
-	display:none;
+	display: none;
 	cursor: pointer;
 	text-decoration: none;
 	font-size:15px;
-	width:111px;
-	padding: 0 8px;
+	width:150px;
+	padding: 5px 8px;
 	color: rgb(15, 15, 15);
-	border-top: 1px solid purple;
+	/*border-top: 1px solid purple;*/
 	background-color: rgb(235, 235, 235);
 	-webkit-transition: all 0.5s ease 0s;
 	-moz-transition: all 0.5s ease 0s;
@@ -333,19 +348,6 @@ https://www.w3schools.com/Css/tryit.asp?filename=trycss_dropdown_text*/
 }
 
 .dropdown-content a:hover{
-	color:rgb(235, 235, 235);
-	background-color:rgb(15, 15, 15);
-}
-
-.dropdown-content button{
-	color: rgb(15, 15, 15);
-	background-color: rgb(235, 235, 235);
-	-webkit-transition: all 0.5s ease 0s;
-	-moz-transition: all 0.5s ease 0s;
-	transition: all 0.5s ease 0s;
-}
-
-.dropdown-content button:hover{
 	color:rgb(235, 235, 235);
 	background-color:rgb(15, 15, 15);
 }
